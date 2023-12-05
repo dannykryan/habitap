@@ -1,5 +1,10 @@
-import DelTodo from "../../components/delToDo/index";
+ 
+  const handleClick = () => {
+    alert('Button clicked!');
+}
 
 export default function Home() {
-  return <DelTodo />;
+  return <>
+  <h1>Home</h1>
+  </>;
 }
