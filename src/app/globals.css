@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
 
 .btn-container {
   display: flex;
@@ -12,10 +17,20 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 500px;
+  width: 375px;
   height: 90vh;
   margin-left: auto;
   margin-right: auto;
-  padding: 40px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 40px;
+  padding-right: 40px;
   border: 2px solid lime;
+}
+
+#habitap-header {
+  font-family: 'Rozha One', serif;
+  font-size: 3rem;
+  margin-top: 0;
+  margin-bottom: 0;
 }
