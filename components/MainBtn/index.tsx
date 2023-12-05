@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function MainBtn() {
   return ( <>
-  <Link href="/myList">
+  <Link href="/">
     <button className={styles.mainBtn}>
       Home
     </button>

@@ -1,8 +1,11 @@
+import EmptyListItem from "../emptyListItem";
+
 export default function List() {
   return (
     <>
+    <EmptyListItem />
       <ul>
-        <li>First habit</li>
+        <li></li>
         <li>Second habit</li>
         <li>Third habit</li>
       </ul>
