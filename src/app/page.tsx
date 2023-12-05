@@ -1,10 +1,16 @@
- 
-  const handleClick = () => {
-    alert('Button clicked!');
-}
+import Plant from "../../components/plant"
+import ListBttn from "../../components/listBttn";
+import Image from "next/image";
+
+const URL =""
 
 export default function Home() {
-  return <>
-  <h1>Home</h1>
-  </>;
+  return (
+  <>
+  <Plant />
+  <p>Habit progress</p>
+  <ListBttn />
+
+  </>)
+
 }
