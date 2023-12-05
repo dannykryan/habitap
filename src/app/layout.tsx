@@ -18,7 +18,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <header>
-          <h1 id="habitap-title">Habitap</h1>
         </header>
         {children}</body>
     </html>

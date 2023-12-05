@@ -5,10 +5,11 @@ import MainBtn from "../../../components/MainBtn";
 export default function MyList() {
   return <>
   <section className="main">
-<div className="btn-container">
+    <h1>HEADER</h1>
+  <div className="btn-container">
   <MainBtn />
   <DelToDoBtn />
-</div>
+  </div>
 </section>
 </>;
 }
