@@ -1,16 +1,18 @@
 import Plant from "../../components/plant"
 import ListBttn from "../../components/listBttn";
-import Image from "next/image";
+import Link from "next/link";
 
 const URL =""
 
 export default function Home() {
   return (
   <>
+  <section className="main">
+  <h1>Habitap</h1>
   <Plant />
   <p>Habit progress</p>
-  <ListBttn />
-
+  <Link href="/myList"><ListBttn/></Link>
+  </section>
   </>)
 
 }
