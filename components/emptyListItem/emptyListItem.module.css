@@ -1,12 +1,27 @@
 .emptyListItem {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    height: 50px;
-    background-color: #EAF5EB;
-    border: 2px solid #77C47E;
-    margin-bottom: 25px;
-    padding-left: 12px;
-    padding-right: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 50px;
+  background-color: #eaf5eb;
+  border: 2px solid #77c47e;
+  margin-bottom: 25px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.emptyListItem:hover {
+  cursor: pointer;
+}
+
+.listInput {
+  width: 100%;
+  height: 95%;
+  border: none;
+  background-color: #eaf5eb;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  color: black;
+  outline: none;
 }
