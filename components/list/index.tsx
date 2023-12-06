@@ -11,7 +11,7 @@
 //     </>
 //   );
 // }
-
+import { useState } from "react";
 import Image from "next/image";
 import EmptyListItem from "../emptyListItem";
 import ListItem from "../listItem"
@@ -19,26 +19,26 @@ import styles from './list.module.css'
 import checkboxTicked from '../../public/icons/checkbox-ticked.svg';
 import checkboxUnticked from '../../public/icons/checkbox-unticked.svg';
 
-let taskData = [
-  { id: 1, title: "20 minutes yoga session", completed: true },
-  { id: 2, title: "meditate", completed: true },
-  { id: 3, title: "gratitude journal", completed: false },
-];
 
-export default function List() {
+export default function List({taskData} : any) {
   const maxTasks = 5; // Maximum number of tasks to display
+
+  //write a function that changes the completed bit
+
+
+
 
   return (
     <ul className={styles.myList}>
-      {taskData.map((todo, index) => (
+      {taskData.map((todo : any, index : number) => ( // Look at the types and change them
         <li key={todo.id}>
-          <ListItem className={index < taskData.length ? "todoActive" : "todoInactive"}>
+          <ListItem className={index < taskData.length ? "todoActive" : "todoInactive"} todo={todo}>
             {todo.title}
-            <Image 
+            {/* <Image 
               src={todo.completed ? checkboxTicked : checkboxUnticked}
               alt="Trash-icon"
-              height={27}
-              />
+              height={27} */}
+              {/* /> */}
           </ListItem>
         </li>
       ))}
