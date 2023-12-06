@@ -17,23 +17,33 @@ let taskDataOriginal: Task[] = [
   { id: 3, title: "gratitude journal", completed: false },
 ]; 
 
+interface DeleteProps {
+  armDelete: boolean;
+}
+
+let deleteState = {
+  armDelete: false
+}
+
 
 export default function MyList() {
 
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal)
 
+  // Set state of armDelete - default false
+      const [armDelete, setArmDelete] = useState<DeleteProps>(deleteState)
   
-
 
   return <>
     <h1 id="habitap-header">Habitap</h1>
     <Prompt />
-  <div>
-    <List taskData={taskData} />
+    <div>
+      {/* pass down the armDelete to DelToDo */}
+    <List taskData={taskData} armDelete={armDelete}/>
   </div>
   <div className="btn-container">
   <MainBtn />
-  <DelToDoBtn />
+  <DelToDoBtn armDelete={armDelete}/>
   </div>
 </>;
 }

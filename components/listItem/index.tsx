@@ -24,7 +24,7 @@ const ListItem: React.FC<ListItemProps> = ({ children, className, todo } : any) 
     {children}
     <Image 
       src={check ? checkboxTicked : checkboxUnticked}
-      alt="Trash-icon"
+      alt={check ? "ticked checkbox" : "unticked checkbox"}
       height={27} 
       onClick={handleClick}/>
     </div>;
