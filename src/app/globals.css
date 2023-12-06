@@ -36,3 +36,24 @@
   margin-bottom: 0;
   font-weight: 400;
 }
+
+#header-prompt-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 100px;
+  margin-bottom: 25px;
+}
+
+#plant-progress-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 100px;
+  margin-bottom: 120px;
+  margin-top: auto;
+}
