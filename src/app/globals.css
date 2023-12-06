@@ -3,6 +3,7 @@
 
 * {
   font-family: 'Roboto', sans-serif;
+  text-decoration: none;
 }
 
 .btn-container {
@@ -18,7 +19,7 @@
   justify-content: space-between;
   align-items: center;
   width: 375px;
-  height: 90vh;
+  height: 667px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 25px;
@@ -30,7 +31,8 @@
 
 #habitap-header {
   font-family: 'Rozha One', serif;
-  font-size: 3rem;
+  font-size: 4rem;
   margin-top: 0;
   margin-bottom: 0;
+  font-weight: 400;
 }
