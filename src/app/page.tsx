@@ -3,6 +3,8 @@
 import Plant from "../../components/plant";
 import ListBtn from "../../components/listBtn";
 import Link from "next/link";
+
+import Prompt from "../../components/prompt";
 import { useState } from "react";
 
 const URL = "";
@@ -13,14 +15,20 @@ export default function Home() {
     setScore(score + 20);
   };
   return (
-    <>
-      <h1 id="habitap-header">Habitap</h1>
-      <Plant score={score} />
-      <p>Habit progress</p>
-      <Link href="/myList">
-        <ListBtn />
+
+  <>
+  <div id="header-prompt-container">
+    <h1 id="habitap-header">Habitap</h1>
+    <Prompt />
+  </div>
+  <div id="plant-progress-container">
+    <Plant score={score} />
+    <p>Habit progress</p>
+  </div>
+  <Link href="/myList">
+    <ListBtn/>
       </Link>
       <button onClick={handleClick}>Click</button>
-    </>
+  </>
   );
 }
