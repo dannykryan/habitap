@@ -6,7 +6,6 @@ import Prompt from "../../../components/prompt";
 
 export default function MyList() {
   return <>
-  <section className="main">
     <h1 id="habitap-header">Habitap</h1>
     <Prompt />
   <div>
@@ -16,6 +15,5 @@ export default function MyList() {
   <MainBtn />
   <DelToDoBtn />
   </div>
-</section>
 </>;
 }

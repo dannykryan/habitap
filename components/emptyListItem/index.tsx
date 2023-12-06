@@ -3,6 +3,7 @@ import plusIcon from '../../public/icons/empty-list-plus-icon.svg'
 import styles from '../emptyListItem/emptyListItem.module.css'
 
 export default function EmptyListItem() {
+
     return (
     <div className={styles.emptyListItem}>
         <Image 
