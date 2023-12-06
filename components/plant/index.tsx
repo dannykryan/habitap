@@ -4,7 +4,7 @@ import Cheeseplant7Img from "public/plants/cheeseplant-7.svg";
 import Cheeseplant10Img from "public/plants/cheeseplant-10.svg";
 import { useState, useEffect } from "react";
 
-export default function Plant({ score }) {
+export default function Plant({ score }: any) {
   // we need the plant to have the initial state of "a plant pot"
   // when the score changes from 0 but limit is 1-50 we need the image of the plant to be "cheeseplant 7"
   //when the score is above 50, plant image should change to "cheeseplant 10"
