@@ -2,7 +2,7 @@ import Image from "next/image";
 import plusIcon from '../../public/icons/empty-list-plus-icon.svg'
 import styles from '../emptyListItem/emptyListItem.module.css'
 
-export default function EmptyListItem() {
+export default function EmptyListItem( {addNewData, taskData} : any) {
 
     return (
     <div className={styles.emptyListItem}>

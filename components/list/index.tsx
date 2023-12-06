@@ -20,7 +20,7 @@ import checkboxTicked from '../../public/icons/checkbox-ticked.svg';
 import checkboxUnticked from '../../public/icons/checkbox-unticked.svg';
 
 
-export default function List({taskData} : any) {
+export default function List({taskData , addNewData} : any) {
   const maxTasks = 5; // Maximum number of tasks to display
 
   //write a function that changes the completed bit
@@ -43,11 +43,11 @@ export default function List({taskData} : any) {
         </li>
       ))}
       {/* Render additional inactive items if there are less than maxTasks */}
-      {Array.from({ length: Math.max(0, maxTasks - taskData.length) }).map((_, index) => (
-        <li key={`empty-${index}`}>
-            <EmptyListItem />
+      {maxTasks > taskData.length &&
+        <li>
+            <EmptyListItem addNewData={addNewData} taskData={taskData}/>
         </li>
-      ))}
+      }
     </ul>
   );
 }

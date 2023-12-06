@@ -22,14 +22,15 @@ export default function MyList() {
 
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal)
 
-  
-
+  const addNewData = (todo: Task) => {
+    setTaskData([...taskData, todo])
+  }
 
   return <>
     <h1 id="habitap-header">Habitap</h1>
     <Prompt />
   <div>
-    <List taskData={taskData} />
+    <List taskData={taskData} addNewData={addNewData} />
   </div>
   <div className="btn-container">
   <MainBtn />
