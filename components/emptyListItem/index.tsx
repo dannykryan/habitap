@@ -35,7 +35,7 @@ export default function EmptyListItem({ addNewData, taskData }: any) {
     </div>
   ) : (
     <input
-      className={styles.listInput} // it suppose to be the class "listInput"
+      className={styles.emptyListItem} // it suppose to be the class "listInput"
       type="text"
       onChange={handleInputValue}
       onKeyDown={handleEnterKey}
