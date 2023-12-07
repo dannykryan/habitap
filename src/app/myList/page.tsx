@@ -30,6 +30,9 @@ export default function MyList() {
 
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal)
 
+  const addNewData = (todo: Task) => {
+    setTaskData([...taskData, todo])
+  }
   // Set state of armDelete - default false
       const [armDelete, setArmDelete] = useState<DeleteProps>(deleteState)
   
@@ -39,7 +42,7 @@ export default function MyList() {
     <Prompt />
     <div>
       {/* pass down the armDelete to DelToDo */}
-    <List taskData={taskData} armDelete={armDelete}/>
+    <List taskData={taskData} addNewData={addNewData} armDelete={armDelete}/>
   </div>
   <div className="btn-container">
   <MainBtn />
