@@ -17,13 +17,13 @@ let taskDataOriginal: Task[] = [
   { id: 3, title: "gratitude journal", completed: false },
 ]; 
 
-interface DeleteProps {
-  armDelete: boolean;
-}
+// interface DeleteBtnProps {
+//   armDelete: boolean;
+// }
 
-let deleteState = {
-  armDelete: false
-}
+// let deleteState = {
+//   armDelete: false
+// }
 
 
 export default function MyList() {
@@ -34,8 +34,13 @@ export default function MyList() {
     setTaskData([...taskData, todo])
   }
   // Set state of armDelete - default false
-      const [armDelete, setArmDelete] = useState<DeleteProps>(deleteState)
+      const [armDelete, setArmDelete] = useState(false)
   
+     // Handle the state of armDelete, set to true or false 
+    const handleArmDelete = () => {
+      setArmDelete(!armDelete)
+      console.log(armDelete)
+    }
 
   return <>
     <h1 id="habitap-header">Habitap</h1>
@@ -46,7 +51,7 @@ export default function MyList() {
   </div>
   <div className="btn-container">
   <MainBtn />
-  <DelToDoBtn armDelete={armDelete}/>
+  <DelToDoBtn handleArmDelete={handleArmDelete}/>
   </div>
 </>;
 }
