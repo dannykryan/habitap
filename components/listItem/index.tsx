@@ -12,15 +12,18 @@ interface ListItemProps {
   todo: any
 }
 
-const ListItem: React.FC<ListItemProps> = ({ children, className, todo } : any) => {
+const ListItem: React.FC<ListItemProps> = ({ children, className, todo, armDelete } : any) => {
 
   const [check, setcheck] = useState (todo.completed)
   function handleClick () {
   setcheck(!check)
   // todo.completed = !todo.completed
   //  console.log(todo)
+
+    
+
   }
-  return <div className={`${styles.todoActive} ${className}`}>
+  return <div className={armDelete ? styles.deleteArmed : styles.todoActive}>
     {children}
     <Image 
       src={check ? checkboxTicked : checkboxUnticked}
