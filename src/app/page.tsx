@@ -1,30 +1,14 @@
-"use client";
+import Home from "./homepage/page";
+import MyList from "./myList/page";
 
-import Plant from "../../components/plant";
-import ListBtn from "../../components/listBtn";
-import Link from "next/link";
-
-import Prompt from "../../components/prompt";
-import { useState } from "react";
-
-const URL = "";
-
-export default function Home() {
-  let [score, setScore] = useState(0);
-  const handleClick = () => {
-    setScore(score + 20);
-  };
+export default function Parent() {
+  // here will be the state and based on the state change the homepage will be rendered or the MyList
+  // as default it will be the homepage(then changed with login page)
+  //onclick of the MainBttn the state changes to MyList
   return (
-
-  <>
-  <div id="plant-progress-container">
-    <Plant score={score} />
-    <p>Habit progress</p>
-  </div>
-  <Link href="/myList">
-    <ListBtn/>
-      </Link>
-      <button onClick={handleClick}>Click</button>
-  </>
+    <>
+      <Home></Home>
+      <MyList></MyList>
+    </>
   );
 }
