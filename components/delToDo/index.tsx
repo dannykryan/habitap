@@ -1,10 +1,15 @@
 import Image from 'next/image';
 import styles from '../delToDo/delToDo.module.css';
 import trashIcon from '../../public/icons/trash-icon-bold-black.svg';
+import React from 'react';
 
-export default function Button() {
+interface handleArmDeleteProps {
+  handleArmDelete: () => void
+}
+
+const Button: React.FC<handleArmDeleteProps> = ( { handleArmDelete } : any ) => {
   return (
-    <button className={styles.delToDoBtn}>
+    <button className={styles.delToDoBtn} onClick={handleArmDelete}>
       <Image 
       src={trashIcon}
       alt="Trash-icon"
@@ -13,3 +18,5 @@ export default function Button() {
       </button>
   );
 }
+
+export default Button;
