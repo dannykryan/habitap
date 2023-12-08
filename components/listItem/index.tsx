@@ -10,6 +10,7 @@ import trashIconRed from '../../public/icons/trash-icon-red.svg'
 interface ListItemProps {
   children: ReactNode;
   className?: string;
+  armDelete : boolean;
   todo: any
 }
 

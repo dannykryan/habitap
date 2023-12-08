@@ -3,16 +3,11 @@ import styles from '../delToDo/delToDo.module.css';
 import trashIcon from '../../public/icons/trash-icon-bold-black.svg';
 import React from 'react';
 
-// interface handleArmDeleteProps {
-//   handleArmDelete: any
-// }
-export default function Button( { handleArmDelete } ) {
+interface handleArmDeleteProps {
+  handleArmDelete: () => void
+}
 
-// onClick of DelToDoBtn state = !armDelete
-        // function handleClick () {
-        //   setArmDelete(!armDelete)
-        //  }
-
+const Button: React.FC<handleArmDeleteProps> = ( { handleArmDelete } : any ) => {
   return (
     <button className={styles.delToDoBtn} onClick={handleArmDelete}>
       <Image 
@@ -23,3 +18,5 @@ export default function Button( { handleArmDelete } ) {
       </button>
   );
 }
+
+export default Button;
