@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Prompt from "../../components/prompt";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <header></header>
-        <section className="main">{children}</section>
+        <section className="main">
+          <div id="header-prompt-container">
+            <h1 id="habitap-header">Habitap</h1>
+            <Prompt />
+          </div>
+          {children}
+          </section>
       </body>
     </html>
   );

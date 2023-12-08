@@ -2,7 +2,6 @@
 import DelToDoBtn from "../../../components/delToDo";
 import MainBtn from "../../../components/MainBtn";
 import List from "../../../components/list";
-import Prompt from "../../../components/prompt";
 import {useState} from "react"
 
 interface Task {
@@ -43,8 +42,6 @@ export default function MyList() {
     }
 
   return <>
-    <h1 id="habitap-header">Habitap</h1>
-    <Prompt />
     <div>
       {/* pass down the armDelete to DelToDo */}
     <List taskData={taskData} addNewData={addNewData} armDelete={armDelete}/>

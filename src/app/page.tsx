@@ -17,10 +17,6 @@ export default function Home() {
   return (
 
   <>
-  <div id="header-prompt-container">
-    <h1 id="habitap-header">Habitap</h1>
-    <Prompt />
-  </div>
   <div id="plant-progress-container">
     <Plant score={score} />
     <p>Habit progress</p>
