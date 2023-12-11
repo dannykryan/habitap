@@ -10,25 +10,22 @@ import { supabase } from "../../lib/initSupabase";
 interface Habit {
   habit_id: string;
   habit_name: string;
-  
+  created_at: string;
   completed: boolean;
 }
 
 export default function Parent() {
-  const [habitTable, setHabitTable] = useState([]);
+  const [habitTable, setHabitTable] = useState<Habit[] | null>(null);
   const [isMyListVisible, setIsMyListVisible] = useState<boolean>(false);
 
   const fetchHabits = async () => {
-    const { data: habitTable } = await supabase
-      .from("habit table")
-      .select("*")
-      .order("name");
+    const { data: habitTable } = await supabase.from("habit_table").select("*");
     setHabitTable(habitTable);
   };
   useEffect(() => {
     fetchHabits();
   }, []);
-
+  console.log(habitTable);
   const handleMainBtnClick = () => {
     setIsMyListVisible(!isMyListVisible);
   };
