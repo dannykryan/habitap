@@ -1,7 +1,7 @@
 "use client";
-import DelToDoBtn from "../../../components/delToDo";
-import MainBtn from "../../../components/MainBtn";
-import List from "../../../components/list";
+import DelToDoBtn from "../delToDo";
+import MainBtn from "../MainBtn";
+import List from "../list";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -51,9 +51,7 @@ export default function MyList() {
         />
       </div>
       <div className="btn-container">
-        <Link href="/">
           <MainBtn />
-        </Link>
         <DelToDoBtn handleArmDelete={handleArmDelete} />
       </div>
     </>

@@ -1,16 +1,15 @@
 "use client";
 
-import Plant from "../../../components/plant";
-import ListBtn from "../../components/listBtn";
+import Plant from "../../components/plant";
 import Link from "next/link";
 
-import Prompt from "../../../components/prompt";
+import Prompt from "../../components/prompt"
 import { useState } from "react";
-import MainBtn from "../../../components/MainBtn";
+import MainBtn from "../../components/MainBtn";
 
 const URL = "";
 
-export default function Home() {
+export default function Home( { handleBtn } ) {
   let [score, setScore] = useState(0);
   const handleClick = () => {
     setScore(score + 20);
@@ -21,9 +20,7 @@ export default function Home() {
         <Plant score={score} />
         <p>Habit progress</p>
       </div>
-      <Link href="/myList">
-        <MainBtn text="MyList" />
-      </Link>
+        <MainBtn onClick={handleBtn} />
       <button onClick={handleClick}>Click</button>
     </>
   );
