@@ -51,8 +51,7 @@ export default function MyList() {
         />
       </div>
       <div className="btn-container">
-          <MainBtn />
-        <DelToDoBtn handleArmDelete={handleArmDelete} />
+        {/* <DelToDoBtn handleArmDelete={handleArmDelete} /> */}
       </div>
     </>
   );
