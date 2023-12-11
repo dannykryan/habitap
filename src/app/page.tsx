@@ -3,16 +3,24 @@
 import React from "react";
 import Home from "../../components/homepage/index";
 import MyList from "../../components/myList/index";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MainBtn from "../../components/MainBtn";
+import { supabase } from "../../lib/initSupabase";
 
 export default function Parent() {
-  // const [btn, setBtn] = useState(<Home></Home>);
-  // const handleBtn= () => {
-  //   setBtn(<MyList></MyList>);
-  // };
-
+  const [habitTable, setHabitTable] = useState([]);
   const [isMyListVisible, setIsMyListVisible] = useState(false);
+
+  const fetchHabits = async () => {
+    const { data: habitTable } = await supabase
+      .from("habit table")
+      .select("*")
+      .order("name");
+    setHabitTable(habitTable);
+  };
+  useEffect(() => {
+    fetchHabits();
+  }, []);
 
   const handleMainBtnClick = () => {
     setIsMyListVisible(!isMyListVisible);
