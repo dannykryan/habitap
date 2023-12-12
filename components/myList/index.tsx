@@ -4,6 +4,7 @@ import MainBtn from "../MainBtn";
 import List from "../list";
 import { useState } from "react";
 import Link from "next/link";
+import RoutineForm from "../defineRoutine";
 
 interface Task {
   id: number;
@@ -25,8 +26,9 @@ let taskDataOriginal: Task[] = [
 //   armDelete: false
 // }
 
-export default function MyList() {
+export default function MyList({toggleVariable, variable} :any) {
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal);
+  
 
   const addNewData = (todo: Task) => {
     setTaskData([...taskData, todo]);
@@ -40,7 +42,7 @@ export default function MyList() {
     console.log(armDelete);
   };
 
-  return (
+  return ( variable ?
     <>
       <div>
         {/* pass down the armDelete to DelToDo */}
@@ -53,6 +55,7 @@ export default function MyList() {
       <div className="btn-container">
         {/* <DelToDoBtn handleArmDelete={handleArmDelete} /> */}
       </div>
-    </>
+    </> :
+    <RoutineForm toggleVariable = {toggleVariable} variable={variable} />
   );
 }
