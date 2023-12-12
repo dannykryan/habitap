@@ -1,7 +1,7 @@
 "use client"
-import DelToDoBtn from "../../../components/delToDo";
-import MainBtn from "../../../components/MainBtn";
-import List from "../../../components/routine";
+import DelToDoBtn from "../delToDo";
+import MainBtn from "../MainBtn";
+import List from "../routine";
 import {useState} from "react"
 import styles from './page.module.css'
 import { useRouter } from 'next/navigation'
@@ -25,7 +25,7 @@ let taskDataOriginal: Task[] = [
 // }
 
 
-export default function MyList() {
+export default function RoutineForm({toggleVariable, variable} : any) {
   let router = useRouter()
 
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal)
@@ -48,16 +48,17 @@ function confirmData(){
 }
 
 async function linkToMyList(){
-  const response = await fetch('http://localhost:3000/myList', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(taskData[0].title)
+  // const response = await fetch('http://localhost:3000/myList', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify(taskData[0].title)
 
-  })
+  // })
  
-  router.push("/myList")
+  // router.push("/myList")
+  toggleVariable()
 
 }
 

@@ -4,6 +4,7 @@ import Home from "../../components/homepage/index";
 import MyList from "../../components/myList/index";
 import { useState, useEffect } from "react";
 import MainBtn from "../../components/MainBtn";
+
 import supabase from "../../lib/initSupabase";
 import { Database } from "../../lib/supabase";
 
@@ -17,6 +18,7 @@ interface Habit {
   export default function Parent() {
     const [habitData, setHabitData] = useState<Habit[] | null>(null);
     const [isMyListVisible, setIsMyListVisible] = useState<boolean>(false);
+    const [variable, setVariable] = useState(false)
   
     useEffect(() => {
       const getData = async () => {
@@ -33,17 +35,19 @@ interface Habit {
   const handleMainBtnClick = () => {
     setIsMyListVisible(!isMyListVisible);
   };
+  
 
-
+  function toggleVarible() : any{
+    setVariable(!variable)
+  }
   return (
     <>
        {/* <pre>{JSON.stringify(habitData, null, 2)}</pre> */}
-      {isMyListVisible ? <MyList /> : <Home />}
+      {isMyListVisible ? <MyList toggleVariable={toggleVarible} variable={variable} /> : <Home />}
       <MainBtn isMyListPage={isMyListVisible} onClick={handleMainBtnClick} />
     </>
   );
 }
-
   // here will be the state and based on the state change the homepage will be rendered or the MyList
   // as default it will be the homepage(then changed with login page)
   //onclick of the MainBttn the state changes to MyList
