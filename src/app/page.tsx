@@ -37,7 +37,7 @@ interface Habit {
 
   return (
     <>
-       <pre>{JSON.stringify(habitData, null, 2)}</pre>
+       {/* <pre>{JSON.stringify(habitData, null, 2)}</pre> */}
       {isMyListVisible ? <MyList /> : <Home />}
       <MainBtn isMyListPage={isMyListVisible} onClick={handleMainBtnClick} />
     </>
