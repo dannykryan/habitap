@@ -1,3 +1,4 @@
+"use client" 
 import React from "react";
 import Home from "../../components/homepage/index";
 import MyList from "../../components/myList/index";
