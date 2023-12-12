@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Home from "../../components/homepage/index";
 import MyList from "../../components/myList/index";
@@ -8,16 +6,15 @@ import MainBtn from "../../components/MainBtn";
 import supabase from "../../lib/initSupabase";
 import { Database } from "../../lib/supabase";
 
-// interface Habit {
-//   habit_id: string;
-//   habit_name: string;
-//   created_at: string;
-//   completed: boolean;
-// }
-// type Habit = Database["public"]["Tables"]["habit_table"]["Row"];
+interface Habit {
+  habit_id: string;
+  habit_name: string;
+  created_at: string;
+  completed: boolean;
+}
 
   export default function Parent() {
-    const [habitData, setHabitData] = useState<any>(null);
+    const [habitData, setHabitData] = useState<Habit[] | null>(null);
     const [isMyListVisible, setIsMyListVisible] = useState<boolean>(false);
   
     useEffect(() => {
@@ -29,8 +26,6 @@ import { Database } from "../../lib/supabase";
         setHabitData(data);
       };
       getData();
-  
-  
     }, []);
 
 
@@ -51,3 +46,5 @@ import { Database } from "../../lib/supabase";
   // here will be the state and based on the state change the homepage will be rendered or the MyList
   // as default it will be the homepage(then changed with login page)
   //onclick of the MainBttn the state changes to MyList
+
+// type Habit = Database["public"]["Tables"]["habit_table"]["Row"];
