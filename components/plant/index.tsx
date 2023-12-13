@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import tallFlower from "../../public/plants/flower-bunch-dark.json";
+import tallFlower from "../../public/plants/flower-bunch-2.json";
 import Lottie from "lottie-react";
 
 interface Plant {
