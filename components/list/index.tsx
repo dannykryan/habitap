@@ -1,27 +1,18 @@
-import EmptyListItem from "../emptyListItem";
 import ListItem from "../listItem"
 import styles from './list.module.css'
 
-export default function List({taskData , addNewData, armDelete} : any) {
-  const maxTasks = 5; // Maximum number of tasks to display
+// This is the list of commited habits (after commiting) and you can tick off everyday
 
-  //write a function that changes the completed bit
-
+export default function List({taskData} : any) {
   return (
     <ul className={styles.myList}>
-      {taskData.map((todo : any) => ( // Look at the types and change them
-        <li key={todo.id}>
-          <ListItem todo={todo} armDelete={armDelete}>
-            {todo.title}
+      {taskData.map((todo : any) => ( // typescript to review: look at the types and change them
+        <li key={todo.habit_id}>
+          <ListItem todo={todo}>
+            {todo.habit_name}
           </ListItem>
         </li>
       ))}
-      {/* Render additional inactive items if there are less than maxTasks */}
-      {maxTasks > taskData.length &&
-        <li>
-            <EmptyListItem addNewData={addNewData} taskData={taskData}/>
-        </li>
-      }
     </ul>
   );
 }
