@@ -1,32 +1,65 @@
-import Image from "next/image";
-import PlantPotImg from "public/plants/cheeseplant-1.svg";
-import Cheeseplant7Img from "public/plants/cheeseplant-7.svg";
-import Cheeseplant10Img from "public/plants/cheeseplant-10.svg";
 import { useState, useEffect } from "react";
+import tallFlower from "../../public/plants/flower-bunch-2.json";
+import Lottie from "lottie-react";
+
+interface Plant {
+  speed: number;
+  loop: boolean | number;
+  autoplay: boolean;
+  animationData: any;
+  rendererSettings: {
+    preserveAspectRatio: string;
+  };
+}
 
 export default function Plant({ score }: any) {
-  // we need the plant to have the initial state of "a plant pot"
-  // when the score changes from 0 but limit is 1-50 we need the image of the plant to be "cheeseplant 7"
-  //when the score is above 50, plant image should change to "cheeseplant 10"
-  const [plantImage, setPlantImage] = useState(PlantPotImg);
+  // State to manage animation options
+  const [defaultOptions, setDefaultOptions] = useState<Plant>({
+    speed: 2,
+    loop: false,
+    autoplay: true,
+    animationData: tallFlower,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  });
 
-  //The useEffect hook is used to perform side effects, such as updating the state, after the component has rendered. In this case, the useEffect hook is set up with the dependency array [score], which means that it will be triggered whenever the value of score changes.
+  // Effect to update animation options when the score changes
   useEffect(() => {
+    // Initial frame values
+    let startFrame = tallFlower.ip; //in-point or first frame of animation
+    let endFrame = tallFlower.op;   //out-point or last frame of animation
+
+    // Determine the frame range based on the score
     if (score === 0) {
-      setPlantImage(PlantPotImg);
-    } else if (score >= 1 && score <= 50) {
-      setPlantImage(Cheeseplant7Img);
-    } else if (score > 50) {
-      setPlantImage(Cheeseplant10Img);
+      endFrame /= 9;
+    } else if (score == 1) {
+      endFrame /= 1.6;
+    } else if (score >= 2) {
+      endFrame /= 1;
     }
+
+    // Update the state with the new frame range
+    setDefaultOptions((prevOptions) => ({
+      ...prevOptions,
+      animationData: {
+        ...prevOptions.animationData,
+        ip: startFrame,
+        op: endFrame,
+      },
+    }));
   }, [score]);
+
   return (
     <>
-      <Image
-        src={plantImage}
-        alt="This is an image of a plant"
-        width={250}
-        height={250}
+      <Lottie
+        className={"plant-main"}
+        animationData={defaultOptions.animationData}
+        loop={defaultOptions.loop}
+        autoplay={defaultOptions.autoplay}
+        rendererSettings={defaultOptions.rendererSettings}
+        height={400}
+        width={400}
       />
     </>
   );
