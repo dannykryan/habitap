@@ -7,16 +7,21 @@ const URL = "";
 
 export default function Home() {
   let [score, setScore] = useState(0);
-  const handleClick = () => {
-    setScore(score + 20);
+  
+  const increaseScore = () => {
+    setScore(score + 1);
+  };
+  const decreaseScore = () => {
+    setScore(score - 1);
   };
   return (
     <>
       <div id="plant-progress-container">
         <Plant score={score} />
-        <p>Habit progress</p>
+        {/* <p>Habit progress</p> */}
       </div>
-      <button onClick={handleClick}>Click</button>
+      <button onClick={increaseScore}>Increase</button>
+      <button onClick={decreaseScore}>Decrease</button>
     </>
   );
 }
