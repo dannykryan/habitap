@@ -18,6 +18,7 @@ interface Habit {
     const [habitData, setHabitData] = useState<Habit[] | null>(null);
     const [isMyListVisible, setIsMyListVisible] = useState<boolean>(false);
     const [variable, setVariable] = useState(false)
+    // const [something, setSomething] = useState(false)
   
     useEffect(() => {
       const getData = async () => {
@@ -28,7 +29,7 @@ interface Habit {
         setHabitData(data);
       };
       getData();
-    }, []);
+    }, [variable]);
 
 
   const handleMainBtnClick = () => {
@@ -39,6 +40,9 @@ interface Habit {
   function toggleVarible() : any{
     setVariable(!variable)
   }
+  // function toggleSomething() : any{
+  //   setSomething(!something)
+  // }
   return (
     <>
        {/* <pre>{JSON.stringify(habitData, null, 2)}</pre> */}

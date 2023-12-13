@@ -31,12 +31,18 @@ export default function RoutineForm({ toggleVariable, variable }: any) {
   }
 
   async function linkToMyList() {
-    const { data, error } = await supabase
-      .from("habit_table")
-      .insert([{ habit_name: taskData[0].title }]);
 
-    console.log(data);
-    toggleVariable();
+    // const { error: deleteError } = await supabase
+    // .from('habit_table')
+    // .delete()
+  
+    const tasks : any = taskData.map(task => ({habit_name: task.title}))
+    const { data, error: insertError } = await supabase
+    .from("habit_table")
+    .insert(tasks);
+
+    // console.log(data);
+    setTimeout(()=> {toggleVariable()}, 10000);
   }
 
   const deleteData = (id: any) => {
