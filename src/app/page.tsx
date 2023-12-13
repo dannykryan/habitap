@@ -43,7 +43,7 @@ interface Habit {
   return (
     <>
        {/* <pre>{JSON.stringify(habitData, null, 2)}</pre> */}
-      {isMyListVisible ? <MyList toggleVariable={toggleVarible} variable={variable} /> : <Home />}
+      {isMyListVisible ? <MyList toggleVariable={toggleVarible} variable={variable} habitData={habitData} /> : <Home />}
       <MainBtn isMyListPage={isMyListVisible} onClick={handleMainBtnClick} />
     </>
   );

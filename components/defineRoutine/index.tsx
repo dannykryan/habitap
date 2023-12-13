@@ -58,8 +58,8 @@ async function linkToMyList(){
   // })
  
   // router.push("/myList")
-  toggleVariable()
-
+  // toggleVariable()
+  console.log(taskData);
 }
 
 const deleteData = (id : any) => {
