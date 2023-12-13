@@ -4,9 +4,8 @@ import Home from "../../components/homepage/index";
 import MyList from "../../components/myList/index";
 import { useState, useEffect } from "react";
 import MainBtn from "../../components/MainBtn";
-
 import supabase from "../../lib/initSupabase";
-import { Database } from "../../lib/supabase";
+
 
 interface Habit {
   habit_id: string;

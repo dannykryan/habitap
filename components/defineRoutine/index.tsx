@@ -5,6 +5,7 @@ import List from "../routine";
 import {useState} from "react"
 import styles from './page.module.css'
 import { useRouter } from 'next/navigation'
+import supabase from "../../lib/initSupabase";
 
 interface Task {
   id: number,
@@ -13,17 +14,7 @@ interface Task {
 }
 
 let taskDataOriginal: Task[] = [
-  
 ]; 
-
-// interface DeleteBtnProps {
-//   armDelete: boolean;
-// }
-
-// let deleteState = {
-//   armDelete: false
-// }
-
 
 export default function RoutineForm({toggleVariable, variable} : any) {
   let router = useRouter()
@@ -34,30 +25,20 @@ export default function RoutineForm({toggleVariable, variable} : any) {
   const addNewData = (todo: Task) => {
     setTaskData([...taskData, todo])
   }
-//   // Set state of armDelete - default false
-//       const [armDelete, setArmDelete] = useState(false)
-  
-//      // Handle the state of armDelete, set to true or false 
-//     const handleArmDelete = () => {
-//       setArmDelete(!armDelete)
-//       console.log(armDelete)
-//     }
+
 function confirmData(){
   setToggleData(!toggleData)
   console.log(taskData)
 }
 
-async function linkToMyList(){
-  // const response = await fetch('http://localhost:3000/myList', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify(taskData[0].title)
-
-  // })
- 
-  // router.push("/myList")
+async function linkToMyList() {
+const { data, error } = await supabase
+  .from('habit_table')
+  .insert([
+    { habit_name: "test"},
+  ])
+  .select()
+  console.log(data)
   toggleVariable()
 }
 
