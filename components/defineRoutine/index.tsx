@@ -15,7 +15,11 @@ interface Task {
 
 let taskDataOriginal: Task[] = [];
 
-export default function RoutineForm({ toggleVariable, variable }: any) {
+export default function RoutineForm({
+  toggleVariable,
+  variable,
+  handleMainBtnClick,
+}: any) {
   let router = useRouter();
 
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal);
@@ -31,18 +35,27 @@ export default function RoutineForm({ toggleVariable, variable }: any) {
   }
 
   async function linkToMyList() {
-
     // const { error: deleteError } = await supabase
     // .from('habit_table')
     // .delete()
-  
-    const tasks : any = taskData.map(task => ({habit_name: task.title}))
-    const { data, error: insertError } = await supabase
-    .from("habit_table")
-    .insert(tasks);
 
-    // console.log(data);
-    setTimeout(()=> {toggleVariable()}, 10000);
+    const tasks: any = taskData.map((task) => ({ habit_name: task.title }));
+    const { data, error: insertError } = await supabase
+      .from("habit_table")
+      .insert(tasks);
+    if (data) {
+      const getData = async () => {
+        const { data, error } = await supabase.from("habit_table").select("*");
+        console.log({ data, error });
+      };
+      getData();
+    }
+
+    // setTimeout(() => {
+
+    // }, 5000);
+    toggleVariable();
+    handleMainBtnClick();
   }
 
   const deleteData = (id: any) => {
