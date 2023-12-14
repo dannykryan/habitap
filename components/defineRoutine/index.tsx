@@ -1,10 +1,9 @@
 "use client";
-import DelToDoBtn from "../delToDo";
-import MainBtn from "../MainBtn";
+
 import List from "../routine";
 import { useState } from "react";
 import styles from "./page.module.css";
-import { useRouter } from "next/navigation";
+
 import supabase from "../../lib/initSupabase";
 
 interface Task {
@@ -33,8 +32,10 @@ export default function RoutineForm({
   }
 
   async function linkToMyList() {
-    const { error: deleteError } = await supabase.from("habit_table").delete();
-    // .eq("habit_name", "ddddddddddddddd");
+    const { error: deleteError } = await supabase
+      .from("habit_table")
+      .delete()
+      .eq("user_id", "1"); // later on, find a way to mak the id dynamic maybe after user authentication
 
     const tasks: any = taskData.map((task) => ({ habit_name: task.title }));
     const { data, error: insertError } = await supabase
@@ -59,7 +60,6 @@ export default function RoutineForm({
   return (
     <>
       <div>
-        {/* pass down the armDelete to DelToDo */}
         <div
           className="pop-up"
           style={{

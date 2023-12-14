@@ -11,6 +11,9 @@ interface Habit {
   habit_name: string;
   created_at: string;
   completed: boolean;
+  current_score: number;
+  max_score: number;
+  user_id: number;
 }
 
 export default function Parent() {
