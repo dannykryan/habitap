@@ -32,9 +32,14 @@ interface Habit {
   completed: boolean;
 }
 
-export default function MyList({toggleVariable, variable, habitData} :any) {
+export default function MyList({
+  toggleVariable,
+  variable,
+  habitData,
+  handleMainBtnClick,
+}: any) {
   const [taskData, setTaskData] = useState<Habit[]>(habitData);
-  
+
   // const addNewData = (todo: Habit) => {
   //   setTaskData([...taskData, todo]);
   // };
@@ -47,7 +52,7 @@ export default function MyList({toggleVariable, variable, habitData} :any) {
   //   console.log(armDelete);
   // };
 
-  return ( variable ?
+  return variable ? (
     <>
       <div>
         <List
@@ -55,9 +60,13 @@ export default function MyList({toggleVariable, variable, habitData} :any) {
           // addNewData={addNewData}
         />
       </div>
-      <div className="btn-container">
-      </div>
-    </> :
-    <RoutineForm toggleVariable = {toggleVariable} variable={variable} />
+      <div className="btn-container"></div>
+    </>
+  ) : (
+    <RoutineForm
+      toggleVariable={toggleVariable}
+      variable={variable}
+      handleMainBtnClick={handleMainBtnClick}
+    />
   );
 }

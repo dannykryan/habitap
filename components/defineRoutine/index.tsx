@@ -1,10 +1,9 @@
 "use client";
-import DelToDoBtn from "../delToDo";
-import MainBtn from "../MainBtn";
+
 import List from "../routine";
 import { useState } from "react";
 import styles from "./page.module.css";
-import { useRouter } from "next/navigation";
+
 import supabase from "../../lib/initSupabase";
 
 interface Task {
@@ -15,9 +14,11 @@ interface Task {
 
 let taskDataOriginal: Task[] = [];
 
-export default function RoutineForm({ toggleVariable, variable }: any) {
-  let router = useRouter();
-
+export default function RoutineForm({
+  toggleVariable,
+  variable,
+  handleMainBtnClick,
+}: any) {
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal);
   const [toggleData, setToggleData] = useState<any>(true);
 
@@ -31,12 +32,24 @@ export default function RoutineForm({ toggleVariable, variable }: any) {
   }
 
   async function linkToMyList() {
-    const { data, error } = await supabase
+    const { error: deleteError } = await supabase
       .from("habit_table")
-      .insert([{ habit_name: taskData[0].title }]);
+      .delete()
+      .eq("user_id", "1"); // later on, find a way to mak the id dynamic maybe after user authentication
 
-    console.log(data);
+    const tasks: any = taskData.map((task) => ({ habit_name: task.title }));
+    const { data, error: insertError } = await supabase
+      .from("habit_table")
+      .insert(tasks);
+    if (data) {
+      const getData = async () => {
+        const { data, error } = await supabase.from("habit_table").select("*");
+        console.log({ data, error });
+      };
+      getData();
+    }
     toggleVariable();
+    handleMainBtnClick();
   }
 
   const deleteData = (id: any) => {
@@ -47,7 +60,6 @@ export default function RoutineForm({ toggleVariable, variable }: any) {
   return (
     <>
       <div>
-        {/* pass down the armDelete to DelToDo */}
         <div
           className="pop-up"
           style={{
