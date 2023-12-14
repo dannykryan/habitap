@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react";
-import tallFlower from "../../public/plants/flower-bunch-2.json";
+import allFlowers from "../../public/plants/flower-bunch-2.json";
 import threeBeesPlease from "../../public/plants/three-bees-please.json";
 import yourFirstBee from "../../public/plants/your-first-bee.json";
 import twoWholeBees from "../../public/plants/two-whole-bees.json";
 import Lottie from "lottie-react";
 
+type Flower = typeof allFlowers;
+type OneBee = typeof yourFirstBee;
+type TwoBees = typeof twoWholeBees;
+type ThreeBees = typeof threeBeesPlease;
+
 interface Plant {
   speed: number;
   loop: boolean | number;
   autoplay: boolean;
-  animationData: any;
+  animationData: Flower | OneBee | TwoBees | ThreeBees;
   rendererSettings: {
     preserveAspectRatio: string;
   };
@@ -17,11 +22,11 @@ interface Plant {
 
 export default function Plant({ score }: any) {
   // State to manage animation options
-  const [defaultOptions, setDefaultOptions] = useState<Plant>({
-    speed: 2,
+  const [animationOptions, setAnimationOptions] = useState<Plant>({
+    speed: 1,
     loop: false,
     autoplay: true,
-    animationData: tallFlower,
+    animationData: allFlowers,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice",
     },
@@ -30,9 +35,9 @@ export default function Plant({ score }: any) {
   // Effect to update animation options when the score changes
   useEffect(() => {
     // Initial frame values
-    let startFrame = tallFlower.ip; //in-point or first frame of animation
-    let endFrame = tallFlower.op;   //out-point or last frame of animation
-    let animationData = tallFlower; // Default animation data
+    let startFrame = allFlowers.ip; //in-point or first frame of animation
+    let endFrame = allFlowers.op;   //out-point or last frame of animation
+    let animationData: Flower | OneBee | TwoBees | ThreeBees = allFlowers; // Default animation data
     let loop = false; // Default loop value
 
     // Determine the frame range and animation data based on the score
@@ -52,13 +57,8 @@ export default function Plant({ score }: any) {
     }
 
     // Update the state with the new frame range, animation data, and loop value
-    setDefaultOptions((prevOptions) => ({
+    setAnimationOptions((prevOptions) => ({
       ...prevOptions,
-      animationData: {
-        ...prevOptions.animationData,
-        ip: startFrame,
-        op: endFrame,
-      },
       animationData, // Set the new animation data
       loop, // Set the new loop value
     }));
@@ -68,10 +68,10 @@ export default function Plant({ score }: any) {
     <>
       <Lottie
         className={"plant-main"}
-        animationData={defaultOptions.animationData}
-        loop={defaultOptions.loop}
-        autoplay={defaultOptions.autoplay}
-        rendererSettings={defaultOptions.rendererSettings}
+        animationData={animationOptions.animationData}
+        loop={animationOptions.loop}
+        autoplay={animationOptions.autoplay}
+        rendererSettings={animationOptions.rendererSettings}
         height={400}
         width={400}
       />
