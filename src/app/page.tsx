@@ -15,7 +15,7 @@ interface Habit {
 
 export default function Parent() {
   const [habitData, setHabitData] = useState<Habit[] | null>(null);
-  const [isMyListVisible, setIsMyListVisible] = useState<boolean>(false);
+  const [isMyListVisible, setIsMyListVisible] = useState<boolean>(true);
   const [variable, setVariable] = useState(false);
   // const [something, setSomething] = useState(false)
 
@@ -24,12 +24,13 @@ export default function Parent() {
       const { data, error } = await supabase.from("habit_table").select("*");
       console.log({ data, error });
       setHabitData(data);
+      // setVariable(!variable);
     };
     getData();
-  }, [variable, isMyListVisible]);
+  }, [isMyListVisible]);
 
   const handleMainBtnClick = () => {
-    setIsMyListVisible(!isMyListVisible);
+    setIsMyListVisible((prevValue) => !prevValue);
   };
 
   function toggleVarible(): any {

@@ -20,8 +20,6 @@ export default function RoutineForm({
   variable,
   handleMainBtnClick,
 }: any) {
-  let router = useRouter();
-
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal);
   const [toggleData, setToggleData] = useState<any>(true);
 
@@ -35,9 +33,8 @@ export default function RoutineForm({
   }
 
   async function linkToMyList() {
-    // const { error: deleteError } = await supabase
-    // .from('habit_table')
-    // .delete()
+    const { error: deleteError } = await supabase.from("habit_table").delete();
+    // .eq("habit_name", "ddddddddddddddd");
 
     const tasks: any = taskData.map((task) => ({ habit_name: task.title }));
     const { data, error: insertError } = await supabase
@@ -50,10 +47,6 @@ export default function RoutineForm({
       };
       getData();
     }
-
-    // setTimeout(() => {
-
-    // }, 5000);
     toggleVariable();
     handleMainBtnClick();
   }
