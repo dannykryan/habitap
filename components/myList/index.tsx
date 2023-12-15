@@ -33,8 +33,8 @@ interface Habit {
 }
 
 export default function MyList({
-  toggleVariable,
-  variable,
+  toggleIsCommitted,
+  isCommitted,
   habitData,
   handleMainBtnClick,
 }: any) {
@@ -52,7 +52,7 @@ export default function MyList({
   //   console.log(armDelete);
   // };
 
-  return variable ? (
+  return isCommitted ? (
     <>
       <div>
         <List
@@ -64,8 +64,8 @@ export default function MyList({
     </>
   ) : (
     <RoutineForm
-      toggleVariable={toggleVariable}
-      variable={variable}
+      toggleIsCommitted={toggleIsCommitted}
+      isCommitted={isCommitted}
       handleMainBtnClick={handleMainBtnClick}
     />
   );

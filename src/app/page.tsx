@@ -19,7 +19,7 @@ interface Habit {
 export default function Parent() {
   const [habitData, setHabitData] = useState<Habit[] | null>(null);
   const [isMyListVisible, setIsMyListVisible] = useState<boolean>(true);
-  const [variable, setVariable] = useState(false);
+  const [isCommitted, setisCommitted] = useState(false);
   // const [something, setSomething] = useState(false)
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function Parent() {
       const { data, error } = await supabase.from("habit_table").select("*");
       console.log({ data, error });
       setHabitData(data);
-      // setVariable(!variable);
+      // setisCommitted(!isCommitted);
     };
     getData();
   }, [isMyListVisible]);
@@ -36,8 +36,8 @@ export default function Parent() {
     setIsMyListVisible((prevValue) => !prevValue);
   };
 
-  function toggleVarible(): any {
-    setVariable(!variable);
+  function toggleIsCommitted(): any {
+    setisCommitted(!isCommitted);
   }
   // function toggleSomething() : any{
   //   setSomething(!something)
@@ -47,8 +47,8 @@ export default function Parent() {
       {/* <pre>{JSON.stringify(habitData, null, 2)}</pre> */}
       {isMyListVisible ? (
         <MyList
-          toggleVariable={toggleVarible}
-          variable={variable}
+          toggleIsCommitted={toggleIsCommitted}
+          isCommitted={isCommitted}
           habitData={habitData}
           handleMainBtnClick={handleMainBtnClick}
         />

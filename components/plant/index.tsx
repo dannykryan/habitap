@@ -34,7 +34,7 @@ export default function Plant({ score }: any) {
       preserveAspectRatio: "xMidYMid slice",
     },
     inPoint: allFlowers.ip,  // Set the inPoint to the initial in-point
-  outPoint: allFlowers.op, // Set the outPoint to the initial out-point
+    outPoint: allFlowers.op, // Set the outPoint to the initial out-point
   });
 
   // Effect to update animation options when the score changes

@@ -15,8 +15,8 @@ interface Task {
 let taskDataOriginal: Task[] = [];
 
 export default function RoutineForm({
-  toggleVariable,
-  variable,
+  toggleIsCommitted,
+  isCommitted,
   handleMainBtnClick,
 }: any) {
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal);
@@ -48,7 +48,7 @@ export default function RoutineForm({
       };
       getData();
     }
-    toggleVariable();
+    toggleIsCommitted();
     handleMainBtnClick();
   }
 
