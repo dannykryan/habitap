@@ -7,7 +7,7 @@ const URL = "";
 
 export default function Home({habitLogsArray} : any) {
   // count items in the array to set as current score
-  let currentScore = habitLogsArray.length
+  const [currentScore, setCurrentScore] = useState(habitLogsArray.length);
   
   // const increaseScore = () => {
   //   setScore(score + 1);
@@ -23,11 +23,11 @@ export default function Home({habitLogsArray} : any) {
   return (
     <>
       <div id="plant-progress-container">
-        <Plant score={score} />
+        <Plant score={currentScore} />
         {/* <p>Habit progress</p> */}
       </div>
-      <button onClick={increaseScore}>Increase</button>
-      <button onClick={decreaseScore}>Decrease</button>
+      <button onClick={() => setCurrentScore(currentScore + 1)}>Increase</button>
+      <button onClick={() => setCurrentScore(currentScore - 1)}>Decrease</button>
     </>
   );
 }
