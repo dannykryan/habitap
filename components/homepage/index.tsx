@@ -5,15 +5,21 @@ import { useState } from "react";
 
 const URL = "";
 
-export default function Home() {
-  let [score, setScore] = useState(0);
+export default function Home({habitLogsArray} : any) {
+  // count items in the array to set as current score
+  let currentScore = habitLogsArray.length
   
-  const increaseScore = () => {
-    setScore(score + 1);
-  };
-  const decreaseScore = () => {
-    setScore(score - 1);
-  };
+  // const increaseScore = () => {
+  //   setScore(score + 1);
+  // };
+  // const decreaseScore = () => {
+  //   setScore(score - 1);
+  // };
+
+  
+  // count habits in habit table to calculate maxScore
+  // calculate percentage decimal
+
   return (
     <>
       <div id="plant-progress-container">
