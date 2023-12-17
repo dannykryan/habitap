@@ -44,7 +44,6 @@ export default function Parent() {
   // }
   return (
     <>
-      {/* <pre>{JSON.stringify(habitData, null, 2)}</pre> */}
       {isMyListVisible ? (
         <MyList
           toggleVariable={toggleVarible}

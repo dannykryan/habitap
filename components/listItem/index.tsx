@@ -26,17 +26,7 @@ const ListItem: React.FC<ListItemProps> = ({ children, className, todo, armDelet
     alert(`Deleted ${todo.id}`)
   }
 
-  return armDelete ? (
-    <div className = {styles.deleteArmed}>
-    {children}
-    <Image 
-      src={trashIconRed}
-      alt={"Armed Delete Button"}
-      height={27} 
-      onClick={handleDeleteClick}/>
-    </div>
-
-  ) : ( 
+  return ( 
   <div className={styles.todoActive}>
     {children}
     <Image 

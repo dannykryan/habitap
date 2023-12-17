@@ -1,8 +1,10 @@
 "use client";
 
+import "src/app/globals.css";
 import List from "../routine";
 import { useState } from "react";
 import styles from "./page.module.css";
+import Popup from "../../components/popup";
 
 import supabase from "../../lib/initSupabase";
 
@@ -10,6 +12,7 @@ interface Task {
   id: number;
   title: string;
   completed: boolean;
+  committedDays: number;
 }
 
 let taskDataOriginal: Task[] = [];
@@ -20,7 +23,7 @@ export default function RoutineForm({
   handleMainBtnClick,
 }: any) {
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal);
-  const [toggleData, setToggleData] = useState<any>(true);
+  const [toggleData, setToggleData] = useState<any>(false);
 
   const addNewData = (todo: Task) => {
     setTaskData([...taskData, todo]);
@@ -32,15 +35,39 @@ export default function RoutineForm({
   }
 
   async function linkToMyList() {
+    // Delete all records from habit_log
+    const { error: deleteLogError } = await supabase
+      .from("habit_log")
+      .delete()
+      .eq("user_id", "1");
+  
+    if (deleteLogError) {
+      console.error("Error deleting habit_log records:", deleteLogError);
+      return;
+    }
+  
+    // Delete records from habit_table
     const { error: deleteError } = await supabase
       .from("habit_table")
       .delete()
-      .eq("user_id", "1"); // later on, find a way to mak the id dynamic maybe after user authentication
-
+      .eq("user_id", "1");
+  
+    if (deleteError) {
+      console.error("Error deleting habit_table records:", deleteError);
+      return;
+    }
+  
+    // Continue with inserting new records or other operations
     const tasks: any = taskData.map((task) => ({ habit_name: task.title }));
     const { data, error: insertError } = await supabase
       .from("habit_table")
       .insert(tasks);
+  
+    if (insertError) {
+      console.error("Error inserting data:", insertError);
+      return;
+    }
+  
     if (data) {
       const getData = async () => {
         const { data, error } = await supabase.from("habit_table").select("*");
@@ -48,9 +75,12 @@ export default function RoutineForm({
       };
       getData();
     }
+  
     toggleVariable();
     handleMainBtnClick();
   }
+  
+  
 
   const deleteData = (id: any) => {
     const newArray = taskData.filter((task) => task.id !== id);
@@ -60,25 +90,12 @@ export default function RoutineForm({
   return (
     <>
       <div>
-        <div
-          className="pop-up"
-          style={{
-            display: toggleData && "none",
-            position: "absolute",
-            background: "grey",
-            border: "2px solid black",
-            marginLeft: "15%",
-          }}
-        >
-          Are you Sure?
-          <button className={styles.mainBtn} onClick={linkToMyList}>
-            Yes
-          </button>
-          <button className={styles.mainBtn} onClick={confirmData}>
-            No
-          </button>
-        </div>
-
+        <Popup 
+          linkToMyList={linkToMyList} 
+          confirmData={confirmData}
+          toggleData={toggleData}
+          setToggleData={setToggleData}
+          />
         <List
           taskData={taskData}
           addNewData={addNewData}
@@ -86,8 +103,6 @@ export default function RoutineForm({
         />
       </div>
       <div className="btn-container" style={{ justifyContent: "center" }}>
-        {/* <MainBtn />
-  <DelToDoBtn /> */}
         <button className={styles.mainBtn} onClick={confirmData}>
           Commit
         </button>
