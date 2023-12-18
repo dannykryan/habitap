@@ -22,7 +22,7 @@ interface Plant {
   outPoint: number;
 }
 
-export default function Plant({ score }: any) {
+export default function Plant({ percentageDecimal }: any) {
   const [animationKey, setAnimationKey] = useState<number>(0);
   // State to manage animation options
   const [animationOptions, setAnimationOptions] = useState<Plant>({
@@ -34,10 +34,10 @@ export default function Plant({ score }: any) {
       preserveAspectRatio: "xMidYMid slice",
     },
     inPoint: allFlowers.ip,  // Set the inPoint to the initial in-point
-  outPoint: allFlowers.op, // Set the outPoint to the initial out-point
+    outPoint: allFlowers.op, // Set the outPoint to the initial out-point
   });
 
-  // Effect to update animation options when the score changes
+  // Effect to update animation options when the percentageDecimal changes
   useEffect(() => {
     // Initial frame values
     let startFrame = allFlowers.ip; //in-point or first frame of animation
@@ -45,52 +45,52 @@ export default function Plant({ score }: any) {
     let animationData: Flower | OneBee | TwoBees | ThreeBees = allFlowers; // Default animation data
     let loop = false; // Default loop value
 
-    // Determine the frame range and animation data based on the score
-    if (score === 0) {
+    // Determine the frame range and animation data based on the percentageDecimal
+    if (percentageDecimal === 0) {
       allFlowers.op = 50;
-      console.log(`score is: ${score}`);
+      console.log(`percentageDecimal is: ${percentageDecimal}`);
       console.log(`endFrame is: ${endFrame}`);
-    } else if (score == 1) {
+    } else if (percentageDecimal <= 0.1) {
       allFlowers.ip = 51;
       allFlowers.op = 195;
-      console.log(`score is: ${score}`);
+      console.log(`percentageDecimal is: ${percentageDecimal}`);
       console.log(`endFrame is: ${endFrame}`);
-    } else if (score == 2) {
+    } else if (percentageDecimal > 0.1 && percentageDecimal <= 0.2 ) {
       allFlowers.ip = 196;
       allFlowers.op = 283;
-      console.log(`score is: ${score}`);
-    } else if (score == 3) {
+      console.log(`percentageDecimal is: ${percentageDecimal}`);
+    } else if (percentageDecimal > 0.2 && percentageDecimal <= 0.3) {
       allFlowers.ip = 284;
       allFlowers.op = 367;
-      console.log(`score is: ${score}`);
-    } else if (score == 4) {
+      console.log(`percentageDecimal is: ${percentageDecimal}`);
+    } else if (percentageDecimal > 0.3 && percentageDecimal <= 0.4) {
       allFlowers.ip = 368;
       allFlowers.op = 441;
-      console.log(`score is: ${score}`);
-    } else if (score == 5) {
+      console.log(`percentageDecimal is: ${percentageDecimal}`);
+    } else if (percentageDecimal > 0.4 && percentageDecimal <= 0.5) {
       allFlowers.ip = 442;
       allFlowers.op = 496;
-      console.log(`score is: ${score}`);
-    } else if (score == 6) {
+      console.log(`percentageDecimal is: ${percentageDecimal}`);
+    } else if (percentageDecimal > 0.5 && percentageDecimal <= 0.6) {
       allFlowers.ip = 497;
       allFlowers.op = 551;
-      console.log(`score is: ${score}`);
-    } else if (score == 7) {
+      console.log(`percentageDecimal is: ${percentageDecimal}`);
+    } else if (percentageDecimal > 0.6 && percentageDecimal <= 0.7) {
       allFlowers.ip = 552;
       allFlowers.op = 592;
-      console.log(`score is: ${score}`);
-    } else if (score == 8) {
+      console.log(`percentageDecimal is: ${percentageDecimal}`);
+    } else if (percentageDecimal > 0.7 && percentageDecimal <= 0.8) {
       animationData = yourFirstBee;
       loop = true;
-      console.log(`score is: ${score}`);
-    } else if (score == 9) {
+      console.log(`percentageDecimal is: ${percentageDecimal}`);
+    } else if (percentageDecimal > 0.8 && percentageDecimal <= 0.9) {
       animationData = twoWholeBees;
       loop = true;
-      console.log(`score is: ${score}`);
-    } else if (score == 10) {
+      console.log(`percentageDecimal is: ${percentageDecimal}`);
+    } else if (percentageDecimal > 0.9 && percentageDecimal <= 1) {
       animationData = threeBeesPlease;
       loop = true;
-      console.log(`score is: ${score}`);
+      console.log(`percentageDecimal is: ${percentageDecimal}`);
     }
       
 
@@ -103,7 +103,7 @@ export default function Plant({ score }: any) {
     }));
     // Increment the key to force a re-render and restart the animation
     setAnimationKey((prevKey) => prevKey + 1);
-  }, [score]);
+  }, [percentageDecimal]);
 
   return (
     <>

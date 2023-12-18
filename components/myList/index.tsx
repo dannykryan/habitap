@@ -14,12 +14,10 @@ interface Habit {
 }
 
 export default function MyList({
-  toggleVariable,
-  variable,
+  toggleIsCommitted,
+  isCommitted,
   habitData,
   handleMainBtnClick,
-  toggleNumber,
-  number
 }: any) {
   const [taskData, setTaskData] = useState<Habit[]>(habitData);
 
@@ -27,14 +25,11 @@ export default function MyList({
   //   setTaskData([...taskData, todo]);
   // };
 
-  return variable ? (
+  return isCommitted ? (
     <>
       <div>
         <List
           taskData={taskData}
-          toggleVariable={toggleVariable}
-          number={number}
-          toggleNumber={toggleNumber}
           // addNewData={addNewData}
         />
       </div>
@@ -42,8 +37,8 @@ export default function MyList({
     </>
   ) : (
     <RoutineForm
-      toggleVariable={toggleVariable}
-      variable={variable}
+      toggleIsCommitted={toggleIsCommitted}
+      isCommitted={isCommitted}
       handleMainBtnClick={handleMainBtnClick}
     />
   );
