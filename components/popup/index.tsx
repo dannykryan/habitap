@@ -8,6 +8,7 @@ interface PopupProps {
   setToggleData: (toggleData: boolean) => void;
   goodLuck: boolean;
   toggleGoodLuck: () => void;
+  taskData: any;
 }
 
 const Popup: React.FC<PopupProps> = ({
@@ -17,6 +18,7 @@ const Popup: React.FC<PopupProps> = ({
   setToggleData,
   goodLuck,
   toggleGoodLuck,
+  taskData,
 }) => {
   //a seperate function to handle multiple function calls in the yes button click
   const handleYesButtonClick = () => {
@@ -34,7 +36,7 @@ const Popup: React.FC<PopupProps> = ({
       style={{ display: toggleData ? "flex" : "none" }}
     >
       <h3>Ready to commit?</h3>
-      <p>You&apos;re committing to 3 habits for 10 days.</p>
+      <p>You&apos;re committing to {taskData.length} habits for 10 days.</p>
       <div className={styles.popupBtnContainer}>
         <div className={styles.midBtn} onClick={confirmData}>
           No
