@@ -20,6 +20,7 @@ export default function Parent() {
   const [habitData, setHabitData] = useState<Habit[] | null>(null);
   const [isMyListVisible, setIsMyListVisible] = useState<boolean>(true);
   const [variable, setVariable] = useState(false);
+  const [number, setNumber] = useState(false)//
   // const [something, setSomething] = useState(false)
 
   useEffect(() => {
@@ -27,10 +28,12 @@ export default function Parent() {
       const { data, error } = await supabase.from("habit_table").select("*");
       console.log({ data, error });
       setHabitData(data);
+      console.log('Vamos')
       // setVariable(!variable);
     };
     getData();
   }, [isMyListVisible]);
+
 
   const handleMainBtnClick = () => {
     setIsMyListVisible((prevValue) => !prevValue);
@@ -39,6 +42,10 @@ export default function Parent() {
   function toggleVarible(): any {
     setVariable(!variable);
   }
+  function toggleNumber() : any {
+    setNumber(!number)
+    
+  }//
   // function toggleSomething() : any{
   //   setSomething(!something)
   // }
@@ -47,6 +54,8 @@ export default function Parent() {
       {isMyListVisible ? (
         <MyList
           toggleVariable={toggleVarible}
+          toggleNumber ={toggleNumber}
+          number={number}
           variable={variable}
           habitData={habitData}
           handleMainBtnClick={handleMainBtnClick}
