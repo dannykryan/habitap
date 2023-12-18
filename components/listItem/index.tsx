@@ -1,6 +1,6 @@
 "use client"
 import React, { ReactNode } from 'react';
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import styles from '../listItem/listItem.module.css';
 import Image from 'next/image';
 import checkboxTicked from '../../public/icons/checkbox-ticked.svg';

@@ -18,6 +18,8 @@ export default function MyList({
   isCommitted,
   habitData,
   handleMainBtnClick,
+  date,
+  toggleDate,
 }: any) {
   const [taskData, setTaskData] = useState<Habit[]>(habitData);
 
@@ -30,7 +32,8 @@ export default function MyList({
       <div>
         <List
           taskData={taskData}
-          // addNewData={addNewData}
+          date={date}
+          toggleDate={toggleDate}
         />
       </div>
       <div className="btn-container"></div>

@@ -4,7 +4,11 @@ import { useEffect } from "react";
 
 // This is the list of commited habits (after commiting) and you can tick off everyday
 
-export default function List({taskData} : any) {
+export default function List({taskData, date, toggleDate} : any) {
+
+  useEffect(() => {
+    console.log('Page rerendered')
+   }, [date])
 
 
   return (
@@ -16,6 +20,7 @@ export default function List({taskData} : any) {
           </ListItem>
         </li>
       ))}
+      <button onClick={toggleDate}>Refresh</button>
     </ul>
   );
 }
