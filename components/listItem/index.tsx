@@ -5,7 +5,8 @@ import styles from '../listItem/listItem.module.css';
 import Image from 'next/image';
 import checkboxTicked from '../../public/icons/checkbox-ticked.svg';
 import checkboxUnticked from '../../public/icons/checkbox-unticked.svg';
-import trashIconRed from '../../public/icons/trash-icon-red.svg'
+import supabase from "../../lib/initSupabase";
+
 
 interface ListItemProps {
   children: ReactNode;
@@ -14,14 +15,23 @@ interface ListItemProps {
   number: any
 }
 
-const ListItem: React.FC<ListItemProps> = ({ children, className, todo, armDelete, number } : any) => {
+const ListItem: React.FC<ListItemProps> = ({ children, className, todo, number } : any) => {
 
   const [check, setcheck] = useState (todo.completed)
-  function handleBoxClick () {
+  
+  async function handleBoxClick () {
+    if (check === false) {
+      const { data, error } = await supabase
+  .from('habit_log')
+  .insert([
+    { habit_id: todo.habit_id, user_id: 1},
+  ])
+    }
   setcheck(true)
-  // todo.completed = !todo.completed
   console.log(todo)
   }
+
+  
 
   useEffect(()=> {setcheck(todo.completed)},[number])
 
