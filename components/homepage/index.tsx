@@ -25,11 +25,11 @@ export default function Home({habitLogsArray, habitData} : any) {
   return (
     <>
       <div id="plant-progress-container">
-        <Plant percentageDecimal={percentageDecimal} />
-        <p>Habit progress</p>
+        <Plant score={score} />
+        {/* <p>Habit progress</p> */}
       </div>
-      {/* <button onClick={increaseScore}>Increase</button>
-      <button onClick={decreaseScore}>Decrease</button> */}
+      <button onClick={increaseScore}>Increase</button>
+      <button onClick={decreaseScore}>Decrease</button>
     </>
   );
 }
