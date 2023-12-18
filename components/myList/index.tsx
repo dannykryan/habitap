@@ -37,6 +37,8 @@ export default function MyList({
   variable,
   habitData,
   handleMainBtnClick,
+  toggleNumber,
+  number
 }: any) {
   const [taskData, setTaskData] = useState<Habit[]>(habitData);
 
@@ -57,6 +59,9 @@ export default function MyList({
       <div>
         <List
           taskData={taskData}
+          toggleVariable={toggleVariable}
+          number={number}
+          toggleNumber={toggleNumber}
           // addNewData={addNewData}
         />
       </div>
