@@ -11,10 +11,11 @@ import supabase from "../../lib/initSupabase";
 interface ListItemProps {
   children: ReactNode;
   className?: string;
-  todo: any
+  todo: any;
+  date: any;
 }
 
-const ListItem: React.FC<ListItemProps> = ({ children, className, todo, number } : any) => {
+const ListItem: React.FC<ListItemProps> = ({ children, className, todo, date } : any) => {
 
   const [check, setcheck] = useState (todo.completed)
 
@@ -31,24 +32,15 @@ const ListItem: React.FC<ListItemProps> = ({ children, className, todo, number }
   }
 
  
-  useEffect(()=> {setcheck(todo.completed)},[number])
+  useEffect(()=> {
+  setcheck(todo.completed)},[date, todo.completed])
 
 
   function handleDeleteClick() {
     alert(`Deleted ${todo.id}`)
   }
 
-  return armDelete ? (
-    <div className = {styles.deleteArmed}>
-    {children}
-    <Image 
-      src={trashIconRed}
-      alt={"Armed Delete Button"}
-      height={27} 
-      onClick={handleDeleteClick}/>
-    </div>
-
-  ) : ( 
+  return ( 
   <div className={styles.todoActive}>
     {children}
     <Image 

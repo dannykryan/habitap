@@ -15,7 +15,7 @@ export default function List({taskData, date, toggleDate} : any) {
     <ul className={styles.myList}>
       {taskData.map((todo : any, index : number) => ( // typescript to review: look at the types and change them
         <li key={index}>
-          <ListItem todo={todo}>
+          <ListItem todo={todo} date={date}>
             {todo.habit_name}
           </ListItem>
         </li>

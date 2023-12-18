@@ -34,6 +34,7 @@ export default function MyList({
           taskData={taskData}
           date={date}
           toggleDate={toggleDate}
+          toggleIsCommitted={toggleIsCommitted}
         />
       </div>
       <div className="btn-container"></div>
