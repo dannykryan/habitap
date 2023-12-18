@@ -27,6 +27,7 @@ export default function Parent() {
   const [isMyListVisible, setIsMyListVisible] = useState<boolean>(true);
 
   const [isCommitted, setisCommitted] = useState(false);
+  const [date, setDate] = useState(false);
   const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
 
   // const [something, setSomething] = useState(false)
@@ -52,6 +53,9 @@ export default function Parent() {
     setisCommitted(!isCommitted);
   }
 
+  function toggleDate(): any {  
+    setDate(!date);
+  }
 
   // Pull data from habit log table into a score variable
   useEffect(() => {
@@ -73,7 +77,8 @@ export default function Parent() {
 
           toggleIsCommitted={toggleIsCommitted}
           isCommitted={isCommitted}
-
+          date={date}
+          toggleDate={toggleDate}
           habitData={habitData}
           handleMainBtnClick={handleMainBtnClick}
         />
