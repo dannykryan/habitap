@@ -71,7 +71,7 @@ export default function Parent() {
           handleMainBtnClick={handleMainBtnClick}
         />
       ) : (
-        <Home habitLogsArray={habitLogsArray}/>
+        <Home habitLogsArray={habitLogsArray} habitData={habitData}/>
       )}
       <MainBtn isMyListPage={isMyListVisible} onClick={handleMainBtnClick} />
     </>
