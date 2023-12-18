@@ -37,6 +37,8 @@ export default function MyList({
   isCommitted,
   habitData,
   handleMainBtnClick,
+  goodLuck,
+  toggleGoodLuck,
 }: any) {
   const [taskData, setTaskData] = useState<Habit[]>(habitData);
 
@@ -67,6 +69,8 @@ export default function MyList({
       toggleIsCommitted={toggleIsCommitted}
       isCommitted={isCommitted}
       handleMainBtnClick={handleMainBtnClick}
+      goodLuck={goodLuck}
+      toggleGoodLuck={toggleGoodLuck}
     />
   );
 }

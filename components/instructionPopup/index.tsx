@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function InstructionPopup({
   toggleInstructions,
-  setToggleInstructions,
+  confirmInstructions,
 }: any) {
   return (
     // returns a popup with initial instructions
@@ -19,7 +19,7 @@ export default function InstructionPopup({
         tracking your progress.
       </p>
       <div className={styles.popupBtnContainer}>
-        <div className={styles.midBtn} onClick={setToggleInstructions}>
+        <div className={styles.midBtn} onClick={confirmInstructions}>
           Let&apos;s start growing!
         </div>
       </div>

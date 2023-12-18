@@ -21,6 +21,8 @@ export default function RoutineForm({
   toggleIsCommitted,
   isCommitted,
   handleMainBtnClick,
+  goodLuck,
+  toggleGoodLuck,
 }: any) {
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal);
   const [toggleData, setToggleData] = useState<any>(false);
@@ -34,6 +36,10 @@ export default function RoutineForm({
   function confirmData() {
     setToggleData(!toggleData);
     console.log(taskData);
+  }
+
+  function confirmInstructions() {
+    setToggleInstructions(!toggleInstructions);
   }
 
   async function linkToMyList() {
@@ -93,13 +99,15 @@ export default function RoutineForm({
       <div>
         <InstructionPopup
           toggleInstructions={toggleInstructions}
-          setToggleInstructions={setToggleInstructions}
+          confirmInstructions={confirmInstructions}
         />
         <Popup
           linkToMyList={linkToMyList}
           confirmData={confirmData}
           toggleData={toggleData}
           setToggleData={setToggleData}
+          goodLuck={goodLuck}
+          toggleGoodLuck={toggleGoodLuck}
         />
         <List
           taskData={taskData}

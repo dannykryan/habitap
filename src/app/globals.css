@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Rozha+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rozha+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
 
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   text-decoration: none;
 }
 
@@ -30,7 +30,7 @@
 }
 
 #habitap-header {
-  font-family: 'Rozha One', serif;
+  font-family: "Rozha One", serif;
   font-size: 4rem;
   margin-top: 0;
   margin-bottom: 0;
@@ -60,4 +60,61 @@
 
 .plant-main {
   margin-bottom: 90px;
+}
+.popup {
+  display: flex;
+  flex-direction: column;
+  position: fixed; /* Change from absolute to fixed to make it centered relative to the viewport */
+  top: 30%;
+  left: 50%;
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Center the element both horizontally and vertically */
+  background-color: #f5fff6;
+  width: 300px;
+  height: 350px;
+  border-radius: 10px;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 1.5rem;
+  box-shadow: 0 0 15px rgb(173, 173, 173);
+  padding: 20px;
+  z-index: 1000; /* Set a high z-index value */
+}
+
+.popup h3 {
+  margin-top: 10px;
+}
+
+.popupBtnContainer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.popup p {
+  margin: 0;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.midBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 40px;
+  width: 220px;
+  background-color: #77c47e;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.3rem;
+}
+
+.midBtn:hover {
+  background-color: #6cb372;
+  cursor: pointer;
 }
