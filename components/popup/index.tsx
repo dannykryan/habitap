@@ -38,11 +38,11 @@ const Popup: React.FC<PopupProps> = ({
       <h3>Ready to commit?</h3>
       <p>You&apos;re committing to {taskData.length} habits for 10 days.</p>
       <div className={styles.popupBtnContainer}>
+      <div className={styles.midBtn} onClick={handleYesButtonClick}>
+          Yes
+        </div>
         <div className={styles.midBtn} onClick={confirmData}>
           No
-        </div>
-        <div className={styles.midBtn} onClick={handleYesButtonClick}>
-          Yes
         </div>
       </div>
     </div>
