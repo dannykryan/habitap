@@ -30,6 +30,11 @@ export default function Parent() {
   const [date, setDate] = useState(false);
   const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
 
+  const [goodLuck, setGoodLuck] = useState<any>(false);
+  function toggleGoodLuck() {
+    setGoodLuck(!goodLuck);
+  }
+
   // const [something, setSomething] = useState(false)
 
   useEffect(() => {
@@ -39,11 +44,9 @@ export default function Parent() {
       setHabitData(data);
 
       // setisCommitted(!isCommitted);
-
     };
     getData();
   }, [isMyListVisible]);
-
 
   const handleMainBtnClick = () => {
     setIsMyListVisible((prevValue) => !prevValue);
@@ -53,6 +56,7 @@ export default function Parent() {
     setisCommitted(!isCommitted);
   }
 
+
   function toggleDate(): any {  
     setDate(!date);
   }
@@ -60,7 +64,9 @@ export default function Parent() {
   // Pull data from habit log table into a score variable
   useEffect(() => {
     const getHabitLogs = async () => {
-      const { data: habitLogs, error: habitLogsError } = await supabase.from("habit_log").select("*");
+      const { data: habitLogs, error: habitLogsError } = await supabase
+        .from("habit_log")
+        .select("*");
       console.log({ habitLogs, habitLogsError });
       setHabitLogsArray(habitLogs);
     };
@@ -74,16 +80,22 @@ export default function Parent() {
     <>
       {isMyListVisible ? (
         <MyList
-
           toggleIsCommitted={toggleIsCommitted}
           isCommitted={isCommitted}
           date={date}
           toggleDate={toggleDate}
           habitData={habitData}
           handleMainBtnClick={handleMainBtnClick}
+          goodLuck={goodLuck}
+          toggleGoodLuck={toggleGoodLuck}
         />
       ) : (
-        <Home habitLogsArray={habitLogsArray} habitData={habitData}/>
+        <Home
+          habitLogsArray={habitLogsArray}
+          habitData={habitData}
+          goodLuck={goodLuck}
+          toggleGoodLuck={toggleGoodLuck}
+        />
       )}
       <MainBtn isMyListPage={isMyListVisible} onClick={handleMainBtnClick} />
     </>

@@ -18,6 +18,8 @@ export default function MyList({
   isCommitted,
   habitData,
   handleMainBtnClick,
+  goodLuck,
+  toggleGoodLuck,
   date,
   toggleDate,
 }: any) {
@@ -44,6 +46,8 @@ export default function MyList({
       toggleIsCommitted={toggleIsCommitted}
       isCommitted={isCommitted}
       handleMainBtnClick={handleMainBtnClick}
+      goodLuck={goodLuck}
+      toggleGoodLuck={toggleGoodLuck}
     />
   );
 }
