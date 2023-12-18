@@ -71,7 +71,7 @@ export default function Parent() {
       setHabitLogsArray(habitLogs);
     };
     getHabitLogs();
-  }, []);
+  }, [handleMainBtnClick]);
 
   // function toggleSomething() : any{
   //   setSomething(!something)
