@@ -1,4 +1,4 @@
-import styles from "./instrPopup.module.css";
+import styles from "./InstructionPopup.module.css";
 import Image from "next/image";
 
 export default function InstructionPopup({

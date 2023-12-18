@@ -25,8 +25,6 @@ const Popup: React.FC<PopupProps> = ({
     toggleGoodLuck();
   };
 
-  console.log(toggleData);
-
   return (
     // returns a popup with a message based on the users choices and two buttons
     <div

@@ -20,3 +20,8 @@
     background-color: #d6860e;
     cursor: pointer;
 }
+
+.commitBtn:disabled {
+    opacity: 0.6; /* Adjust the opacity to control the dimness */
+    cursor: not-allowed; /* Change the cursor to indicate it's not clickable */
+  }

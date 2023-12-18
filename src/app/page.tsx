@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
-import Home from "../../components/homepage/index";
-import MyList from "../../components/myList/index";
+import Home from "../../components/Homepage/index";
+import NewRoutineForm from "../../components/NewRoutineForm";
+import ActiveList from "../../components/ActiveList";
 import { useState, useEffect } from "react";
 import MainBtn from "../../components/MainBtn";
 import supabase from "../../lib/initSupabase";
@@ -40,7 +41,6 @@ export default function Parent() {
   useEffect(() => {
     const getData = async () => {
       const { data, error } = await supabase.from("habit_table").select("*");
-      console.log({ data, error });
       setHabitData(data);
 
       // setisCommitted(!isCommitted);
@@ -67,7 +67,7 @@ export default function Parent() {
       const { data: habitLogs, error: habitLogsError } = await supabase
         .from("habit_log")
         .select("*");
-      console.log({ habitLogs, habitLogsError });
+      // console.log({ habitLogs, habitLogsError });
       setHabitLogsArray(habitLogs);
     };
     getHabitLogs();
@@ -80,16 +80,26 @@ export default function Parent() {
   return (
     <>
       {isMyListVisible ? (
-        <MyList
-          toggleIsCommitted={toggleIsCommitted}
-          isCommitted={isCommitted}
-          date={date}
-          toggleDate={toggleDate}
-          habitData={habitData}
-          handleMainBtnClick={handleMainBtnClick}
-          goodLuck={goodLuck}
-          toggleGoodLuck={toggleGoodLuck}
-        />
+        isCommitted ? (
+          <div>
+            <ActiveList
+              taskData={habitData}
+              date={date}
+              toggleDate={toggleDate}
+              toggleIsCommitted={toggleIsCommitted}
+            />
+          </div>
+        ) : (
+          <div>
+            <NewRoutineForm
+              toggleIsCommitted={toggleIsCommitted}
+              isCommitted={isCommitted}
+              handleMainBtnClick={handleMainBtnClick}
+              goodLuck={goodLuck}
+              toggleGoodLuck={toggleGoodLuck}
+            />
+          </div>
+        )
       ) : (
         <Home
           habitLogsArray={habitLogsArray}

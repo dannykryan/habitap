@@ -1,12 +1,12 @@
 "use client";
 
 import "src/app/globals.css";
-import List from "../routine";
+import NewRoutineList from "../NewRoutineList";
 import { useState } from "react";
 import styles from "./page.module.css";
-import Popup from "../../components/popup";
+import Popup from "../Popup";
 import supabase from "../../lib/initSupabase";
-import InstructionPopup from "../instructionPopup";
+import InstructionPopup from "../InstructionPopup";
 
 interface Task {
   id: number;
@@ -17,7 +17,7 @@ interface Task {
 
 let taskDataOriginal: Task[] = [];
 
-export default function RoutineForm({
+export default function NewRoutineForm({
   toggleIsCommitted,
   isCommitted,
   handleMainBtnClick,
@@ -26,7 +26,6 @@ export default function RoutineForm({
 }: any) {
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal);
   const [toggleData, setToggleData] = useState<any>(false);
-
   const [toggleInstructions, setToggleInstructions] = useState<any>(true);
 
   const addNewData = (todo: Task) => {
@@ -35,7 +34,6 @@ export default function RoutineForm({
 
   function confirmData() {
     setToggleData(!toggleData);
-    console.log(taskData);
   }
 
   function confirmInstructions() {
@@ -79,7 +77,6 @@ export default function RoutineForm({
     if (data) {
       const getData = async () => {
         const { data, error } = await supabase.from("habit_table").select("*");
-        console.log({ data, error });
       };
       getData();
     }
@@ -109,14 +106,18 @@ export default function RoutineForm({
           goodLuck={goodLuck}
           toggleGoodLuck={toggleGoodLuck}
         />
-        <List
+        <NewRoutineList
           taskData={taskData}
           addNewData={addNewData}
           deleteData={deleteData}
         />
       </div>
       <div className="btn-container" style={{ justifyContent: "center" }}>
-        <button className={styles.commitBtn} onClick={confirmData}>
+      <button
+          className={styles.commitBtn}
+          onClick={confirmData}
+          disabled={taskData.length === 0} // Disable if taskData is empty
+        >
           Commit
         </button>
       </div>

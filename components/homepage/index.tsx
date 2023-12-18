@@ -1,6 +1,6 @@
 "use client";
 
-import Plant from "../../components/plant";
+import Plant from "../Plant";
 import "src/app/globals.css";
 import { useState } from "react";
 
@@ -16,16 +16,8 @@ export default function Home({
   let currentScore = habitLogsArray.length;
   // count habits in habit table to calculate maxScore
   let maxScore = habitData.length * 10;
-  console.log(maxScore);
   // calculate percentage decimal
   let percentageDecimal = currentScore / maxScore;
-
-  // const increaseScore = () => {
-  //   setScore(score + 1);
-  // };
-  // const decreaseScore = () => {
-  //   setScore(score - 1);
-  // };
 
   return (
     <>
@@ -43,7 +35,6 @@ export default function Home({
       </div>
       <div id="plant-progress-container">
         <Plant percentageDecimal={percentageDecimal} />
-        <p>Habit progress</p>
       </div>
       {/* <button onClick={increaseScore}>Increase</button>
       <button onClick={decreaseScore}>Decrease</button> */}

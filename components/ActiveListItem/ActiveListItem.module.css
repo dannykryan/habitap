@@ -10,3 +10,8 @@
     padding-left: 12px;
     padding-right: 12px;
 }
+
+.myList {
+    list-style-type: none;
+    padding: 0;
+}
