@@ -16,11 +16,19 @@ interface Habit {
   user_id: number;
 }
 
+interface HabitLog {
+  habit_id: string;
+  completed_at: string;
+  user_id: number;
+}
+
 export default function Parent() {
   const [habitData, setHabitData] = useState<Habit[] | null>(null);
   const [isMyListVisible, setIsMyListVisible] = useState<boolean>(true);
-  const [variable, setVariable] = useState(false);
-  const [number, setNumber] = useState(false)//
+
+  const [isCommitted, setisCommitted] = useState(false);
+  const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
+
   // const [something, setSomething] = useState(false)
 
   useEffect(() => {
@@ -28,8 +36,9 @@ export default function Parent() {
       const { data, error } = await supabase.from("habit_table").select("*");
       console.log({ data, error });
       setHabitData(data);
-      console.log('Vamos')
-      // setVariable(!variable);
+
+      // setisCommitted(!isCommitted);
+
     };
     getData();
   }, [isMyListVisible]);
@@ -39,13 +48,21 @@ export default function Parent() {
     setIsMyListVisible((prevValue) => !prevValue);
   };
 
-  function toggleVarible(): any {
-    setVariable(!variable);
+  function toggleIsCommitted(): any {
+    setisCommitted(!isCommitted);
   }
-  function toggleNumber() : any {
-    setNumber(!number)
-    
-  }//
+
+
+  // Pull data from habit log table into a score variable
+  useEffect(() => {
+    const getHabitLogs = async () => {
+      const { data: habitLogs, error: habitLogsError } = await supabase.from("habit_log").select("*");
+      console.log({ habitLogs, habitLogsError });
+      setHabitLogsArray(habitLogs);
+    };
+    getHabitLogs();
+  }, []);
+
   // function toggleSomething() : any{
   //   setSomething(!something)
   // }
@@ -53,15 +70,15 @@ export default function Parent() {
     <>
       {isMyListVisible ? (
         <MyList
-          toggleVariable={toggleVarible}
-          toggleNumber ={toggleNumber}
-          number={number}
-          variable={variable}
+
+          toggleIsCommitted={toggleIsCommitted}
+          isCommitted={isCommitted}
+
           habitData={habitData}
           handleMainBtnClick={handleMainBtnClick}
         />
       ) : (
-        <Home />
+        <Home habitLogsArray={habitLogsArray} habitData={habitData}/>
       )}
       <MainBtn isMyListPage={isMyListVisible} onClick={handleMainBtnClick} />
     </>
