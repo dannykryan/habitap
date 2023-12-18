@@ -21,6 +21,9 @@ const ListItem: React.FC<ListItemProps> = ({ children, className, todo, date } :
   const [check, setcheck] = useState (todo.completed);
   const [showPopup, setShowPopup] = useState(false);
 
+  function closePopup() {
+    setShowPopup(false);
+  }
 
   async function handleBoxClick () {
     if (check === false) {
@@ -54,7 +57,7 @@ const ListItem: React.FC<ListItemProps> = ({ children, className, todo, date } :
       alt={check ? "ticked checkbox" : "unticked checkbox"}
       height={27} 
       onClick={handleBoxClick}/>
-      {showPopup && <TickPopup setPopup={setShowPopup}/>}
+      {showPopup && <TickPopup closePopup={closePopup}/>}
     </div>
   )
 };
