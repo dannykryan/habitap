@@ -18,8 +18,9 @@ interface ListItemProps {
 const ListItem: React.FC<ListItemProps> = ({ children, className, todo, number } : any) => {
 
   const [check, setcheck] = useState (todo.completed)
-  
+
   async function handleBoxClick () {
+    console.log(check)
     if (check === false) {
       const { data, error } = await supabase
   .from('habit_log')
@@ -28,6 +29,7 @@ const ListItem: React.FC<ListItemProps> = ({ children, className, todo, number }
   ])
     }
   setcheck(true)
+  console.log(check)
   console.log(todo)
   }
 
