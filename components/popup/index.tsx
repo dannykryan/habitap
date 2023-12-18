@@ -15,7 +15,6 @@ const Popup: React.FC<PopupProps> = ({
   confirmData,
   toggleData,
   setToggleData,
-  goodLuck,
   toggleGoodLuck,
 }) => {
   //a seperate function to handle multiple function calls in the yes button click

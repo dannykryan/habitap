@@ -3,13 +3,11 @@ import styles from './ActiveList.module.css'
 import { useEffect } from "react";
 
 // This is the list of commited habits (after commiting) and you can tick off everyday
-
 export default function ActiveList({taskData, date, toggleDate} : any) {
 
   useEffect(() => {
     console.log('Page rerendered')
    }, [date])
-
 
   return (
     <ul className={styles.myList}>

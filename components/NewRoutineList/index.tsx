@@ -4,15 +4,10 @@ import enterIcon from '../../public/icons/enter-icon-green2.svg';
 import trashIconGreen from '../../public/icons/trash-icon-green.svg';
 import { useState } from 'react';
 
-export default function NewRoutineList({ taskData, addNewData, armDelete, deleteData }: any) {
+export default function NewRoutineList({ taskData, addNewData, deleteData }: any) {
   const maxTasks = 5; // Maximum number of tasks to display
   const [add, setAdd] = useState(true);
   const [inputValue, setInputValue] = useState(''); // Change to an empty string
-
-  // updating the state of the edit to display the input
-  function handleAdd() {
-    setAdd(!add);
-  }
 
   function handleEnterIcon() {
     const element = {

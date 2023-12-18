@@ -80,9 +80,7 @@ export default function NewRoutineForm({
       };
       getData();
     }
-
     toggleIsCommitted();
-
     handleMainBtnClick();
   }
 

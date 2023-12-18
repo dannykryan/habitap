@@ -31,14 +31,8 @@ const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, da
   console.log(todo)
   }
 
- 
   useEffect(()=> {
   setcheck(todo.completed)},[date, todo.completed])
-
-
-  function handleDeleteClick() {
-    alert(`Deleted ${todo.id}`)
-  }
 
   return ( 
   <div className={styles.todoActive}>

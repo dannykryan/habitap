@@ -2,9 +2,6 @@
 
 import Plant from "../Plant";
 import "src/app/globals.css";
-import { useState } from "react";
-
-const URL = "";
 
 export default function Home({
   habitLogsArray,
@@ -36,8 +33,6 @@ export default function Home({
       <div id="plant-progress-container">
         <Plant percentageDecimal={percentageDecimal} />
       </div>
-      {/* <button onClick={increaseScore}>Increase</button>
-      <button onClick={decreaseScore}>Decrease</button> */}
     </>
   );
 }

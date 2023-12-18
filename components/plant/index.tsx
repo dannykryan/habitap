@@ -93,7 +93,6 @@ export default function Plant({ percentageDecimal }: any) {
       console.log(`percentageDecimal is: ${percentageDecimal}`);
     }
       
-
     // Update the state with the new frame range, animation data, and loop value
     setAnimationOptions((prevOptions) => ({
       ...prevOptions,
