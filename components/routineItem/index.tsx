@@ -29,11 +29,11 @@ const ListItem: React.FC<ListItemProps> = ({ children, className, todo, armDelet
 }
 
   return (
-    <div className = {styles.deleteArmed}>
+    <div className = {styles.newHabit}>
     {children}
     <Image 
       src={trashIconGreen}
-      alt={"Armed Delete Button"}
+      alt={"Delete item Button"}
       height={27} 
       onClick={handleDeleteClick}/>
     </div>

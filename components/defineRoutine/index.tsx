@@ -116,7 +116,7 @@ export default function RoutineForm({
         />
       </div>
       <div className="btn-container" style={{ justifyContent: "center" }}>
-        <button className={styles.mainBtn} onClick={confirmData}>
+        <button className={styles.commitBtn} onClick={confirmData}>
           Commit
         </button>
       </div>

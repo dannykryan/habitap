@@ -1,21 +1,22 @@
-.mainBtn {
+.btn-container {
+    justify-content: center;
+}
+
+.commitBtn {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     height: 40px;
     width: 140px;
-    background-color: #77C47E;
+    background-color: #F4970F;
+    color: white;
     border: none;
     border-radius: 10px;
     font-size: 1.3rem;
 }
 
-.mainBtn:hover {
-    background-color: #6cb372;
+.commitBtn:hover {
+    background-color: #d6860e;
     cursor: pointer;
-}
-
-.btn-container {
-    justify-content: center;
 }

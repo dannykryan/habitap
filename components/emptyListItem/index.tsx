@@ -1,15 +1,26 @@
 import Image from "next/image";
-import plusIcon from "../../public/icons/empty-list-plus-icon.svg";
+import enterIcon from "../../public/icons/enter-icon-green2.svg";
 import styles from "../emptyListItem/emptyListItem.module.css";
 import { useState } from "react";
 
 export default function EmptyListItem({ addNewData, taskData }: any) {
   const [add, setAdd] = useState(true);
-  const [inputValue, setInputValue] = useState(null);
+  const [inputValue, setInputValue] = useState(""); // Change to an empty string
 
   // updating the state of the edit to display the input
   function handleAdd() {
     setAdd(!add);
+  }
+
+  function handleEnterIcon() {
+    const element = {
+      id: taskData.length + 1,
+      title: inputValue,
+      completed: false,
+    };
+    addNewData(element);
+    setAdd(!add);
+    setInputValue(""); // Reset the input value after adding data
   }
 
   function handleInputValue(e: any) {
@@ -26,23 +37,30 @@ export default function EmptyListItem({ addNewData, taskData }: any) {
       };
       addNewData(element);
       setAdd(!add);
+      setInputValue(""); // Reset the input value after adding data
     }
   }
 
-  return add ? (
-    <div className={styles.emptyListItem} onClick={handleAdd}>
-      <Image src={plusIcon} alt="Plus-icon" height={15} />
+  return (
+    <div className={styles.emptyListItem}>
+      <input
+        className={styles.emptyListInput}
+        type="text"
+        value={inputValue}
+        onChange={handleInputValue}
+        onKeyDown={handleEnterKey}
+        placeholder="Please enter your habit"
+      />
+      <Image
+        src={enterIcon}
+        alt="Plus-icon"
+        height={27}
+        onClick={handleEnterIcon}
+      />
     </div>
-  ) : (
-    <input
-      className={styles.emptyListItem} // it suppose to be the class "listInput"
-      type="text"
-      onChange={handleInputValue}
-      onKeyDown={handleEnterKey}
-      placeholder="Please enter your habit"
-    />
   );
 }
+
 
 // return (
 //   <div className={styles.emptyListItem} onClick={enterTask}>
