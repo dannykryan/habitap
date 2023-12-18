@@ -1,6 +1,6 @@
 "use client"
 import React, { ReactNode } from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../listItem/listItem.module.css';
 import Image from 'next/image';
 import checkboxTicked from '../../public/icons/checkbox-ticked.svg';
@@ -10,33 +10,27 @@ import trashIconRed from '../../public/icons/trash-icon-red.svg'
 interface ListItemProps {
   children: ReactNode;
   className?: string;
-  todo: any
+  todo: any,
+  number: any
 }
 
-const ListItem: React.FC<ListItemProps> = ({ children, className, todo, armDelete } : any) => {
+const ListItem: React.FC<ListItemProps> = ({ children, className, todo, armDelete, number } : any) => {
 
   const [check, setcheck] = useState (todo.completed)
   function handleBoxClick () {
-  setcheck(!check)
+  setcheck(true)
   // todo.completed = !todo.completed
-  //  console.log(todo)
+  console.log(todo)
   }
+
+  useEffect(()=> {setcheck(todo.completed)},[number])
+
 
   function handleDeleteClick() {
     alert(`Deleted ${todo.id}`)
   }
 
-  return armDelete ? (
-    <div className = {styles.deleteArmed}>
-    {children}
-    <Image 
-      src={trashIconRed}
-      alt={"Armed Delete Button"}
-      height={27} 
-      onClick={handleDeleteClick}/>
-    </div>
-
-  ) : ( 
+  return ( 
   <div className={styles.todoActive}>
     {children}
     <Image 

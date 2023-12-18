@@ -25,8 +25,10 @@ interface HabitLog {
 export default function Parent() {
   const [habitData, setHabitData] = useState<Habit[] | null>(null);
   const [isMyListVisible, setIsMyListVisible] = useState<boolean>(true);
+
   const [isCommitted, setisCommitted] = useState(false);
   const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
+
   // const [something, setSomething] = useState(false)
 
   useEffect(() => {
@@ -34,10 +36,13 @@ export default function Parent() {
       const { data, error } = await supabase.from("habit_table").select("*");
       console.log({ data, error });
       setHabitData(data);
+
       // setisCommitted(!isCommitted);
+
     };
     getData();
   }, [isMyListVisible]);
+
 
   const handleMainBtnClick = () => {
     setIsMyListVisible((prevValue) => !prevValue);
@@ -46,6 +51,7 @@ export default function Parent() {
   function toggleIsCommitted(): any {
     setisCommitted(!isCommitted);
   }
+
 
   // Pull data from habit log table into a score variable
   useEffect(() => {
@@ -62,11 +68,12 @@ export default function Parent() {
   // }
   return (
     <>
-      {/* <pre>{JSON.stringify(habitData, null, 2)}</pre> */}
       {isMyListVisible ? (
         <MyList
+
           toggleIsCommitted={toggleIsCommitted}
           isCommitted={isCommitted}
+
           habitData={habitData}
           handleMainBtnClick={handleMainBtnClick}
         />
