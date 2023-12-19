@@ -16,23 +16,32 @@ export default function Login() {
       setSession(session);
       console.log("hello");
       localStorage.setItem("isLoggedIn", "true");
-      router.push("/");
+      
+     
     });
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+      if (session) {
+        router.push("/");
+      }
     });
 
     return () => subscription.unsubscribe();
   }, []);
+
+  // useEffect(()=> {
+  //   setTimeout(()=> {router.push("/")}, 2000)
+  // }, [session])
+
   async function handleLogout() {
     await supabase.auth.signOut();
     setSession(null);
   }
   if (!session) {
-    return <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />;
+    return <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} onClick={()=>{console.log('hello')}}  />;
   } else {
     return (
       <>
