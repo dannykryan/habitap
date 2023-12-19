@@ -108,6 +108,7 @@ export default function RoutineForm({
           setToggleData={setToggleData}
           goodLuck={goodLuck}
           toggleGoodLuck={toggleGoodLuck}
+          taskData={taskData}
         />
         <List
           taskData={taskData}
