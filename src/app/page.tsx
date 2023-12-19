@@ -6,6 +6,7 @@ import ActiveList from "../../components/ActiveList";
 import { useState, useEffect } from "react";
 import MainBtn from "../../components/MainBtn";
 import supabase from "../../lib/initSupabase";
+import EndingPopup from "../../components/EndingPopup";
 
 interface Habit {
   habit_id: string;
@@ -26,27 +27,15 @@ interface HabitLog {
 export default function Parent() {
   const [habitData, setHabitData] = useState<Habit[] | null>(null);
   const [isMyListVisible, setIsMyListVisible] = useState<boolean>(true);
-
   const [isCommitted, setisCommitted] = useState(false);
   const [date, setDate] = useState(false);
   const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
-
   const [goodLuck, setGoodLuck] = useState<any>(false);
-  function toggleGoodLuck() {
-    setGoodLuck(!goodLuck);
-  }
-
-  // const [something, setSomething] = useState(false)
-
-  useEffect(() => {
-    const getData = async () => {
-      const { data, error } = await supabase.from("habit_table").select("*");
-      setHabitData(data);
-
-      // setisCommitted(!isCommitted);
-    };
-    getData();
-  }, [isMyListVisible]);
+  const currentDate = new Date();
+  let tenDaysPassed = false;
+  let currentScore = habitLogsArray?.length ?? 0;
+  let maxScore = habitData?.length ? habitData.length * 10 : 0;
+  let percentageDecimal = maxScore ? currentScore / maxScore : 0;
 
   const handleMainBtnClick = () => {
     setIsMyListVisible((prevValue) => !prevValue);
@@ -56,27 +45,48 @@ export default function Parent() {
     setisCommitted(!isCommitted);
   }
 
-
-  function toggleDate(): any {  
+  function toggleDate(): any {
     setDate(!date);
   }
 
-  // Pull data from habit log table into a score variable
+  function toggleGoodLuck() {
+    setGoodLuck(!goodLuck);
+  }
+
+  useEffect(() => {
+    const getData = async () => {
+      const { data, error } = await supabase.from("habit_table").select("*");
+      setHabitData(data);
+    };
+    getData();
+  }, [isMyListVisible]);
+
   useEffect(() => {
     const getHabitLogs = async () => {
       const { data: habitLogs, error: habitLogsError } = await supabase
         .from("habit_log")
         .select("*");
-      // console.log({ habitLogs, habitLogsError });
       setHabitLogsArray(habitLogs);
     };
     getHabitLogs();
   }, [isMyListVisible]);
-  
 
-  // function toggleSomething() : any{
-  //   setSomething(!something)
-  // }
+  if (habitData) {
+    const startDate = new Date(habitData[0]?.created_at);
+    const endDate = new Date(startDate);
+    endDate.setDate(startDate.getDate() + 10);
+    tenDaysPassed = currentDate >= endDate;
+  }
+
+  // Function to simulate advancing time by 10 days
+  const advanceTime = () => {
+    if (habitData) {
+      const newStartDate = new Date(habitData[0]?.created_at);
+      newStartDate.setDate(newStartDate.getDate() - 10); // Move back by 10 days
+      setHabitData([{ ...habitData[0], created_at: newStartDate.toISOString() }]);
+    }
+  };
+
   return (
     <>
       {isMyListVisible ? (
@@ -101,12 +111,26 @@ export default function Parent() {
           </div>
         )
       ) : (
-        <Home
-          habitLogsArray={habitLogsArray}
-          habitData={habitData}
-          goodLuck={goodLuck}
-          toggleGoodLuck={toggleGoodLuck}
-        />
+        <>
+          <Home
+            currentScore={currentScore}
+            maxScore={maxScore}
+            percentageDecimal={percentageDecimal}
+            habitLogsArray={habitLogsArray}
+            habitData={habitData}
+            goodLuck={goodLuck}
+            toggleGoodLuck={toggleGoodLuck}
+          />
+          {tenDaysPassed && (
+            <EndingPopup
+              tenDaysPassed={tenDaysPassed}
+              maxScore={maxScore}
+              currentScore={currentScore}
+            />
+          )}
+          {/* Button to simulate advancing time by 10 days */}
+          <button onClick={advanceTime}>Advance Time by 10 Days</button>
+        </>
       )}
       <MainBtn isMyListPage={isMyListVisible} onClick={handleMainBtnClick} />
     </>
