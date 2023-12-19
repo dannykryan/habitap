@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Home from "../../components/Homepage/index";
+import Home from "../../components/homepage/index";
 import NewRoutineForm from "../../components/NewRoutineForm";
 import ActiveList from "../../components/ActiveList";
 import { useState, useEffect } from "react";

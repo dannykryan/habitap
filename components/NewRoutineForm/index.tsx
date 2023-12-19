@@ -1,12 +1,12 @@
 "use client";
 
 import "src/app/globals.css";
-import NewRoutineList from "../NewRoutineList";
+import NewRoutineList from "../NewRoutineList/index";
 import { useState } from "react";
 import styles from "./page.module.css";
-import Popup from "../Popup/index";
+import Popup from "../popup/index";
 import supabase from "../../lib/initSupabase";
-import InstructionPopup from "../InstructionPopup/index";
+import InstructionPopup from "../instructionPopup/index";
 
 interface Task {
   id: number;
