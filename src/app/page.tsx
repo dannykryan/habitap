@@ -97,6 +97,38 @@ export default function Parent() {
     }
   };
 
+  const clearDatabase = async () => {
+    // Delete all records from habit_log
+    const { error: deleteLogError } = await supabase
+      .from("habit_log")
+      .delete()
+      .eq("user_id", "1");
+  
+    if (deleteLogError) {
+      console.error("Error deleting habit_log records:", deleteLogError);
+      return;
+    }
+  
+    // Delete records from habit_table
+    const { error: deleteError } = await supabase
+      .from("habit_table")
+      .delete()
+      .eq("user_id", "1");
+  
+    if (deleteError) {
+      console.error("Error deleting habit_table records:", deleteError);
+      return;
+    }
+  
+    // Continue with inserting new records or other operations
+    // (if needed for the new attempt)
+  };
+
+  const logScores = () => {
+    console.log("Current Score:", currentScore);
+    console.log("Percentage Decimal:", percentageDecimal);
+  };
+
   // Render the component
   return (
     <>
@@ -145,10 +177,12 @@ export default function Parent() {
               percentageDecimal={percentageDecimal}
               toggleIsCommitted={toggleIsCommitted}
               handleMainBtnClick={handleMainBtnClick}
+              clearDatabase={clearDatabase}
             />
           )}
           {/* Button to simulate advancing time by 10 days */}
           <button onClick={advanceTime}>Advance Time by 10 Days</button>
+          <button onClick={logScores}>Log Scores</button>
         </>
       )}
       {/* Render MainBtn component */}
