@@ -37,7 +37,7 @@ export default function Parent() {
   let tenDaysPassed = false;
   let currentScore = habitLogsArray?.length ?? 0;
   let maxScore = habitData?.length ? habitData.length * 10 : 0;
-  let percentageDecimal = maxScore ? (currentScore / maxScore) * 100 : 0;
+  let percentageDecimal = maxScore ? (currentScore / maxScore) : 0;
 
   // Function to handle MainBtn click, toggles visibility of My List
   const handleMainBtnClick = () => {
