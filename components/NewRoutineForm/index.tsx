@@ -103,6 +103,7 @@ export default function NewRoutineForm({
           setToggleData={setToggleData}
           goodLuck={goodLuck}
           toggleGoodLuck={toggleGoodLuck}
+          taskData={taskData}
         />
         <NewRoutineList
           taskData={taskData}
