@@ -41,27 +41,6 @@ export default function NewRoutineForm({
   }
 
   async function linkToMyList() {
-    // Delete all records from habit_log
-    const { error: deleteLogError } = await supabase
-      .from("habit_log")
-      .delete()
-      .eq("user_id", "1");
-
-    if (deleteLogError) {
-      console.error("Error deleting habit_log records:", deleteLogError);
-      return;
-    }
-
-    // Delete records from habit_table
-    const { error: deleteError } = await supabase
-      .from("habit_table")
-      .delete()
-      .eq("user_id", "1");
-
-    if (deleteError) {
-      console.error("Error deleting habit_table records:", deleteError);
-      return;
-    }
 
     // Continue with inserting new records or other operations
     const tasks: any = taskData.map((task) => ({ habit_name: task.title }));
