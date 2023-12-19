@@ -6,7 +6,9 @@ import ActiveList from "../../components/ActiveList";
 import { useState, useEffect } from "react";
 import MainBtn from "../../components/MainBtn";
 import supabase from "../../lib/initSupabase";
-import Login from "../../lib/auth/login";
+import { useRouter } from "next/navigation";
+
+// import Login from "../../lib/auth/login";
 
 interface Habit {
   habit_id: string;
@@ -31,8 +33,16 @@ export default function Parent() {
   const [isCommitted, setisCommitted] = useState(false);
   const [date, setDate] = useState(false);
   const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
-
   const [goodLuck, setGoodLuck] = useState<any>(false);
+  const [routeVariable, setRouteVariable] = useState(false);
+
+  let router = useRouter();
+
+  useEffect(() => {
+    // setRouteVariable(!routeVariable);
+    router.push("/authentication");
+  }, [routeVariable]);
+
   function toggleGoodLuck() {
     setGoodLuck(!goodLuck);
   }
@@ -108,7 +118,7 @@ export default function Parent() {
         />
       )}
       <MainBtn isMyListPage={isMyListVisible} onClick={handleMainBtnClick} />
-      <Login />
+      {/* <Login /> */}
     </>
   );
 }
