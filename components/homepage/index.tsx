@@ -1,6 +1,6 @@
 "use client";
 
-import Plant from "../Plant";
+import Plant from "../plant/index";
 import "src/app/globals.css";
 
 export default function Home({
