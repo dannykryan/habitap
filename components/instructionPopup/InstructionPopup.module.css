@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   position: fixed; /* Change from absolute to fixed to make it centered relative to the viewport */
-  top: 30%;
   left: 50%;
   transform: translate(
     -50%,
@@ -17,6 +16,7 @@
   font-size: 1.5rem;
   box-shadow: 0 0 15px rgb(173, 173, 173);
   padding: 20px;
+  z-index: 1001;
 }
 
 .popup h3 {

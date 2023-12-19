@@ -1,7 +1,7 @@
 "use client"
 import React, { ReactNode } from 'react';
 import { useState , useEffect } from 'react';
-import styles from '../listItem/listItem.module.css';
+import styles from '../ActiveListItem/ActiveListItem.module.css';
 import Image from 'next/image';
 import checkboxTicked from '../../public/icons/checkbox-ticked.svg';
 import checkboxUnticked from '../../public/icons/checkbox-unticked.svg';
@@ -16,7 +16,7 @@ interface ListItemProps {
   date: any;
 }
 
-const ListItem: React.FC<ListItemProps> = ({ children, className, todo, date } : any) => {
+const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, date } : any) => {
 
   const [check, setcheck] = useState (todo.completed);
   const [showPopup, setShowPopup] = useState(false);
@@ -40,14 +40,8 @@ const ListItem: React.FC<ListItemProps> = ({ children, className, todo, date } :
   console.log(todo)
   }
 
- 
   useEffect(()=> {
   setcheck(todo.completed)},[date, todo.completed])
-
-
-  function handleDeleteClick() {
-    alert(`Deleted ${todo.id}`)
-  }
 
   return ( 
   <div className={styles.todoActive}>
@@ -62,4 +56,4 @@ const ListItem: React.FC<ListItemProps> = ({ children, className, todo, date } :
   )
 };
 
-export default ListItem;
+export default ActiveListItem;

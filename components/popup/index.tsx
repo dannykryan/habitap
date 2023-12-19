@@ -16,7 +16,6 @@ const Popup: React.FC<PopupProps> = ({
   confirmData,
   toggleData,
   setToggleData,
-  goodLuck,
   toggleGoodLuck,
   taskData,
 }) => {
@@ -26,8 +25,6 @@ const Popup: React.FC<PopupProps> = ({
     setToggleData(false);
     toggleGoodLuck();
   };
-
-  console.log(toggleData);
 
   return (
     // returns a popup with a message based on the users choices and two buttons
