@@ -75,6 +75,7 @@ export default function Parent() {
         .from("habit_log")
         .select("*");
       setHabitLogsArray(habitLogs);
+      console.log(habitLogs);
     };
     getHabitLogs();
   }, [isMyListVisible]);
@@ -142,6 +143,8 @@ export default function Parent() {
               maxScore={maxScore}
               currentScore={currentScore}
               percentageDecimal={percentageDecimal}
+              toggleIsCommitted={toggleIsCommitted}
+              handleMainBtnClick={handleMainBtnClick}
             />
           )}
           {/* Button to simulate advancing time by 10 days */}
