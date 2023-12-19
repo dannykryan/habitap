@@ -34,14 +34,15 @@ export default function Parent() {
   const [date, setDate] = useState(false);
   const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
   const [goodLuck, setGoodLuck] = useState<any>(false);
-  const [routeVariable, setRouteVariable] = useState(false);
 
   let router = useRouter();
 
   useEffect(() => {
-    // setRouteVariable(!routeVariable);
-    router.push("/authentication");
-  }, [routeVariable]);
+    const isLoggedIn = localStorage.getItem("isLoggedIn") || null;
+    if (isLoggedIn === "false" || null) {
+      router.push("/authentication");
+    }
+  }, []);
 
   function toggleGoodLuck() {
     setGoodLuck(!goodLuck);

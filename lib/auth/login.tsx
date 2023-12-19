@@ -31,21 +31,21 @@
 //   }
 // }
 
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import AuthenticationPage from "./AuthenticationPage";
-import MainPage from "./MainPage";
+// import React from "react";
+// import ReactDOM from "react-dom";
+// import { BrowserRouter, Route, Switch } from "react-router-dom";
+// import AuthenticationPage from "./AuthenticationPage";
+// import MainPage from "./MainPage";
 
-const App = () => {
-  return (
-    <BrowserRouter initialEntries={["/authentication"]}>
-      <Switch>
-        <Route path="/authentication" component={AuthenticationPage} />
-        <Route path="/" component={MainPage} />
-      </Switch>
-    </BrowserRouter>
-  );
-};
+// const App = () => {
+//   return (
+//     <BrowserRouter initialEntries={["/authentication"]}>
+//       <Switch>
+//         <Route path="/authentication" component={AuthenticationPage} />
+//         <Route path="/" component={MainPage} />
+//       </Switch>
+//     </BrowserRouter>
+//   );
+// };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+// ReactDOM.render(<App />, document.getElementById("root"));

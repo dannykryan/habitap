@@ -5,3 +5,14 @@ const nextConfig = {
 const withImages = require("next-images");
 
 (module.exports = nextConfig), withImages();
+// module.exports = {
+//   async redirects() {
+//     return [
+//       {
+//         source: "/",
+//         destination: "/authentication",
+//         permanent: false,
+//       },
+//     ];
+//   },
+// };

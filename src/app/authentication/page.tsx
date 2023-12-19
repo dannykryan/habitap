@@ -14,9 +14,9 @@ export default function Login() {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
-      setTimeout(() => {
-        router.push("/");
-      }, 2000);
+      console.log("hello");
+      localStorage.setItem("isLoggedIn", "true");
+      router.push("/");
     });
 
     const {
