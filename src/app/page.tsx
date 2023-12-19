@@ -6,6 +6,7 @@ import ActiveList from "../../components/ActiveList";
 import { useState, useEffect } from "react";
 import MainBtn from "../../components/MainBtn";
 import supabase from "../../lib/initSupabase";
+import Login from "../../lib/auth/login";
 
 interface Habit {
   habit_id: string;
@@ -56,8 +57,7 @@ export default function Parent() {
     setisCommitted(!isCommitted);
   }
 
-
-  function toggleDate(): any {  
+  function toggleDate(): any {
     setDate(!date);
   }
 
@@ -72,7 +72,6 @@ export default function Parent() {
     };
     getHabitLogs();
   }, [isMyListVisible]);
-  
 
   // function toggleSomething() : any{
   //   setSomething(!something)
@@ -109,6 +108,7 @@ export default function Parent() {
         />
       )}
       <MainBtn isMyListPage={isMyListVisible} onClick={handleMainBtnClick} />
+      <Login />
     </>
   );
 }
