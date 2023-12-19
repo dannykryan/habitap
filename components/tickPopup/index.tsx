@@ -1,6 +1,6 @@
 import styles from "./tickPopup.module.css";
 
-function TickPopup( { closePopup } ) {
+function TickPopup( { closePopup } : any) {
 
   return (
     <div
