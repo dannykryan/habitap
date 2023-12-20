@@ -18,35 +18,43 @@ interface ListItemProps {
 
 const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, date } : any) => {
 
+  const [showCheckbox, setShowCheckbox] = useState<any> (false);
   const [isCompleted, setIsCompleted] = useState<any> ();
   // we need todays date variable
-  const currentDate = new Date().toDateString();
+  const currentDate = ((new Date()).toISOString()).toLocaleString();
   // we need a habitlog.date variable
-  async function getHabitLogs() {
-    let {data: completedAt, error} = await supabase .from('habit_log') .select('completed_at') .eq('habit_id', todo.habit_id) .eq('user_id', 1) .single();    
-    console.log(completedAt)
-    setIsCompleted(completedAt);
-  }
-
-
-   // may need a useEffect to update the habitlog.date variable
   useEffect(() => {
-    getHabitLogs()
-  }, [])
-  // if todays date is equal to habitlog.date, then render the ticked checkbox else render the unticked checkbox
-  
-  // if habitlog.date is null, then render the unticked checkbox
-  // keep the click check box function adding to the habitlog table
+    async function getHabitLogs() {
+      let {data: completedAt, error} = await supabase .from('habit_log') .select('completed_at') .eq('user_id', '7506eca4-97d0-4f21-80f1-d3040e212549');
+      console.log(currentDate)
+      console.log(completedAt)
+      setIsCompleted(completedAt);
+    };
+    getHabitLogs();
+  }, [date, currentDate, todo.habit_id])
 
-  // const [isCompleted, setIsCompleted] = useState (todo.completed);
+
+  // needs work as seconds and minutes are not being taken into account
+  function checkDate() {
+      // if todays date is equal to habitlog.date render the ticked checkbox
+    if (currentDate === isCompleted) {
+      setShowCheckbox(true);
+    }
+    // if habitlog.date is null or does not match then render the unticked checkboxthen
+    else {
+      setShowCheckbox(false);
+    }
+  }
   const [showPopup, setShowPopup] = useState(false);
 
   function closePopup() {
     setShowPopup(false);
   }
 
+  const [check, setCheck] = useState (todo.completed);
+
   async function handleBoxClick () {
-    if (isCompleted === false) {
+    if (check === false) {
       const { data, error } = await supabase
   .from('habit_log')
   .insert([
@@ -56,8 +64,9 @@ const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, da
     else {
       setShowPopup(true);
     }
-  setIsCompleted(true)
+  setCheck(true)
   console.log(todo)
+  checkDate();
   }
 
   // on each render of an activeListItem, we want to check 
@@ -71,8 +80,8 @@ const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, da
   <div className={styles.todoActive}>
     {children}
     <Image 
-      src={isCompleted ? checkboxTicked : checkboxUnticked}
-      alt={isCompleted ? "ticked isCompletedbox" : "unticked isCompletedbox"}
+      src={showCheckbox ? checkboxTicked : checkboxUnticked}
+      alt={showCheckbox ? "ticked isCompletedbox" : "unticked isCompletedbox"}
       height={27} 
       onClick={handleBoxClick}/>
       {showPopup && <TickPopup closePopup={closePopup}/>}
