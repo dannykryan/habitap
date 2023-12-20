@@ -6,6 +6,10 @@
   text-decoration: none;
 }
 
+* link {
+  text-decoration: none;
+}
+
 .btn-container {
   display: flex;
   justify-content: space-between;
@@ -18,14 +22,12 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 375px;
-  height: 667px;
+  width: 100%;
+  height: 700px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 25px;
   padding-bottom: 25px;
-  padding-left: 40px;
-  padding-right: 40px;
   border: 2px solid lime;
 }
 
@@ -118,4 +120,16 @@
 .midBtn:hover {
   background-color: #6cb372;
   cursor: pointer;
+}
+
+
+/* Media Query for Small Screens */
+@media only screen and (max-width: 340px) {
+  .main {
+    padding: 15px;
+  }
+
+  .popup {
+    max-width: 100%;
+  }
 }

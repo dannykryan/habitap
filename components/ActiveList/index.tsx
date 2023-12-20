@@ -9,10 +9,6 @@ export default function ActiveList({taskData, date, toggleDate} : any) {
     console.log('Page rerendered')
    }, [date])
 
-   // on each render of an activeListItem, we want to check 
-   // if if there is a log for said habit in the habit log table
-   // if so, render the pre-ticked checkbox, if not, render the unticked checkbox
-
   return (
     <ul className={styles.myList}>
       {taskData.map((todo : any, index : number) => ( // typescript to review: look at the types and change them

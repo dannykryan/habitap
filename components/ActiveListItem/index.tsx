@@ -40,6 +40,10 @@ const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, da
   console.log(todo)
   }
 
+  // on each render of an activeListItem, we want to check 
+   // if if there is a log for said habit in the habit log table
+   // if so, render the pre-ticked checkbox, if not, render the unticked checkbox
+
   useEffect(()=> {
   setIsCompleted(todo.completed)},[date, todo.completed])
 
