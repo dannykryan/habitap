@@ -30,6 +30,7 @@ interface HabitLog {
 }
 
 export default function Parent() {
+  const currentDate = new Date(); // Get the current date
   const [habitData, setHabitData] = useState<Habit[] | null>(null);
   const [isMyListVisible, setIsMyListVisible] = useState<boolean>(true);
   const [isCommitted, setisCommitted] = useState(false);
@@ -62,9 +63,6 @@ export default function Parent() {
     getData();
   }, [isMyListVisible]);
 
-
-  const currentDate = new Date(); // Get the current date
-
   // Calculate the current score, max score, and percentage completion
   let tenDaysPassed = false;
   let currentScore = habitLogsArray?.length ?? 0;
@@ -81,14 +79,10 @@ export default function Parent() {
     setisCommitted(!isCommitted);
   }
 
-
   // Function to toggle date (It seems you're not using this function)
-
   function toggleDate(): any {
     setDate(!date);
   }
-
-
 
   // Effect hook to fetch data from the "habit_table" table when isMyListVisible changes
   useEffect(() => {
@@ -109,7 +103,6 @@ export default function Parent() {
     };
     getHabitLogs();
   }, [isMyListVisible]);
-
 
   // Check if habitData is available and calculate tenDaysPassed
   if (habitData) {
@@ -150,19 +143,13 @@ export default function Parent() {
       console.error("Error deleting habit_table records:", deleteError);
       return;
     }
-  
-    // Continue with inserting new records or other operations
-    // (if needed for the new attempt)
   };
 
-  // Render the component
   return (
     <>
-      {/* Render components based on visibility state */}
       {isMyListVisible ? (
         isCommitted ? (
           <div>
-            {/* Render ActiveList component */}
             <ActiveList
               taskData={habitData}
               date={date}
@@ -172,7 +159,6 @@ export default function Parent() {
           </div>
         ) : (
           <div>
-            {/* Render NewRoutineForm component */}
             <NewRoutineForm
               toggleIsCommitted={toggleIsCommitted}
               isCommitted={isCommitted}
@@ -184,7 +170,6 @@ export default function Parent() {
         )
       ) : (
         <>
-          {/* Render Home component */}
           <Home
             currentScore={currentScore}
             maxScore={maxScore}
@@ -210,9 +195,7 @@ export default function Parent() {
           <button onClick={advanceTime}>Advance Time by 10 Days</button>
         </>
       )}
-      {/* Render MainBtn component */}
       <MainBtn isMyListPage={isMyListVisible} onClick={handleMainBtnClick} />
-      {/* <Login /> */}
     </>
   );
 }
