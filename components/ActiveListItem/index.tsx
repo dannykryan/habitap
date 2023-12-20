@@ -1,5 +1,5 @@
 "use client"
-import React, { ReactNode, use } from 'react';
+import React, { ReactNode } from 'react';
 import { useState , useEffect } from 'react';
 import styles from '../ActiveListItem/ActiveListItem.module.css';
 import Image from 'next/image';
@@ -16,72 +16,60 @@ interface ListItemProps {
   date: any;
 }
 
+interface HabitLog {
+  habit_id: string;
+  completed_at: string;
+  user_id: number;
+}
+
 const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, date } : any) => {
-
-  const [showCheckbox, setShowCheckbox] = useState<boolean> (false);
-  const [isCompleted, setIsCompleted] = useState<any> ();
-  // we need todays date variable
-  const currentDate = ((new Date()).toISOString()).toLocaleString();
-  // we need a habitlog.date variable
-  useEffect(() => {
-    async function getHabitLogs() {
-      let {data: completedAt, error} = await supabase .from('habit_log') .select('completed_at') .eq('user_id', '7506eca4-97d0-4f21-80f1-d3040e212549');
-      console.log(currentDate)
-      console.log(completedAt)
-      setIsCompleted(completedAt);
-    };
-    getHabitLogs();
-  }, [date, currentDate, todo.habit_id])
-
-
-  // needs work as seconds and minutes are not being taken into account
-  function checkDate() {
-      // if todays date is equal to habitlog.date render the ticked checkbox
-    if (currentDate === isCompleted) {
-      setShowCheckbox(true);
-    }
-    // if habitlog.date is null or does not match then render the unticked checkboxthen
-    else {
-      setShowCheckbox(false);
-    }
-  }
+  
+  const currentDate = new Date().toISOString().split('T')[0];
+  const [tickCheckBox, setTickCheckBox] = useState (false);
   const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    const getHabitLog = async () => {
+      const { data, error } = await supabase
+        .from("habit_log")
+        .select()
+        .eq("habit_id", todo.habit_id)
+        if (error) {
+          console.error("Error fetching habit logs:", error);
+          return;
+        }
+        // Extract values of completed_at using map
+        const loggedDate = data.map((log) => log.completed_at.split('T')[0]);
+        setTickCheckBox(loggedDate.includes(currentDate))
+      };
+      getHabitLog();
+    }, [todo.habit_id, currentDate]);
 
   function closePopup() {
     setShowPopup(false);
   }
 
-  const [check, setCheck] = useState (todo.completed);
-
   async function handleBoxClick () {
-    if (check === false) {
+    if (tickCheckBox === false) {
       const { data, error } = await supabase
-  .from('habit_log')
-  .insert([
-    { habit_id: todo.habit_id, user_id: 1},
-  ])
-    }
-    else {
-      setShowPopup(true);
-    }
-  setCheck(true)
-  console.log(todo)
-  checkDate();
-  }
-
-  // on each render of an activeListItem, we want to check 
-   // if if there is a log for said habit in the habit log table
-   // if so, render the pre-ticked checkbox, if not, render the unticked checkbox
-
-  useEffect(()=> {
-  setIsCompleted(todo.completed)},[date, todo.completed])
+      .from('habit_log')
+      .insert([
+        { habit_id: todo.habit_id, user_id: 1},
+      ])
+      console.log(todo)
+        }
+        else {
+          setShowPopup(true);
+        }
+      setTickCheckBox(true)
+      }
 
   return ( 
   <div className={styles.todoActive}>
     {children}
     <Image 
-      src={showCheckbox ? checkboxTicked : checkboxUnticked}
-      alt={showCheckbox ? "ticked isCompletedbox" : "unticked isCompletedbox"}
+      src={tickCheckBox ? checkboxTicked : checkboxUnticked}
+      alt={tickCheckBox ? "ticked checkbox" : "unticked checkbox"}
       height={27} 
       onClick={handleBoxClick}/>
       {showPopup && <TickPopup closePopup={closePopup}/>}

@@ -106,7 +106,6 @@ export default function Parent() {
         .from("habit_log")
         .select("*");
       setHabitLogsArray(habitLogs);
-      console.log(habitLogs);
     };
     getHabitLogs();
   }, [isMyListVisible]);
@@ -154,11 +153,6 @@ export default function Parent() {
   
     // Continue with inserting new records or other operations
     // (if needed for the new attempt)
-  };
-
-  const logScores = () => {
-    console.log("Current Score:", currentScore);
-    console.log("Percentage Decimal:", percentageDecimal);
   };
 
   // Render the component
@@ -214,7 +208,6 @@ export default function Parent() {
           )}
           {/* Button to simulate advancing time by 10 days */}
           <button onClick={advanceTime}>Advance Time by 10 Days</button>
-          <button onClick={logScores}>Log Scores</button>
         </>
       )}
       {/* Render MainBtn component */}
