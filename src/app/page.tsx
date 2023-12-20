@@ -6,6 +6,11 @@ import ActiveList from "../../components/ActiveList";
 import { useState, useEffect } from "react";
 import MainBtn from "../../components/MainBtn";
 import supabase from "../../lib/initSupabase";
+
+import { useRouter } from "next/navigation";
+
+// import Login from "../../lib/auth/login";
+
 import EndingPopup from "../../components/EndingPopup";
 
 interface Habit {
@@ -30,7 +35,34 @@ export default function Parent() {
   const [isCommitted, setisCommitted] = useState(false);
   const [date, setDate] = useState(false); // It seems you're not using this state
   const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
-  const [goodLuck, setGoodLuck] = useState<any>(false); // It seems you're not using this state
+  const [goodLuck, setGoodLuck] = useState<any>(false);
+
+  let router = useRouter();
+
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") || null;
+    if (isLoggedIn === "false" || null) {
+      router.push("/authentication");
+    }
+  }, [router]);
+
+  function toggleGoodLuck() {
+    setGoodLuck(!goodLuck);
+  }
+
+  // const [something, setSomething] = useState(false)
+
+  useEffect(() => {
+    const getData = async () => {
+      const { data, error } = await supabase.from("habit_table").select("*");
+      setHabitData(data);
+
+      // setisCommitted(!isCommitted);
+    };
+    getData();
+  }, [isMyListVisible]);
+
+
   const currentDate = new Date(); // Get the current date
 
   // Calculate the current score, max score, and percentage completion
@@ -49,15 +81,14 @@ export default function Parent() {
     setisCommitted(!isCommitted);
   }
 
+
   // Function to toggle date (It seems you're not using this function)
+
   function toggleDate(): any {
     setDate(!date);
   }
 
-  // Function to toggle good luck (It seems you're not using this function)
-  function toggleGoodLuck() {
-    setGoodLuck(!goodLuck);
-  }
+
 
   // Effect hook to fetch data from the "habit_table" table when isMyListVisible changes
   useEffect(() => {
@@ -79,6 +110,7 @@ export default function Parent() {
     };
     getHabitLogs();
   }, [isMyListVisible]);
+
 
   // Check if habitData is available and calculate tenDaysPassed
   if (habitData) {
@@ -187,6 +219,7 @@ export default function Parent() {
       )}
       {/* Render MainBtn component */}
       <MainBtn isMyListPage={isMyListVisible} onClick={handleMainBtnClick} />
+      {/* <Login /> */}
     </>
   );
 }
