@@ -4,17 +4,14 @@ import Plant from "../plant/index";
 import "src/app/globals.css";
 
 export default function Home({
+  currentScore,
+  maxScore,
+  percentageDecimal,
   habitLogsArray,
   habitData,
   goodLuck,
   toggleGoodLuck,
 }: any) {
-  // count items in the array to set as current score
-  let currentScore = habitLogsArray.length;
-  // count habits in habit table to calculate maxScore
-  let maxScore = habitData.length * 10;
-  // calculate percentage decimal
-  let percentageDecimal = currentScore / maxScore;
 
   return (
     <>
