@@ -17,6 +17,11 @@
   align-items: center;
 }
 
+
+body {
+  border: 2px solid lime;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -28,25 +33,22 @@
   margin-right: auto;
   padding-top: 25px;
   padding-bottom: 25px;
-  border: 2px solid lime;
 }
 
 #habitap-header {
   font-family: "Rozha One", serif;
   font-size: 4rem;
-  margin-top: 0;
+  margin-top: 20px;
   margin-bottom: 0;
   font-weight: 400;
+  text-align: center;
 }
 
-#header-prompt-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 375px;
-  height: 100px;
-  margin-bottom: 25px;
+#prompt {
+  font-size: 1.2rem;
+  font-weight: 300;
+  text-align: center;
+  max-width: 380px;
 }
 
 #plant-progress-container {

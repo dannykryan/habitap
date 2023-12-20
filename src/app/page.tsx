@@ -8,6 +8,7 @@ import MainBtn from "../../components/MainBtn";
 import supabase from "../../lib/initSupabase";
 import { useRouter } from "next/navigation";
 import EndingPopup from "../../components/EndingPopup";
+import Prompt from "../../components/prompt/index";
 
 interface Habit {
   habit_id: string;
@@ -138,6 +139,14 @@ export default function Parent() {
 
   return (
     <>
+    <Prompt 
+      tenDaysPassed={tenDaysPassed}
+      isCommitted={isCommitted}
+      maxScore={maxScore}
+      currentScore={currentScore}
+      percentageDecimal={percentageDecimal}
+      toggleIsCommitted={toggleIsCommitted}
+    />
       {isMyListVisible ? (
         isCommitted ? (
           <div>
