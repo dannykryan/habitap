@@ -6,11 +6,7 @@ import ActiveList from "../../components/ActiveList";
 import { useState, useEffect } from "react";
 import MainBtn from "../../components/MainBtn";
 import supabase from "../../lib/initSupabase";
-
 import { useRouter } from "next/navigation";
-
-// import Login from "../../lib/auth/login";
-
 import EndingPopup from "../../components/EndingPopup";
 
 interface Habit {
@@ -30,11 +26,11 @@ interface HabitLog {
 }
 
 export default function Parent() {
-  const currentDate = new Date(); // Get the current date
+  const currentDate = new Date();
   const [habitData, setHabitData] = useState<Habit[] | null>(null);
   const [isMyListVisible, setIsMyListVisible] = useState<boolean>(true);
   const [isCommitted, setisCommitted] = useState(false);
-  const [date, setDate] = useState(false); // It seems you're not using this state
+  const [date, setDate] = useState(false);
   const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
   const [goodLuck, setGoodLuck] = useState<any>(false);
 
@@ -51,14 +47,10 @@ export default function Parent() {
     setGoodLuck(!goodLuck);
   }
 
-  // const [something, setSomething] = useState(false)
-
   useEffect(() => {
     const getData = async () => {
       const { data, error } = await supabase.from("habit_table").select("*");
       setHabitData(data);
-
-      // setisCommitted(!isCommitted);
     };
     getData();
   }, [isMyListVisible]);
@@ -116,7 +108,7 @@ export default function Parent() {
   const advanceTime = () => {
     if (habitData) {
       const newStartDate = new Date(habitData[0]?.created_at);
-      newStartDate.setDate(newStartDate.getDate() - 10); // Move back by 10 days
+      newStartDate.setDate(newStartDate.getDate() - 10);
       setHabitData([{ ...habitData[0], created_at: newStartDate.toISOString() }]);
     }
   };
@@ -127,7 +119,6 @@ export default function Parent() {
       .from("habit_log")
       .delete()
       .eq("user_id", "1");
-  
     if (deleteLogError) {
       console.error("Error deleting habit_log records:", deleteLogError);
       return;
