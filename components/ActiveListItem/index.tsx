@@ -18,7 +18,7 @@ interface ListItemProps {
 
 const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, date } : any) => {
 
-  const [check, setcheck] = useState (todo.completed);
+  const [isCompleted, setIsCompleted] = useState (todo.completed);
   const [showPopup, setShowPopup] = useState(false);
 
   function closePopup() {
@@ -26,7 +26,7 @@ const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, da
   }
 
   async function handleBoxClick () {
-    if (check === false) {
+    if (isCompleted === false) {
       const { data, error } = await supabase
   .from('habit_log')
   .insert([
@@ -36,19 +36,19 @@ const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, da
     else {
       setShowPopup(true);
     }
-  setcheck(true)
+  setIsCompleted(true)
   console.log(todo)
   }
 
   useEffect(()=> {
-  setcheck(todo.completed)},[date, todo.completed])
+  setIsCompleted(todo.completed)},[date, todo.completed])
 
   return ( 
   <div className={styles.todoActive}>
     {children}
     <Image 
-      src={check ? checkboxTicked : checkboxUnticked}
-      alt={check ? "ticked checkbox" : "unticked checkbox"}
+      src={isCompleted ? checkboxTicked : checkboxUnticked}
+      alt={isCompleted ? "ticked isCompletedbox" : "unticked isCompletedbox"}
       height={27} 
       onClick={handleBoxClick}/>
       {showPopup && <TickPopup closePopup={closePopup}/>}
