@@ -35,7 +35,6 @@ export default function Parent() {
   const [isCommitted, setisCommitted] = useState(false);
   const [date, setDate] = useState(false); // It seems you're not using this state
   const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
-
   const [goodLuck, setGoodLuck] = useState<any>(false);
 
   let router = useRouter();
@@ -63,7 +62,7 @@ export default function Parent() {
     getData();
   }, [isMyListVisible]);
 
-  const [goodLuck, setGoodLuck] = useState<any>(false); // It seems you're not using this state
+
   const currentDate = new Date(); // Get the current date
 
   // Calculate the current score, max score, and percentage completion
@@ -89,10 +88,7 @@ export default function Parent() {
     setDate(!date);
   }
 
-  // Function to toggle good luck (It seems you're not using this function)
-  function toggleGoodLuck() {
-    setGoodLuck(!goodLuck);
-  }
+
 
   // Effect hook to fetch data from the "habit_table" table when isMyListVisible changes
   useEffect(() => {

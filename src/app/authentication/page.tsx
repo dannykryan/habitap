@@ -14,7 +14,6 @@ export default function Login() {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
-      console.log("hello");
       localStorage.setItem("isLoggedIn", "true");
       
      
