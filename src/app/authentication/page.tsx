@@ -30,18 +30,15 @@ export default function Login() {
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [router]);
 
-  // useEffect(()=> {
-  //   setTimeout(()=> {router.push("/")}, 2000)
-  // }, [session])
 
   async function handleLogout() {
     await supabase.auth.signOut();
     setSession(null);
   }
   if (!session) {
-    return <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} onClick={()=>{console.log('hello')}}  />;
+    return <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }}/>;
   } else {
     return (
       <>

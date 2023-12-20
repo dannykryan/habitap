@@ -42,7 +42,7 @@ export default function Parent() {
     if (isLoggedIn === "false" || null) {
       router.push("/authentication");
     }
-  }, []);
+  }, [router]);
 
   function toggleGoodLuck() {
     setGoodLuck(!goodLuck);
