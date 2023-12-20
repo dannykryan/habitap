@@ -1,5 +1,5 @@
 "use client"
-import React, { ReactNode } from 'react';
+import React, { ReactNode, use } from 'react';
 import { useState , useEffect } from 'react';
 import styles from '../ActiveListItem/ActiveListItem.module.css';
 import Image from 'next/image';
@@ -18,7 +18,27 @@ interface ListItemProps {
 
 const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, date } : any) => {
 
-  const [isCompleted, setIsCompleted] = useState (todo.completed);
+  const [isCompleted, setIsCompleted] = useState<any> ();
+  // we need todays date variable
+  const currentDate = new Date().toDateString();
+  // we need a habitlog.date variable
+  async function getHabitLogs() {
+    let {data: completedAt, error} = await supabase .from('habit_log') .select('completed_at') .eq('habit_id', todo.habit_id) .eq('user_id', 1) .single();    
+    console.log(completedAt)
+    setIsCompleted(completedAt);
+  }
+
+
+   // may need a useEffect to update the habitlog.date variable
+  useEffect(() => {
+    getHabitLogs()
+  }, [])
+  // if todays date is equal to habitlog.date, then render the ticked checkbox else render the unticked checkbox
+  
+  // if habitlog.date is null, then render the unticked checkbox
+  // keep the click check box function adding to the habitlog table
+
+  // const [isCompleted, setIsCompleted] = useState (todo.completed);
   const [showPopup, setShowPopup] = useState(false);
 
   function closePopup() {
