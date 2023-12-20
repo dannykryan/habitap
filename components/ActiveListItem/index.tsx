@@ -18,7 +18,7 @@ interface ListItemProps {
 
 const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, date } : any) => {
 
-  const [showCheckbox, setShowCheckbox] = useState<any> (false);
+  const [showCheckbox, setShowCheckbox] = useState<boolean> (false);
   const [isCompleted, setIsCompleted] = useState<any> ();
   // we need todays date variable
   const currentDate = ((new Date()).toISOString()).toLocaleString();
