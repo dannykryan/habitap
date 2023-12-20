@@ -75,13 +75,12 @@
   ); /* Center the element both horizontally and vertically */
   background-color: #f5fff6;
   width: 300px;
-  height: 350px;
   border-radius: 10px;
   justify-content: space-evenly;
   align-items: center;
   font-size: 1.5rem;
   box-shadow: 0 0 15px rgb(173, 173, 173);
-  padding: 20px;
+  padding: 24px;
   z-index: 1000; /* Set a high z-index value */
 }
 
@@ -104,17 +103,26 @@
   font-size: 1.2rem;
 }
 
+#ready-popup {
+  background-color: red;
+}
+
 .midBtn {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   height: 40px;
-  width: 220px;
+  width: 100px;
   background-color: #77c47e;
   border: none;
-  border-radius: 10px;
+  border-radius:50px;
   font-size: 1.3rem;
+  color: white;
+}
+
+.midBtn:focus {
+  box-shadow: 0 0 15px rgb(173, 173, 173);
 }
 
 .midBtn:hover {
@@ -122,14 +130,9 @@
   cursor: pointer;
 }
 
-
 /* Media Query for Small Screens */
-@media only screen and (max-width: 340px) {
-  .main {
-    padding: 15px;
-  }
-
+@media screen and (max-width: 400px) {
   .popup {
-    max-width: 100%;
+    width: 50%;
   }
 }

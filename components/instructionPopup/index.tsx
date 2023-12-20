@@ -1,4 +1,3 @@
-import styles from "./InstructionPopup.module.css";
 import Image from "next/image";
 
 export default function InstructionPopup({
@@ -8,7 +7,7 @@ export default function InstructionPopup({
   return (
     // returns a popup with initial instructions
     <div
-      className={styles.popup}
+      className={"popup"}
       style={{ display: toggleInstructions ? "flex" : "none" }}
     >
       <h3>Welcome to Habitap!</h3>
@@ -18,9 +17,9 @@ export default function InstructionPopup({
         if you&apos;re ready, commit to a maximum of 5 habits now and start
         tracking your progress.
       </p>
-      <div className={styles.popupBtnContainer}>
-        <div className={styles.midBtn} onClick={confirmInstructions}>
-          Let&apos;s start growing!
+      <div className={"popupBtnContainer"}>
+        <div className={"midBtn"} onClick={confirmInstructions}>
+          Let&apos;s Go!
         </div>
       </div>
     </div>

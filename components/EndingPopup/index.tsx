@@ -1,4 +1,3 @@
-import styles from "./InstructionPopup.module.css";
 import Image from "next/image";
 import supabase from "../../lib/initSupabase";
 
@@ -42,35 +41,35 @@ export default function EndingPopup({
   // Function to determine the message based on percentageDecimal
   const getMessage = () => {
     if (percentageDecimal === 0) {
-      return "Zero percent? Don't worry, everyone starts somewhere!";
+      return `Oh dear! 😬  Better luck next time.`;
     } else if (percentageDecimal <= 0.3) {
-      return "Well, it's a start! Keep it up!";
+      return "Well, it's a start! Keep it up, I suppose! 🤷‍♂️🤷‍♀️";
     } else if (percentageDecimal <= 0.5) {
-      return "Halfway there! You're doing great!";
+      return "That's a pretty good try! 🙂";
     } else if (percentageDecimal <= 0.7) {
-      return "Impressive! You're almost there!";
+      return "Well, aren't you a little beekeeper! 🐝";
     } else if (percentageDecimal <= 0.9) {
-      return "Wow! You're doing fantastic!";
+      return "You're a star! Our bees never had it so good! 🐝🐝";
     } else {
-      return "Incredible! You're a superstar! 🌟";
+      return "Cracking Job! From now on, you shall be known as the Bee Whisperer! 🐝🐝🐝";
     }
   };
 
   return (
     <div
-      className={styles.popup}
+      className={"popup"}
       style={{ display: tenDaysPassed ? "flex" : "none" }}
     >
       <h3>Times Up!</h3>
       <p>
-        Congratulations, you have reached the end of your 10-day challenge. Out of a possible {maxScore || 0} habits, you managed to tick off {currentScore || 0}!
-      </p>
+        Out of a possible {maxScore || 0} habits, you ticked off {currentScore || 0}.
+      </p>  
       <p>
-      {getMessage()} Now, are you ready to do it all over again?
+        {getMessage()}
       </p>
-      <div className={styles.popupBtnContainer}>
-        <div className={styles.midBtn} onClick={handleReadyButton}>
-          I&apos;m ready, let&apos;s go!
+      <div className={"popupBtnContainer"}>
+        <div className={"midBtn"} onClick={handleReadyButton}>
+          Okay
         </div>
       </div>
     </div>
