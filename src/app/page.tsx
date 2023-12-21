@@ -20,7 +20,7 @@ export interface Habit {
   user_id: number;
 }
 
-interface HabitLog {
+export interface HabitLog {
   habit_id: string;
   completed_at: string;
   user_id: number;
