@@ -9,6 +9,7 @@ import supabase from "../../lib/initSupabase";
 import { useRouter } from "next/navigation";
 import EndingPopup from "../../components/EndingPopup";
 import Prompt from "../../components/prompt/index";
+import ButtonBar from "../../components/ButtonBar";
 
 interface Habit {
   habit_id: string;
@@ -50,11 +51,12 @@ export default function Parent() {
 
   useEffect(() => {
     const getData = async () => {
-      const { data, error } = await supabase.from("habit_table").select("*");
+      const { data, error } = await supabase.from("habit_table").select("*").eq("user_id", "1");
       setHabitData(data);
     };
     getData();
   }, [isMyListVisible]);
+
 
   // Calculate the current score, max score, and percentage completion
   let tenDaysPassed = false;
@@ -108,9 +110,12 @@ export default function Parent() {
   // Function to simulate advancing time by 10 days
   const advanceTime = () => {
     if (habitData) {
-      const newStartDate = new Date(habitData[0]?.created_at);
-      newStartDate.setDate(newStartDate.getDate() - 10);
-      setHabitData([{ ...habitData[0], created_at: newStartDate.toISOString() }]);
+      const updatedHabitData = habitData.map((habit) => {
+        const newStartDate = new Date(habit.created_at);
+        newStartDate.setDate(newStartDate.getDate() - 10);
+        return { ...habit, created_at: newStartDate.toISOString() };
+      });
+      setHabitData(updatedHabitData);
     }
   };
 
@@ -196,6 +201,7 @@ export default function Parent() {
         </>
       )}
       <MainBtn isMyListPage={isMyListVisible} onClick={handleMainBtnClick} />
+      <ButtonBar />
     </>
   );
 }

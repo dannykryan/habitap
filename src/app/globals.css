@@ -32,7 +32,6 @@ body {
   margin-left: auto;
   margin-right: auto;
   padding-top: 25px;
-  padding-bottom: 25px;
 }
 
 #habitap-header {
@@ -131,6 +130,37 @@ body {
   background-color: #6cb372;
   cursor: pointer;
 }
+
+.btn-bar {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+  margin-top: 20px;
+  background-color: #6cb372;
+  height: 85px;
+  width: 80%;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  box-shadow: 0 -3px 15px rgb(173, 173, 173);
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+ #ListBtn:hover {
+  background-image: url('/icons/Buttons/list-button-focus.png');
+ }
+
+ #FlowerBtn:hover {
+  background-image: url('/icons/Buttons/flower-button-focus.png');
+ }
+
+ #SettingsBtn:hover {
+  background-image: url('/icons/Buttons/settings-button-focus.png');
+ }
+
 
 /* Media Query for Small Screens */
 @media screen and (max-width: 400px) {
