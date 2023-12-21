@@ -49,8 +49,6 @@ export default function Parent() {
     setGoodLuck(!goodLuck);
   }
 
-  console.log(habitData)
-
   useEffect(() => {
     const getData = async () => {
       const { data, error } = await supabase.from("habit_table").select("*").eq("user_id", "1");
@@ -65,8 +63,6 @@ export default function Parent() {
   let currentScore = habitLogsArray?.length ?? 0;
   let maxScore = habitData?.length ? habitData.length * 10 : 0;
   let percentageDecimal = maxScore ? (currentScore / maxScore) : 0;
-
-  console.log(maxScore)
 
   // Function to handle MainBtn click, toggles visibility of My List
   const handleMainBtnClick = () => {
@@ -114,9 +110,12 @@ export default function Parent() {
   // Function to simulate advancing time by 10 days
   const advanceTime = () => {
     if (habitData) {
-      const newStartDate = new Date(habitData[0]?.created_at);
-      newStartDate.setDate(newStartDate.getDate() - 10);
-      setHabitData([{ ...habitData[0], created_at: newStartDate.toISOString() }]);
+      const updatedHabitData = habitData.map((habit) => {
+        const newStartDate = new Date(habit.created_at);
+        newStartDate.setDate(newStartDate.getDate() - 10);
+        return { ...habit, created_at: newStartDate.toISOString() };
+      });
+      setHabitData(updatedHabitData);
     }
   };
 
@@ -189,7 +188,6 @@ export default function Parent() {
             // Render EndingPopup component when ten days have passed
             <EndingPopup
               tenDaysPassed={tenDaysPassed}
-              habitData={habitData}
               maxScore={maxScore}
               currentScore={currentScore}
               percentageDecimal={percentageDecimal}
