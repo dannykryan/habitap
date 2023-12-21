@@ -1,9 +1,17 @@
 import ActiveListItem from "../ActiveListItem"
 import styles from './ActiveList.module.css'
 import { useEffect } from "react";
+import { Habit } from "../../src/app/page";
+
+interface ActiveListProps {
+  taskData: Habit[] | null;
+  date: boolean;
+  toggleDate: () => void;
+  toggleIsCommitted: () => void;
+}
 
 // This is the list of commited habits (after commiting) and you can tick off everyday
-export default function ActiveList({taskData, date, toggleDate} : any) {
+export default function ActiveList({taskData, date, toggleDate} : ActiveListProps) {
 
   useEffect(() => {
     console.log('Page rerendered')
@@ -11,9 +19,9 @@ export default function ActiveList({taskData, date, toggleDate} : any) {
 
   return (
     <ul className={styles.myList}>
-      {taskData.map((todo : any, index : number) => ( // typescript to review: look at the types and change them
+      {taskData && taskData.map((todo : Habit , index : number) => (
         <li key={index}>
-          <ActiveListItem todo={todo} date={date}>
+            <ActiveListItem todo={[todo]} date={date}>
             {todo.habit_name}
           </ActiveListItem>
         </li>

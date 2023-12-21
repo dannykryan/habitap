@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import EndingPopup from "../../components/EndingPopup";
 import Prompt from "../../components/prompt/index";
 
-interface Habit {
+export interface Habit {
   habit_id: string;
   habit_name: string;
   created_at: string;
