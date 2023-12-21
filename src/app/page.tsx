@@ -9,6 +9,7 @@ import supabase from "../../lib/initSupabase";
 import { useRouter } from "next/navigation";
 import EndingPopup from "../../components/EndingPopup";
 import Prompt from "../../components/prompt/index";
+import ButtonBar from "../../components/ButtonBar";
 
 interface Habit {
   habit_id: string;
@@ -196,6 +197,7 @@ export default function Parent() {
         </>
       )}
       <MainBtn isMyListPage={isMyListVisible} onClick={handleMainBtnClick} />
+      <ButtonBar />
     </>
   );
 }
