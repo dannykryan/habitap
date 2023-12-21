@@ -3,12 +3,15 @@ import supabase from "../../lib/initSupabase";
 
 export default function EndingPopup({
   tenDaysPassed,
+  habitData,
   maxScore,
   currentScore,
   percentageDecimal,
   toggleIsCommitted,
   handleMainBtnClick,
 }: any) {
+
+  console.log(`This is the popup habitData: ${habitData.length}`);
 
   async function handleReadyButton() {
       // Delete all records from habit_log
@@ -62,7 +65,7 @@ export default function EndingPopup({
     >
       <h3>Times Up!</h3>
       <p>
-        Out of a possible {maxScore || 0} habits, you ticked off {currentScore || 0}.
+        Out of a possible {habitData.length * 10 || 0} habits, you ticked off {currentScore || 0}.
       </p>  
       <p>
         {getMessage()}

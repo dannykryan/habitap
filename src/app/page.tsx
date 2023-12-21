@@ -49,19 +49,24 @@ export default function Parent() {
     setGoodLuck(!goodLuck);
   }
 
+  console.log(habitData)
+
   useEffect(() => {
     const getData = async () => {
-      const { data, error } = await supabase.from("habit_table").select("*");
+      const { data, error } = await supabase.from("habit_table").select("*").eq("user_id", "1");
       setHabitData(data);
     };
     getData();
   }, [isMyListVisible]);
+
 
   // Calculate the current score, max score, and percentage completion
   let tenDaysPassed = false;
   let currentScore = habitLogsArray?.length ?? 0;
   let maxScore = habitData?.length ? habitData.length * 10 : 0;
   let percentageDecimal = maxScore ? (currentScore / maxScore) : 0;
+
+  console.log(maxScore)
 
   // Function to handle MainBtn click, toggles visibility of My List
   const handleMainBtnClick = () => {
@@ -184,6 +189,7 @@ export default function Parent() {
             // Render EndingPopup component when ten days have passed
             <EndingPopup
               tenDaysPassed={tenDaysPassed}
+              habitData={habitData}
               maxScore={maxScore}
               currentScore={currentScore}
               percentageDecimal={percentageDecimal}
