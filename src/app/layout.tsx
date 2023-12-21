@@ -18,12 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header></header>
+        <header>
+          <h1 id="habitap-header">Habitap</h1>
+        </header>
         <section className="main">
-          <div id="header-prompt-container">
-            <h1 id="habitap-header">Habitap</h1>
-            <Prompt />
-          </div>
           {children}
           </section>
       </body>

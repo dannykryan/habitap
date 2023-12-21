@@ -6,12 +6,9 @@ import ActiveList from "../../components/ActiveList";
 import { useState, useEffect } from "react";
 import MainBtn from "../../components/MainBtn";
 import supabase from "../../lib/initSupabase";
-
 import { useRouter } from "next/navigation";
-
-// import Login from "../../lib/auth/login";
-
 import EndingPopup from "../../components/EndingPopup";
+import Prompt from "../../components/prompt/index";
 
 interface Habit {
   habit_id: string;
@@ -30,10 +27,11 @@ interface HabitLog {
 }
 
 export default function Parent() {
+  const currentDate = new Date();
   const [habitData, setHabitData] = useState<Habit[] | null>(null);
   const [isMyListVisible, setIsMyListVisible] = useState<boolean>(true);
   const [isCommitted, setisCommitted] = useState(false);
-  const [date, setDate] = useState(false); // It seems you're not using this state
+  const [date, setDate] = useState(false);
   const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
   const [goodLuck, setGoodLuck] = useState<any>(false);
 
@@ -50,20 +48,13 @@ export default function Parent() {
     setGoodLuck(!goodLuck);
   }
 
-  // const [something, setSomething] = useState(false)
-
   useEffect(() => {
     const getData = async () => {
       const { data, error } = await supabase.from("habit_table").select("*");
       setHabitData(data);
-
-      // setisCommitted(!isCommitted);
     };
     getData();
   }, [isMyListVisible]);
-
-
-  const currentDate = new Date(); // Get the current date
 
   // Calculate the current score, max score, and percentage completion
   let tenDaysPassed = false;
@@ -81,14 +72,10 @@ export default function Parent() {
     setisCommitted(!isCommitted);
   }
 
-
   // Function to toggle date (It seems you're not using this function)
-
   function toggleDate(): any {
     setDate(!date);
   }
-
-
 
   // Effect hook to fetch data from the "habit_table" table when isMyListVisible changes
   useEffect(() => {
@@ -106,11 +93,9 @@ export default function Parent() {
         .from("habit_log")
         .select("*");
       setHabitLogsArray(habitLogs);
-      console.log(habitLogs);
     };
     getHabitLogs();
   }, [isMyListVisible]);
-
 
   // Check if habitData is available and calculate tenDaysPassed
   if (habitData) {
@@ -124,7 +109,7 @@ export default function Parent() {
   const advanceTime = () => {
     if (habitData) {
       const newStartDate = new Date(habitData[0]?.created_at);
-      newStartDate.setDate(newStartDate.getDate() - 10); // Move back by 10 days
+      newStartDate.setDate(newStartDate.getDate() - 10);
       setHabitData([{ ...habitData[0], created_at: newStartDate.toISOString() }]);
     }
   };
@@ -135,7 +120,6 @@ export default function Parent() {
       .from("habit_log")
       .delete()
       .eq("user_id", "1");
-  
     if (deleteLogError) {
       console.error("Error deleting habit_log records:", deleteLogError);
       return;
@@ -151,24 +135,21 @@ export default function Parent() {
       console.error("Error deleting habit_table records:", deleteError);
       return;
     }
-  
-    // Continue with inserting new records or other operations
-    // (if needed for the new attempt)
   };
 
-  const logScores = () => {
-    console.log("Current Score:", currentScore);
-    console.log("Percentage Decimal:", percentageDecimal);
-  };
-
-  // Render the component
   return (
     <>
-      {/* Render components based on visibility state */}
+    <Prompt 
+      tenDaysPassed={tenDaysPassed}
+      isCommitted={isCommitted}
+      maxScore={maxScore}
+      currentScore={currentScore}
+      percentageDecimal={percentageDecimal}
+      toggleIsCommitted={toggleIsCommitted}
+    />
       {isMyListVisible ? (
         isCommitted ? (
           <div>
-            {/* Render ActiveList component */}
             <ActiveList
               taskData={habitData}
               date={date}
@@ -178,7 +159,6 @@ export default function Parent() {
           </div>
         ) : (
           <div>
-            {/* Render NewRoutineForm component */}
             <NewRoutineForm
               toggleIsCommitted={toggleIsCommitted}
               isCommitted={isCommitted}
@@ -190,7 +170,6 @@ export default function Parent() {
         )
       ) : (
         <>
-          {/* Render Home component */}
           <Home
             currentScore={currentScore}
             maxScore={maxScore}
@@ -214,12 +193,9 @@ export default function Parent() {
           )}
           {/* Button to simulate advancing time by 10 days */}
           <button onClick={advanceTime}>Advance Time by 10 Days</button>
-          <button onClick={logScores}>Log Scores</button>
         </>
       )}
-      {/* Render MainBtn component */}
       <MainBtn isMyListPage={isMyListVisible} onClick={handleMainBtnClick} />
-      {/* <Login /> */}
     </>
   );
 }

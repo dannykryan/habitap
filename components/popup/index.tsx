@@ -1,4 +1,3 @@
-import styles from "./popup.module.css";
 import Image from "next/image";
 
 interface PopupProps {
@@ -29,16 +28,16 @@ const Popup: React.FC<PopupProps> = ({
   return (
     // returns a popup with a message based on the users choices and two buttons
     <div
-      className={styles.popup}
+      className={"popup ready-popup"}
       style={{ display: toggleData ? "flex" : "none" }}
     >
       <h3>Ready to commit?</h3>
       <p>You&apos;re committing to {taskData.length} habits for 10 days.</p>
-      <div className={styles.popupBtnContainer}>
-      <div className={styles.midBtn} onClick={handleYesButtonClick}>
+      <div className={"popupBtnContainer"}>
+      <div className={"midBtn"} onClick={handleYesButtonClick}>
           Yes
         </div>
-        <div className={styles.midBtn} onClick={confirmData}>
+        <div className={"midBtn"} onClick={confirmData}>
           No
         </div>
       </div>

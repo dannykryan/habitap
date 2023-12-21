@@ -16,39 +16,60 @@ interface ListItemProps {
   date: any;
 }
 
-const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, date } : any) => {
+interface HabitLog {
+  habit_id: string;
+  completed_at: string;
+  user_id: number;
+}
 
-  const [check, setcheck] = useState (todo.completed);
+const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, date } : any) => {
+  
+  const currentDate = new Date().toISOString().split('T')[0];
+  const [tickCheckBox, setTickCheckBox] = useState (false);
   const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    const getHabitLog = async () => {
+      const { data, error } = await supabase
+        .from("habit_log")
+        .select()
+        .eq("habit_id", todo.habit_id)
+        if (error) {
+          console.error("Error fetching habit logs:", error);
+          return;
+        }
+        // Extract values of completed_at using map
+        const loggedDate = data.map((log) => log.completed_at.split('T')[0]);
+        setTickCheckBox(loggedDate.includes(currentDate))
+      };
+      getHabitLog();
+    }, [todo.habit_id, currentDate]);
 
   function closePopup() {
     setShowPopup(false);
   }
 
   async function handleBoxClick () {
-    if (check === false) {
+    if (tickCheckBox === false) {
       const { data, error } = await supabase
-  .from('habit_log')
-  .insert([
-    { habit_id: todo.habit_id, user_id: 1},
-  ])
-    }
-    else {
-      setShowPopup(true);
-    }
-  setcheck(true)
-  console.log(todo)
-  }
-
-  useEffect(()=> {
-  setcheck(todo.completed)},[date, todo.completed])
+      .from('habit_log')
+      .insert([
+        { habit_id: todo.habit_id, user_id: 1},
+      ])
+      console.log(todo)
+        }
+        else {
+          setShowPopup(true);
+        }
+      setTickCheckBox(true)
+      }
 
   return ( 
   <div className={styles.todoActive}>
     {children}
     <Image 
-      src={check ? checkboxTicked : checkboxUnticked}
-      alt={check ? "ticked checkbox" : "unticked checkbox"}
+      src={tickCheckBox ? checkboxTicked : checkboxUnticked}
+      alt={tickCheckBox ? "ticked checkbox" : "unticked checkbox"}
       height={27} 
       onClick={handleBoxClick}/>
       {showPopup && <TickPopup closePopup={closePopup}/>}
