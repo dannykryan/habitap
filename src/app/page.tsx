@@ -30,10 +30,10 @@ export default function Parent() {
   const currentDate = new Date();
   const [habitData, setHabitData] = useState<Habit[] | null>(null);
   const [isMyListVisible, setIsMyListVisible] = useState<boolean>(true);
-  const [isCommitted, setisCommitted] = useState(false);
-  const [date, setDate] = useState(false);
+  const [isCommitted, setisCommitted] = useState<boolean>(false);
+  const [date, setDate] = useState<boolean>(false);
   const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
-  const [goodLuck, setGoodLuck] = useState<any>(false);
+  const [goodLuck, setGoodLuck] = useState<boolean>(false);
 
   let router = useRouter();
 
@@ -68,12 +68,12 @@ export default function Parent() {
   };
 
   // Function to toggle commitment status
-  function toggleIsCommitted(): any {
+  function toggleIsCommitted() {
     setisCommitted(!isCommitted);
   }
 
   // Function to toggle date (It seems you're not using this function)
-  function toggleDate(): any {
+  function toggleDate() {
     setDate(!date);
   }
 
