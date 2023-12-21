@@ -22,7 +22,11 @@ interface Plant {
   outPoint: number;
 }
 
-export default function Plant({ percentageDecimal }: any) {
+interface PlantProps {
+  percentageDecimal: number;
+}
+
+export default function Plant({ percentageDecimal }: PlantProps) {
   const [animationKey, setAnimationKey] = useState<number>(0);
   // State to manage animation options
   const [animationOptions, setAnimationOptions] = useState<Plant>({

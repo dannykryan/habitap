@@ -1,4 +1,8 @@
-function TickPopup( { closePopup } : any) {
+interface TickPopupProps {
+  closePopup: () => void;
+}
+
+function TickPopup( { closePopup } : TickPopupProps) {
 
   return (
     <div

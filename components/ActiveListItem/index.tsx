@@ -13,7 +13,7 @@ import { Habit } from "../../src/app/page";
 interface ListItemProps {
   children: ReactNode;
   className?: string;
-  todo: Habit[];
+  todo: HabitLog;
   date: boolean;
 }
 
@@ -23,7 +23,7 @@ interface HabitLog {
   user_id: number;
 }
 
-const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, date } : any) => {
+const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, date }) => {
   
   const currentDate = new Date().toISOString().split('T')[0];
   const [tickCheckBox, setTickCheckBox] = useState<boolean> (false);
