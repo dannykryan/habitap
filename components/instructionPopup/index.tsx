@@ -1,9 +1,14 @@
 import Image from "next/image";
 
+interface InstructionPopupProps {
+  toggleInstructions: boolean;
+  confirmInstructions: () => void;
+}
+
 export default function InstructionPopup({
   toggleInstructions,
   confirmInstructions,
-}: any) {
+}: InstructionPopupProps) {
   return (
     // returns a popup with initial instructions
     <div

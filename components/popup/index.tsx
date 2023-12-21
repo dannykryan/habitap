@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Task } from "../NewRoutineForm";
 
 interface PopupProps {
   linkToMyList: () => void;
@@ -7,7 +8,7 @@ interface PopupProps {
   setToggleData: (toggleData: boolean) => void;
   goodLuck: boolean;
   toggleGoodLuck: () => void;
-  taskData: any;
+  taskData: Task[];
 }
 
 const Popup: React.FC<PopupProps> = ({
