@@ -21,6 +21,19 @@ export default function Parent() {
   const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
   const [goodLuck, setGoodLuck] = useState<boolean>(false);
 
+  let pageArray = ["list", "flower", "settings"];
+  const [buttonArray, setButtonArray] = useState(pageArray[0]);
+
+  // Function to handle List Bttn click (for button bar)
+  const handleListBtnClick = () => {
+    setButtonArray(pageArray[0]);
+  };
+
+  // Function to handle Flower Bttn click(for button bar)
+  const handleFlowerBtnClick = () => {
+    setButtonArray(pageArray[1]);
+  };
+
   let router = useRouter();
 
   useEffect(() => {
@@ -36,18 +49,20 @@ export default function Parent() {
 
   useEffect(() => {
     const getData = async () => {
-      const { data, error } = await supabase.from("habit_table").select("*").eq("user_id", "1");
+      const { data, error } = await supabase
+        .from("habit_table")
+        .select("*")
+        .eq("user_id", "1");
       setHabitData(data);
     };
     getData();
-  }, [isMyListVisible]);
-
+  }, [handleListBtnClick]);
 
   // Calculate the current score, max score, and percentage completion
   let tenDaysPassed = false;
   let currentScore = habitLogsArray?.length ?? 0;
   let maxScore = habitData?.length ? habitData.length * 10 : 0;
-  let percentageDecimal = maxScore ? (currentScore / maxScore) : 0;
+  let percentageDecimal = maxScore ? currentScore / maxScore : 0;
 
   // Function to handle MainBtn click, toggles visibility of My List
   const handleMainBtnClick = () => {
@@ -114,13 +129,13 @@ export default function Parent() {
       console.error("Error deleting habit_log records:", deleteLogError);
       return;
     }
-  
+
     // Delete records from habit_table
     const { error: deleteError } = await supabase
       .from("habit_table")
       .delete()
       .eq("user_id", "1");
-  
+
     if (deleteError) {
       console.error("Error deleting habit_table records:", deleteError);
       return;
@@ -129,14 +144,14 @@ export default function Parent() {
 
   return (
     <>
-    <Prompt 
-      tenDaysPassed={tenDaysPassed}
-      isCommitted={isCommitted}
-      maxScore={maxScore}
-      currentScore={currentScore}
-      percentageDecimal={percentageDecimal}
-      toggleIsCommitted={toggleIsCommitted}
-    />
+      <Prompt
+        tenDaysPassed={tenDaysPassed}
+        isCommitted={isCommitted}
+        maxScore={maxScore}
+        currentScore={currentScore}
+        percentageDecimal={percentageDecimal}
+        toggleIsCommitted={toggleIsCommitted}
+      />
       {isMyListVisible ? (
         isCommitted ? (
           <div>
@@ -186,7 +201,11 @@ export default function Parent() {
         </>
       )}
       <MainBtn isMyListPage={isMyListVisible} onClick={handleMainBtnClick} />
-      <ButtonBar />
+      <ButtonBar
+        isMyListVisible={isMyListVisible}
+        handleFlowerBtnClick={handleFlowerBtnClick}
+        handleListBtnClick={handleListBtnClick}
+      />
     </>
   );
 }
