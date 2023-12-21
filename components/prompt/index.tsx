@@ -1,10 +1,7 @@
-export default function Prompt({
-  tenDaysPassed,
-  isCommitted,
-  maxScore,
-  currentScore,
-  percentageDecimal,
-}: any) {
+import { PromptProps } from "../../types/types";
+
+export default function Prompt({ tenDaysPassed, isCommitted, maxScore, currentScore, percentageDecimal }: PromptProps)
+{
 
   let promptMessage = "";
 

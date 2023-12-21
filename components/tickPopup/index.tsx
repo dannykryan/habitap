@@ -1,4 +1,6 @@
-function TickPopup( { closePopup } : any) {
+import {TickPopupProps} from "../../types/types";
+
+function TickPopup( { closePopup } : TickPopupProps) {
 
   return (
     <div

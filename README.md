@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Habitap
 
-## Getting Started
+See our deployed app here - https://habitap.vercel.app/
 
-First, run the development server:
+## Description
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+A simple yet engaging habit tracking app that helps people build new and better habits in a fun, social and trackable way, without distracting from what’s important.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## MVP
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- A mobile-first app that uses plant growth to display the user’s progress with their habit that will include:
+- A clean, non-distracting UI that has good accessibility.
+- The ability to create, read, update and delete to-dos.
+- Track progress over time with a monthly score which reflects on the size of a plant - the higher the score, the more developed your plant is.
+- Ability to share progress on social media. 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Table of Contents
 
-## Learn More
+- [Installation](#installation)
+- [Credits](#credits)
 
-To learn more about Next.js, take a look at the following resources:
+## Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Clone down the repo with git clone https://github.com/dannykryan/habitap.git
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+npm i to install the various dependecies listed below:
 
-## Deploy on Vercel
+ "dependencies": {
+    "@supabase/auth-ui-react": "^0.4.6",
+    "@supabase/auth-ui-shared": "^0.1.8",
+    "@supabase/supabase-js": "^2.39.1",
+    "lottie-react": "^2.4.0",
+    "next": "14.0.3",
+    "next-images": "^1.8.5",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-modal": "^3.16.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.3",
+    "typescript": "^5"
+  }
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+  ## Credits 
+  Credit goes to our Habiteam of engineers:
+  - Danny Ryan - https://github.com/dannykryan
+  - Liz Robson - https://github.com/liz-robson
+  - Luis Rodriguez Valido - https://github.com/LuisValrod
+  - Ana Raducanu - https://github.com/AnaRaducanu
+  - Spencer Ley - https://github.com/Spencerley

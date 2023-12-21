@@ -4,25 +4,10 @@ import threeBeesPlease from "../../public/plants/three-bees-please.json";
 import yourFirstBee from "../../public/plants/your-first-bee.json";
 import twoWholeBees from "../../public/plants/two-whole-bees.json";
 import Lottie from "lottie-react";
+import { Flower, OneBee, TwoBees, ThreeBees, Plant, PlantProps } from "../../types/types";
 
-type Flower = typeof allFlowers;
-type OneBee = typeof yourFirstBee;
-type TwoBees = typeof twoWholeBees;
-type ThreeBees = typeof threeBeesPlease;
 
-interface Plant {
-  speed: number;
-  loop: boolean | number;
-  autoplay: boolean;
-  animationData: Flower | OneBee | TwoBees | ThreeBees;
-  rendererSettings: {
-    preserveAspectRatio: string;
-  };
-  inPoint: number;
-  outPoint: number;
-}
-
-export default function Plant({ percentageDecimal }: any) {
+export default function Plant({ percentageDecimal }: PlantProps) {
   const [animationKey, setAnimationKey] = useState<number>(0);
   // State to manage animation options
   const [animationOptions, setAnimationOptions] = useState<Plant>({

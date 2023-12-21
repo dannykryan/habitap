@@ -7,13 +7,8 @@ import styles from "./page.module.css";
 import Popup from "../popup/index";
 import supabase from "../../lib/initSupabase";
 import InstructionPopup from "../instructionPopup/index";
+import { Task, NewRoutineFormProps } from "../../types/types";
 
-interface Task {
-  id: number;
-  title: string;
-  completed: boolean;
-  committedDays: number;
-}
 
 let taskDataOriginal: Task[] = [];
 
@@ -23,10 +18,10 @@ export default function NewRoutineForm({
   handleMainBtnClick,
   goodLuck,
   toggleGoodLuck,
-}: any) {
+}: NewRoutineFormProps) {
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal);
-  const [toggleData, setToggleData] = useState<any>(false);
-  const [toggleInstructions, setToggleInstructions] = useState<any>(true);
+  const [toggleData, setToggleData] = useState<boolean>(false);
+  const [toggleInstructions, setToggleInstructions] = useState<boolean>(true);
 
   const addNewData = (todo: Task) => {
     setTaskData([...taskData, todo]);
@@ -43,7 +38,7 @@ export default function NewRoutineForm({
   async function linkToMyList() {
 
     // Continue with inserting new records or other operations
-    const tasks: any = taskData.map((task) => ({ habit_name: task.title }));
+    const tasks = taskData.map((task) => ({ habit_name: task.title }));
     const { data, error: insertError } = await supabase
       .from("habit_table")
       .insert(tasks);
@@ -63,7 +58,7 @@ export default function NewRoutineForm({
     handleMainBtnClick();
   }
 
-  const deleteData = (id: any) => {
+  const deleteData = (id: number) => {
     const newArray = taskData.filter((task) => task.id !== id);
     setTaskData(newArray);
   };

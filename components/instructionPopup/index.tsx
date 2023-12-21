@@ -1,9 +1,10 @@
 import Image from "next/image";
+import {InstructionPopupProps} from "../../types/types";
 
 export default function InstructionPopup({
   toggleInstructions,
   confirmInstructions,
-}: any) {
+}: InstructionPopupProps) {
   return (
     // returns a popup with initial instructions
     <div

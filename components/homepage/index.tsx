@@ -2,6 +2,7 @@
 
 import Plant from "../plant/index";
 import "src/app/globals.css";
+import {HomeProps} from "../../types/types";
 
 export default function Home({
   currentScore,
@@ -11,7 +12,7 @@ export default function Home({
   habitData,
   goodLuck,
   toggleGoodLuck,
-}: any) {
+}: HomeProps) {
 
   return (
     <>

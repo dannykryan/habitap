@@ -1,5 +1,6 @@
 import Image from "next/image";
 import supabase from "../../lib/initSupabase";
+import {EndingPopupProps} from "../../types/types";
 
 export default function EndingPopup({
   tenDaysPassed,
@@ -8,7 +9,8 @@ export default function EndingPopup({
   percentageDecimal,
   toggleIsCommitted,
   handleMainBtnClick,
-}: any) {
+  clearDatabase,
+}: EndingPopupProps) {
 
   async function handleReadyButton() {
       // Delete all records from habit_log

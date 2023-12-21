@@ -7,26 +7,14 @@ import checkboxTicked from '../../public/icons/checkbox-ticked.svg';
 import checkboxUnticked from '../../public/icons/checkbox-unticked.svg';
 import TickPopup from '../../components/tickPopup';
 import supabase from "../../lib/initSupabase";
+import { ListItemProps } from "../../types/types";
 
 
-interface ListItemProps {
-  children: ReactNode;
-  className?: string;
-  todo: any;
-  date: any;
-}
-
-interface HabitLog {
-  habit_id: string;
-  completed_at: string;
-  user_id: number;
-}
-
-const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, date } : any) => {
+const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, date }) => {
   
   const currentDate = new Date().toISOString().split('T')[0];
-  const [tickCheckBox, setTickCheckBox] = useState (false);
-  const [showPopup, setShowPopup] = useState(false);
+  const [tickCheckBox, setTickCheckBox] = useState<boolean> (false);
+  const [showPopup, setShowPopup] = useState<boolean>(false);
 
   useEffect(() => {
     const getHabitLog = async () => {
