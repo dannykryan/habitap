@@ -79,6 +79,7 @@ export interface PopupProps {
   goodLuck: boolean;
   toggleGoodLuck: () => void;
   taskData: Task[];
+  setActivePage: (activePage: string) => void;
 }
 
 export interface HomeProps {

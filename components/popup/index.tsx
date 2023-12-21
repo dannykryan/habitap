@@ -4,6 +4,7 @@ import { PopupProps } from "../../types/types";
 const Popup: React.FC<PopupProps> = ({
   linkToMyList,
   confirmData,
+  setActivePage,
   toggleData,
   setToggleData,
   toggleGoodLuck,
@@ -13,6 +14,7 @@ const Popup: React.FC<PopupProps> = ({
   const handleYesButtonClick = () => {
     linkToMyList();
     setToggleData(false);
+    setActivePage("flower");
     toggleGoodLuck();
   };
 
@@ -25,7 +27,7 @@ const Popup: React.FC<PopupProps> = ({
       <h3>Ready to commit?</h3>
       <p>You&apos;re committing to {taskData.length} habits for 10 days.</p>
       <div className={"popupBtnContainer"}>
-      <div className={"midBtn"} onClick={handleYesButtonClick}>
+        <div className={"midBtn"} onClick={handleYesButtonClick}>
           Yes
         </div>
         <div className={"midBtn"} onClick={confirmData}>
