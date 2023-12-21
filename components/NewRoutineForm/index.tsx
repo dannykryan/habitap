@@ -15,9 +15,10 @@ let taskDataOriginal: Task[] = [];
 export default function NewRoutineForm({
   toggleIsCommitted,
   isCommitted,
-  handleMainBtnClick,
   goodLuck,
   toggleGoodLuck,
+  setActivePage,
+  activePage,
 }: NewRoutineFormProps) {
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal);
   const [toggleData, setToggleData] = useState<boolean>(false);
@@ -28,7 +29,9 @@ export default function NewRoutineForm({
   };
 
   function confirmData() {
-    setToggleData(!toggleData);
+    setActivePage("flower");
+    toggleIsCommitted();
+    toggleGoodLuck();
   }
 
   function confirmInstructions() {
@@ -55,7 +58,6 @@ export default function NewRoutineForm({
       getData();
     }
     toggleIsCommitted();
-    handleMainBtnClick();
   }
 
   const deleteData = (id: number) => {

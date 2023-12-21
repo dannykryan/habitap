@@ -1,3 +1,5 @@
+// ButtonBar.tsx
+
 import Image from "next/image";
 import FlowerButton from "../../public/icons/Buttons/flower-button.png";
 import ListButton from "../../public/icons/Buttons/list-button.png";

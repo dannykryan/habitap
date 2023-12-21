@@ -1,47 +1,26 @@
-"use client";
-import React from "react";
-import Home from "../../components/homepage/index";
-import NewRoutineForm from "../../components/NewRoutineForm";
-import ActiveList from "../../components/ActiveList";
-import { useState, useEffect } from "react";
-import MainBtn from "../../components/MainBtn";
-import supabase from "../../lib/initSupabase";
+"use client"
+
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import ButtonBar from "../../components/ButtonBar";
+import ActiveList from "../../components/ActiveList";
+import NewRoutineForm from "../../components/NewRoutineForm";
+import Home from "../../components/homepage/index";
 import EndingPopup from "../../components/EndingPopup";
 import Prompt from "../../components/prompt/index";
+import supabase from "../../lib/initSupabase";
 import { HabitLog, Habit } from "../../types/types";
-import ButtonBar from "../../components/ButtonBar";
 
 export default function Parent() {
   const currentDate = new Date();
   const [habitData, setHabitData] = useState<Habit[] | null>(null);
-  const [isMyListVisible, setIsMyListVisible] = useState<boolean>(true);
   const [isCommitted, setisCommitted] = useState<boolean>(false);
   const [date, setDate] = useState<boolean>(false);
   const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
   const [goodLuck, setGoodLuck] = useState<boolean>(false);
-
-  let pageArray = ["list", "flower", "settings"];
-  const [buttonArray, setButtonArray] = useState(pageArray[0]);
-
-  // Function to handle List Bttn click (for button bar)
-  const handleListBtnClick = () => {
-    setButtonArray(pageArray[0]);
-  };
-
-  // Function to handle Flower Bttn click(for button bar)
-  const handleFlowerBtnClick = () => {
-    setButtonArray(pageArray[1]);
-  };
+  const [activePage, setActivePage] = useState<string>("list"); // Default to "list"
 
   let router = useRouter();
-
-  useEffect(() => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn") || null;
-    if (isLoggedIn === "false" || null) {
-      router.push("/authentication");
-    }
-  }, [router]);
 
   function toggleGoodLuck() {
     setGoodLuck(!goodLuck);
@@ -56,18 +35,24 @@ export default function Parent() {
       setHabitData(data);
     };
     getData();
-  }, [handleListBtnClick]);
+  }, [activePage]);
+
+  // Function to handle List Btn click (for button bar)
+  const handleListBtnClick = () => {
+    setActivePage("list");
+  };
+
+  // Function to handle Flower Btn click(for button bar)
+  const handleFlowerBtnClick = () => {
+    setActivePage("flower");
+    console.log(activePage)
+  };
 
   // Calculate the current score, max score, and percentage completion
   let tenDaysPassed = false;
   let currentScore = habitLogsArray?.length ?? 0;
   let maxScore = habitData?.length ? habitData.length * 10 : 0;
-  let percentageDecimal = maxScore ? currentScore / maxScore : 0;
-
-  // Function to handle MainBtn click, toggles visibility of My List
-  const handleMainBtnClick = () => {
-    setIsMyListVisible((prevValue) => !prevValue);
-  };
+  let percentageDecimal = maxScore ? (currentScore / maxScore) : 0;
 
   // Function to toggle commitment status
   function toggleIsCommitted() {
@@ -79,15 +64,6 @@ export default function Parent() {
     setDate(!date);
   }
 
-  // Effect hook to fetch data from the "habit_table" table when isMyListVisible changes
-  useEffect(() => {
-    const getData = async () => {
-      const { data, error } = await supabase.from("habit_table").select("*");
-      setHabitData(data);
-    };
-    getData();
-  }, [isMyListVisible]);
-
   // Effect hook to fetch data from the "habit_log" table when isMyListVisible changes
   useEffect(() => {
     const getHabitLogs = async () => {
@@ -97,7 +73,7 @@ export default function Parent() {
       setHabitLogsArray(habitLogs);
     };
     getHabitLogs();
-  }, [isMyListVisible]);
+  }, [activePage]);
 
   // Check if habitData is available and calculate tenDaysPassed
   if (habitData) {
@@ -142,6 +118,8 @@ export default function Parent() {
     }
   };
 
+  console.log(activePage)
+
   return (
     <>
       <Prompt
@@ -152,7 +130,7 @@ export default function Parent() {
         percentageDecimal={percentageDecimal}
         toggleIsCommitted={toggleIsCommitted}
       />
-      {isMyListVisible ? (
+      {activePage == "list" ? (
         isCommitted ? (
           <div>
             <ActiveList
@@ -167,9 +145,10 @@ export default function Parent() {
             <NewRoutineForm
               toggleIsCommitted={toggleIsCommitted}
               isCommitted={isCommitted}
-              handleMainBtnClick={handleMainBtnClick}
               goodLuck={goodLuck}
               toggleGoodLuck={toggleGoodLuck}
+              setActivePage={setActivePage}
+              activePage={activePage}
             />
           </div>
         )
@@ -192,20 +171,19 @@ export default function Parent() {
               currentScore={currentScore}
               percentageDecimal={percentageDecimal}
               toggleIsCommitted={toggleIsCommitted}
-              handleMainBtnClick={handleMainBtnClick}
+              handleListBtnClick={handleListBtnClick}
               clearDatabase={clearDatabase}
+              isCommitted={isCommitted}
             />
           )}
           {/* Button to simulate advancing time by 10 days */}
           <button onClick={advanceTime}>Advance Time by 10 Days</button>
         </>
       )}
-      <MainBtn isMyListPage={isMyListVisible} onClick={handleMainBtnClick} />
       <ButtonBar
-        isMyListVisible={isMyListVisible}
-        handleFlowerBtnClick={handleFlowerBtnClick}
         handleListBtnClick={handleListBtnClick}
-      />
+        handleFlowerBtnClick={handleFlowerBtnClick} // Provide the appropriate handler
+      />  
     </>
   );
 }

@@ -8,8 +8,9 @@ export default function EndingPopup({
   currentScore,
   percentageDecimal,
   toggleIsCommitted,
-  handleMainBtnClick,
+  handleListBtnClick,
   clearDatabase,
+  isCommitted,
 }: EndingPopupProps) {
 
   async function handleReadyButton() {
@@ -36,8 +37,9 @@ export default function EndingPopup({
     }
     console.log("ready button clicked");
     toggleIsCommitted();
-    handleMainBtnClick();
-    tenDaysPassed = false;  
+    console.log(isCommitted);
+    tenDaysPassed = false;
+    handleListBtnClick()
   }
 
   // Function to determine the message based on percentageDecimal

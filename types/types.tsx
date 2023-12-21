@@ -54,9 +54,10 @@ export interface Task {
 export interface NewRoutineFormProps {
   toggleIsCommitted: () => void;
   isCommitted: boolean;
-  handleMainBtnClick: () => void;
   goodLuck: boolean;
   toggleGoodLuck: () => void;
+  setActivePage: (activePage: string) => void;
+  activePage: string;
 }
 
 export interface NewRoutineListProps {
@@ -96,8 +97,9 @@ export interface EndingPopupProps {
   currentScore: number;
   percentageDecimal: number;
   toggleIsCommitted: () => void;
-  handleMainBtnClick: () => void;
   clearDatabase: () => void;
+  isCommitted: boolean;
+  handleListBtnClick: () => void;
 }
 
 export interface MainBtnProps {
@@ -134,7 +136,6 @@ export interface TickPopupProps {
 }
 
 export interface ButtonBarProps {
-  isMyListVisible: boolean;
   handleFlowerBtnClick: () => void;
   handleListBtnClick: () => void;
 }
