@@ -1,6 +1,4 @@
-interface TickPopupProps {
-  closePopup: () => void;
-}
+import {TickPopupProps} from "../../types/types";
 
 function TickPopup( { closePopup } : TickPopupProps) {
 

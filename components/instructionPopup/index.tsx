@@ -1,9 +1,5 @@
 import Image from "next/image";
-
-interface InstructionPopupProps {
-  toggleInstructions: boolean;
-  confirmInstructions: () => void;
-}
+import {InstructionPopupProps} from "../../types/types";
 
 export default function InstructionPopup({
   toggleInstructions,

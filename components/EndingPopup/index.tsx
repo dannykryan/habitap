@@ -1,15 +1,6 @@
 import Image from "next/image";
 import supabase from "../../lib/initSupabase";
-
-interface EndingPopupProps {
-  tenDaysPassed: boolean;
-  maxScore: number;
-  currentScore: number;
-  percentageDecimal: number;
-  toggleIsCommitted: () => void;
-  handleMainBtnClick: () => void;
-  clearDatabase: () => void;
-}
+import {EndingPopupProps} from "../../types/types";
 
 export default function EndingPopup({
   tenDaysPassed,

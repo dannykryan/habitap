@@ -1,11 +1,4 @@
-interface PromptProps { 
-  tenDaysPassed: boolean ;
-  isCommitted: boolean ;
-  maxScore: number;
-  currentScore: number;
-  percentageDecimal: number;
-  toggleIsCommitted: () => void;
-}
+import { PromptProps } from "../../types/types";
 
 export default function Prompt({ tenDaysPassed, isCommitted, maxScore, currentScore, percentageDecimal }: PromptProps)
 {

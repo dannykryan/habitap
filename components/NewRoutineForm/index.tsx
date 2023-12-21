@@ -7,21 +7,8 @@ import styles from "./page.module.css";
 import Popup from "../popup/index";
 import supabase from "../../lib/initSupabase";
 import InstructionPopup from "../instructionPopup/index";
+import { Task, NewRoutineFormProps } from "../../types/types";
 
-export interface Task {
-  id: number;
-  title: string;
-  completed: boolean;
-  committedDays: number;
-}
-
-interface NewRoutineFormProps {
-  toggleIsCommitted: () => void;
-  isCommitted: boolean;
-  handleMainBtnClick: () => void;
-  goodLuck: boolean;
-  toggleGoodLuck: () => void;
-}
 
 let taskDataOriginal: Task[] = [];
 

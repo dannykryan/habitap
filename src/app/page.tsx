@@ -9,22 +9,7 @@ import supabase from "../../lib/initSupabase";
 import { useRouter } from "next/navigation";
 import EndingPopup from "../../components/EndingPopup";
 import Prompt from "../../components/prompt/index";
-
-export interface Habit {
-  habit_id: string;
-  habit_name: string;
-  created_at: string;
-  completed: boolean;
-  current_score: number;
-  max_score: number;
-  user_id: number;
-}
-
-export interface HabitLog {
-  habit_id: string;
-  completed_at: string;
-  user_id: number;
-}
+import { HabitLog, Habit } from "../../types/types";
 
 export default function Parent() {
   const currentDate = new Date();

@@ -3,13 +3,7 @@ import Image from 'next/image';
 import enterIcon from '../../public/icons/enter-icon-green2.svg';
 import trashIconGreen from '../../public/icons/trash-icon-green.svg';
 import { useState } from 'react';
-import {Task} from '../NewRoutineForm/index'
-
-interface NewRoutineListProps {
-taskData: Task[];
-addNewData: (todo: Task) => void;
-deleteData: (id: number) => void; 
-}
+import {Task, NewRoutineListProps} from '../../types/types'
 
 export default function NewRoutineList({ taskData, addNewData, deleteData }: NewRoutineListProps) {
   const maxTasks = 5; // Maximum number of tasks to display

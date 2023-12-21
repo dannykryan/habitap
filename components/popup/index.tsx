@@ -1,15 +1,5 @@
 import Image from "next/image";
-import { Task } from "../NewRoutineForm";
-
-interface PopupProps {
-  linkToMyList: () => void;
-  confirmData: () => void;
-  toggleData: boolean;
-  setToggleData: (toggleData: boolean) => void;
-  goodLuck: boolean;
-  toggleGoodLuck: () => void;
-  taskData: Task[];
-}
+import { PopupProps } from "../../types/types";
 
 const Popup: React.FC<PopupProps> = ({
   linkToMyList,

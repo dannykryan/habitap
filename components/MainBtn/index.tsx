@@ -1,10 +1,6 @@
 import styles from "../MainBtn/MainBtn.module.css";
-import React, { MouseEvent } from "react";
-
-interface MainBtnProps {
-  isMyListPage: boolean;
-  onClick: (event: MouseEvent<HTMLButtonElement>) => void;
-}
+import React from "react";
+import {MainBtnProps} from '../../types/types'
 
 export default function MainBtn({ isMyListPage, onClick }: MainBtnProps) {
   return (

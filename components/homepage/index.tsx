@@ -2,17 +2,7 @@
 
 import Plant from "../plant/index";
 import "src/app/globals.css";
-import { HabitLog, Habit } from "../../src/app/page";
-
-interface HomeProps {
-  currentScore: number;
-  maxScore: number;
-  percentageDecimal: number;
-  habitLogsArray: HabitLog[] | null;
-  habitData: Habit[] | null;
-  goodLuck: boolean;
-  toggleGoodLuck: () => void;
-}
+import {HomeProps} from "../../types/types";
 
 export default function Home({
   currentScore,
