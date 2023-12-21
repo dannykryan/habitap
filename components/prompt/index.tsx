@@ -1,10 +1,14 @@
-export default function Prompt({
-  tenDaysPassed,
-  isCommitted,
-  maxScore,
-  currentScore,
-  percentageDecimal,
-}: any) {
+interface PromptProps { 
+  tenDaysPassed: boolean ;
+  isCommitted: boolean ;
+  maxScore: number;
+  currentScore: number;
+  percentageDecimal: number;
+  toggleIsCommitted: () => void;
+}
+
+export default function Prompt({ tenDaysPassed, isCommitted, maxScore, currentScore, percentageDecimal }: PromptProps)
+{
 
   let promptMessage = "";
 
