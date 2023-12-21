@@ -15,6 +15,14 @@ export interface Task {
   committedDays: number;
 }
 
+interface NewRoutineFormProps {
+  toggleIsCommitted: () => void;
+  isCommitted: boolean;
+  handleMainBtnClick: () => void;
+  goodLuck: boolean;
+  toggleGoodLuck: () => void;
+}
+
 let taskDataOriginal: Task[] = [];
 
 export default function NewRoutineForm({
@@ -23,7 +31,7 @@ export default function NewRoutineForm({
   handleMainBtnClick,
   goodLuck,
   toggleGoodLuck,
-}: any) {
+}: NewRoutineFormProps) {
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal);
   const [toggleData, setToggleData] = useState<boolean>(false);
   const [toggleInstructions, setToggleInstructions] = useState<boolean>(true);
