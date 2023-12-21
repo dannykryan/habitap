@@ -3,8 +3,15 @@ import Image from 'next/image';
 import enterIcon from '../../public/icons/enter-icon-green2.svg';
 import trashIconGreen from '../../public/icons/trash-icon-green.svg';
 import { useState } from 'react';
+import {Task} from '../NewRoutineForm/index'
 
-export default function NewRoutineList({ taskData, addNewData, deleteData }: any) {
+interface NewRoutineListProps {
+taskData: Task[];
+addNewData: (todo: Task) => void;
+deleteData: (id: number) => void; 
+}
+
+export default function NewRoutineList({ taskData, addNewData, deleteData }: NewRoutineListProps) {
   const maxTasks = 5; // Maximum number of tasks to display
   const [add, setAdd] = useState(true);
   const [inputValue, setInputValue] = useState(''); // Change to an empty string
@@ -14,6 +21,7 @@ export default function NewRoutineList({ taskData, addNewData, deleteData }: any
       id: taskData.length + 1,
       title: inputValue,
       completed: false,
+      committedDays: 10,
     };
     addNewData(element);
     setAdd(!add);
@@ -32,7 +40,7 @@ export default function NewRoutineList({ taskData, addNewData, deleteData }: any
         title: inputValue,
         completed: false,
       };
-      addNewData(element);
+      addNewData(element as Task);
       setAdd(!add);
       setInputValue(''); // Reset the input value after adding data
     }
@@ -44,7 +52,7 @@ export default function NewRoutineList({ taskData, addNewData, deleteData }: any
 
   return (
     <ul className={styles.myList}>
-      {taskData.map((todo: any) => (
+      {taskData.map((todo: Task) => (
         // Look at the types and change them
         <li key={todo.id} className={styles.listItem}>
           <div className={styles.newHabit}>
