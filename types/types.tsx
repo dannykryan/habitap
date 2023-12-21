@@ -3,7 +3,6 @@ import allFlowers from "../public/plants/flower-bunch-2.json";
 import threeBeesPlease from "../public/plants/three-bees-please.json";
 import yourFirstBee from "../public/plants/your-first-bee.json";
 import twoWholeBees from "../public/plants/two-whole-bees.json";
-import Lottie from "lottie-react";
 
 export interface Habit {
     habit_id: string;
