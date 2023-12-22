@@ -9,15 +9,15 @@ import supabase from "../../lib/initSupabase";
 import InstructionPopup from "../instructionPopup/index";
 import { Task, NewRoutineFormProps } from "../../types/types";
 
-
 let taskDataOriginal: Task[] = [];
 
 export default function NewRoutineForm({
   toggleIsCommitted,
   isCommitted,
-  handleMainBtnClick,
   goodLuck,
   toggleGoodLuck,
+  setActivePage,
+  activePage,
 }: NewRoutineFormProps) {
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal);
   const [toggleData, setToggleData] = useState<boolean>(false);
@@ -36,9 +36,9 @@ export default function NewRoutineForm({
   }
 
   async function linkToMyList() {
-
     // Continue with inserting new records or other operations
     const tasks = taskData.map((task) => ({ habit_name: task.title }));
+    console.log(tasks);
     const { data, error: insertError } = await supabase
       .from("habit_table")
       .insert(tasks);
@@ -55,7 +55,6 @@ export default function NewRoutineForm({
       getData();
     }
     toggleIsCommitted();
-    handleMainBtnClick();
   }
 
   const deleteData = (id: number) => {
@@ -78,6 +77,7 @@ export default function NewRoutineForm({
           goodLuck={goodLuck}
           toggleGoodLuck={toggleGoodLuck}
           taskData={taskData}
+          setActivePage={setActivePage}
         />
         <NewRoutineList
           taskData={taskData}
@@ -86,7 +86,7 @@ export default function NewRoutineForm({
         />
       </div>
       <div className="btn-container" style={{ justifyContent: "center" }}>
-      <button
+        <button
           className={styles.commitBtn}
           onClick={confirmData}
           disabled={taskData.length === 0} // Disable if taskData is empty

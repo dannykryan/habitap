@@ -9,7 +9,7 @@
     text-align: center;
     height: 40px;
     width: 110px;
-    background-color: #F4970F;
+    background-color: #F2A51F;
     color: white;
     border: none;
     border-radius: 50px;
@@ -17,7 +17,7 @@
 }
 
 .commitBtn:hover {
-    background-color: #d6860e;
+    background-color: #d88e0d;
     cursor: pointer;
 }
 

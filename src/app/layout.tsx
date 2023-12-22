@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Prompt from "../../components/prompt/index";
+import Image from "next/image";
+import HabitapBeeHeader from "../../public/assets/Habitap-Bee-Logo.png";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <header>
-          <h1 id="habitap-header">Habitap</h1>
+        <Image src={HabitapBeeHeader} alt="Habitap Header Image" height={100}/>
         </header>
         <section className="main">
           {children}
