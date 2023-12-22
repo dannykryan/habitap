@@ -19,7 +19,7 @@
 
 
 body {
-  border: 2px solid lime;
+  border: 2px solid #6cb372;
   /* background: radial-gradient(white, #d3e2d5); */
 }
 
@@ -29,7 +29,7 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 700px;
+  min-height: 625px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 25px;
@@ -38,7 +38,14 @@ body {
 header {
   display: flex;
   justify-content: center;
-  padding-top: 40px;
+  padding-top: 20px;
+}
+
+header img {
+  width: 80%;
+  max-width: 400px;
+  height: auto;
+  object-fit: contain;
 }
 
 #prompt {
