@@ -183,7 +183,7 @@ export default function Parent() {
             />
           )}
           {/* Button to simulate advancing time by 10 days */}
-          <button onClick={advanceTime}>Advance Time by 10 Days</button>
+          <button id="advanceTimeBtn" onClick={advanceTime}></button>
         </>
       )}
       <ButtonBar
