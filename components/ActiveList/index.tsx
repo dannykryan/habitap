@@ -1,14 +1,14 @@
 import ActiveListItem from "../ActiveListItem"
 import styles from './ActiveList.module.css'
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { Habit, ActiveListProps } from "../../types/types";
 
 // This is the list of commited habits (after commiting) and you can tick off everyday
-export default function ActiveList({taskData, date, toggleDate} : ActiveListProps) {
+export default function ActiveList({taskData, date} : ActiveListProps) {
 
-  useEffect(() => {
-    console.log('Page rerendered')
-   }, [date])
+  // useEffect(() => {
+  //   console.log('Page rerendered')
+  //  }, [date])
 
    console.log('taskData:', taskData);
 
@@ -21,7 +21,6 @@ export default function ActiveList({taskData, date, toggleDate} : ActiveListProp
           </ActiveListItem>
         </li>
       ))}
-      <button onClick={toggleDate}>Refresh</button>
     </ul>
   );
 }

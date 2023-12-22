@@ -26,7 +26,7 @@ const Popup: React.FC<PopupProps> = ({
       style={{ display: toggleData ? "flex" : "none" }}
     >
       <h3>Ready to commit?</h3>
-      <p>You&apos;re committing to {taskData.length} habits for 10 days.</p>
+      <p>You&apos;re committing to {taskData.length === 1 ? `${taskData.length} habit` : `${taskData.length} habits`} for 10 days.</p> 
       <div className={"popupBtnContainer"}>
         <div className={"midBtn"} onClick={handleYesButtonClick}>
           Yes
