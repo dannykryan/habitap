@@ -9,7 +9,6 @@ const Popup: React.FC<PopupProps> = ({
   setToggleData,
   toggleGoodLuck,
   taskData,
-  setActivePage
 }) => {
   //a seperate function to handle multiple function calls in the yes button click
   const handleYesButtonClick = () => {
