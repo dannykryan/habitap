@@ -70,10 +70,10 @@ export default function NewRoutineList({ taskData, addNewData, deleteData }: New
                 placeholder="Please enter your habit"
               />
             ) : (
-              <div className={styles.redDiv}></div>
+              <div></div>
             )}
             {index === 0 && (
-              <Image src={enterIcon} alt="Plus-icon" height={27}/>
+              <Image src={enterIcon} alt="empty list item placeholder" height={27} onClick={handleEnterIcon}/>
             )}
           </div>
         </li>
