@@ -1,11 +1,13 @@
 import { PromptProps } from "../../types/types";
 
-export default function Prompt({ tenDaysPassed, isCommitted, maxScore, currentScore, percentageDecimal }: PromptProps)
+export default function Prompt({ tenDaysPassed, isCommitted, maxScore, currentScore, percentageDecimal, activePage }: PromptProps)
 {
 
   let promptMessage = "";
 
-  if (!isCommitted) {
+  if (!isCommitted && activePage === "list") {
+    promptMessage = "Commit to completing up to 5 daily habits below:";
+  } else if (!isCommitted) {
     promptMessage = "Hey John, let's build some great habits!";
   } else if (isCommitted && !tenDaysPassed) {
     if (percentageDecimal === 0) {

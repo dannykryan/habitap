@@ -10,6 +10,8 @@ export default function ActiveList({taskData, date, toggleDate} : ActiveListProp
     console.log('Page rerendered')
    }, [date])
 
+   console.log('taskData:', taskData);
+
   return (
     <ul className={styles.myList}>
       {taskData && taskData.map((todo : Habit , index : number) => (

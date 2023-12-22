@@ -42,6 +42,7 @@ export interface PromptProps {
   currentScore: number;
   percentageDecimal: number;
   toggleIsCommitted: () => void;
+  activePage: string;
 }
 
 export interface Task {
@@ -79,6 +80,7 @@ export interface PopupProps {
   goodLuck: boolean;
   toggleGoodLuck: () => void;
   taskData: Task[];
+  setActivePage: (activePage: string) => void;
 }
 
 export interface HomeProps {

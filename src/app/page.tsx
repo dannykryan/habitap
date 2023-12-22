@@ -119,6 +119,11 @@ export default function Parent() {
   };
 
   console.log(activePage)
+  console.log(isCommitted)
+
+  useEffect(() => {
+    console.log('habitData in Parent:', habitData);
+  }, [habitData]);
 
   return (
     <>
@@ -129,6 +134,7 @@ export default function Parent() {
         currentScore={currentScore}
         percentageDecimal={percentageDecimal}
         toggleIsCommitted={toggleIsCommitted}
+        activePage={activePage}
       />
       {activePage == "list" ? (
         isCommitted ? (

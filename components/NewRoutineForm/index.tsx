@@ -29,9 +29,7 @@ export default function NewRoutineForm({
   };
 
   function confirmData() {
-    setActivePage("flower");
-    toggleIsCommitted();
-    toggleGoodLuck();
+    setToggleData(!toggleData);
   }
 
   function confirmInstructions() {
@@ -80,6 +78,7 @@ export default function NewRoutineForm({
           goodLuck={goodLuck}
           toggleGoodLuck={toggleGoodLuck}
           taskData={taskData}
+          setActivePage={setActivePage}
         />
         <NewRoutineList
           taskData={taskData}
