@@ -11,7 +11,7 @@ export default function Prompt({ tenDaysPassed, isCommitted, maxScore, currentSc
     promptMessage = "Hey John, let's build some great habits!";
   } else if (isCommitted && !tenDaysPassed) {
     if (percentageDecimal === 0) {
-      promptMessage = "Welcome back! Let's get started on your habits.";
+      promptMessage = "It's early days! Let's get started on your habits.";
     } else if (percentageDecimal < 0.1) {
       promptMessage = "Keep it up. You'll soon have a flower!";
     } else if (percentageDecimal < 0.2) {

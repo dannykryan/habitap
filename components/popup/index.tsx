@@ -21,7 +21,7 @@ const Popup: React.FC<PopupProps> = ({
   return (
     // returns a popup with a message based on the users choices and two buttons
     <div
-      className={"popup ready-popup"}
+      className={"popup"}
       style={{ display: toggleData ? "flex" : "none" }}
     >
       <h3>Ready to commit?</h3>

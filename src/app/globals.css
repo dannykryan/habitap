@@ -20,6 +20,7 @@
 
 body {
   border: 2px solid lime;
+  /* background: radial-gradient(white, #d3e2d5); */
 }
 
 .main {
@@ -34,13 +35,10 @@ body {
   padding-top: 25px;
 }
 
-#habitap-header {
-  font-family: "Rozha One", serif;
-  font-size: 4rem;
-  margin-top: 20px;
-  margin-bottom: 0;
-  font-weight: 400;
-  text-align: center;
+header {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
 }
 
 #prompt {
@@ -104,10 +102,6 @@ body {
   font-size: 1.2rem;
 }
 
-#ready-popup {
-  background-color: red;
-}
-
 .midBtn {
   display: flex;
   justify-content: center;
@@ -140,6 +134,7 @@ body {
   background-color: #6cb372;
   height: 85px;
   width: 80%;
+  max-width: 450px;
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
   box-shadow: 0 -3px 15px rgb(173, 173, 173);
