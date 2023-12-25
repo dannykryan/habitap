@@ -188,7 +188,7 @@ header img {
   }
 
   /* Create a small round orange button */
-  #advanceTimeBtn {
+  #endRoutineBtn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -198,4 +198,9 @@ header img {
     background-color: orange;
     color: white;
     font-size: 1rem;
+  }
+
+  #endRoutineBtn:hover {
+    background-color: #d88e0d;
+    cursor: pointer;
   }

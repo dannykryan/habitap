@@ -84,7 +84,7 @@ export default function Parent() {
   }
 
   // Function to simulate advancing time by 10 days
-  const advanceTime = () => {
+  const endRoutine = () => {
     if (habitData) {
       const updatedHabitData = habitData.map((habit) => {
         const newStartDate = new Date(habit.created_at);
@@ -183,7 +183,7 @@ export default function Parent() {
             />
           )}
           {/* Button to simulate advancing time by 10 days */}
-          <button id="advanceTimeBtn" onClick={advanceTime}></button>
+          <button id="endRoutineBtn" onClick={endRoutine}></button>
         </>
       )}
       <ButtonBar
