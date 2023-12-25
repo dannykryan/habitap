@@ -204,3 +204,20 @@ header img {
     background-color: #d88e0d;
     cursor: pointer;
   }
+
+  #showGrowthBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: #6cb372;
+    color: white;
+    font-size: 1rem;
+  }
+
+  #showGrowthBtn:hover {
+    background-color: #5e9e62;
+    cursor: pointer;
+  }

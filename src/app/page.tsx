@@ -19,6 +19,7 @@ export default function Parent() {
   const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
   const [goodLuck, setGoodLuck] = useState<boolean>(false);
   const [activePage, setActivePage] = useState<string>("list"); // Default to "list"
+  const [showGrowth, setShowGrowth] = useState<boolean>(false);
 
   let router = useRouter();
 
@@ -46,6 +47,14 @@ export default function Parent() {
   const handleFlowerBtnClick = () => {
     setActivePage("flower");
     console.log(activePage)
+  };
+
+  const handleShowGrowthBtn = () => {
+    setShowGrowth(!showGrowth);
+
+    setTimeout(() => {
+      setShowGrowth((prevShowGrowth) => !prevShowGrowth);
+    }, 5000);
   };
 
   // Calculate the current score, max score, and percentage completion
@@ -168,6 +177,7 @@ export default function Parent() {
             habitData={habitData}
             goodLuck={goodLuck}
             toggleGoodLuck={toggleGoodLuck}
+            showGrowth={showGrowth}
           />
           {tenDaysPassed && (
             // Render EndingPopup component when ten days have passed
@@ -183,6 +193,7 @@ export default function Parent() {
             />
           )}
           {/* Button to simulate advancing time by 10 days */}
+          <button id="showGrowthBtn" onClick={handleShowGrowthBtn}></button>
           <button id="endRoutineBtn" onClick={endRoutine}></button>
         </>
       )}
