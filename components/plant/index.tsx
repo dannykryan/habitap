@@ -30,9 +30,12 @@ export default function Plant({ percentageDecimal, showGrowth }: PlantProps) {
     let animationData: Flower | OneBee | TwoBees | ThreeBees = allFlowers; // Default animation data
     let loop = false; // Default loop value
 
-    if (showGrowth === true) {
+    if (showGrowth === "max") {
       animationData = threeBeesPlease;
       loop = true;
+    } else if (showGrowth === "growth") {
+      allFlowers.ip = 50;
+      allFlowers.op = 592;
     } else if (percentageDecimal === 0) {
       allFlowers.op = 50;
       console.log(`percentageDecimal is: ${percentageDecimal}`);

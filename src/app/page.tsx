@@ -19,7 +19,7 @@ export default function Parent() {
   const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
   const [goodLuck, setGoodLuck] = useState<boolean>(false);
   const [activePage, setActivePage] = useState<string>("list"); // Default to "list"
-  const [showGrowth, setShowGrowth] = useState<boolean>(false);
+  const [showGrowth, setShowGrowth] = useState<string>("normal");
 
   let router = useRouter();
 
@@ -50,11 +50,17 @@ export default function Parent() {
   };
 
   const handleShowGrowthBtn = () => {
-    setShowGrowth(!showGrowth);
-
+    if (showGrowth === "normal") {
+      setShowGrowth("growth");
+    } else if (showGrowth === "growth") {
+      setShowGrowth("max");
+    } else {
+      setShowGrowth("normal");
+    }
+    
     setTimeout(() => {
-      setShowGrowth((prevShowGrowth) => !prevShowGrowth);
-    }, 5000);
+      setShowGrowth("normal");
+    }, 30000);
   };
 
   // Calculate the current score, max score, and percentage completion
@@ -192,9 +198,12 @@ export default function Parent() {
               isCommitted={isCommitted}
             />
           )}
-          {/* Button to simulate advancing time by 10 days */}
+          <div className="dev-btn-container">
+          {/* Button to show maximum plant growth for 10 seconds */}
           <button id="showGrowthBtn" onClick={handleShowGrowthBtn}></button>
+          {/* Button to simulate advancing time by 10 days */}
           <button id="endRoutineBtn" onClick={endRoutine}></button>
+          </div>
         </>
       )}
       <ButtonBar

@@ -221,3 +221,9 @@ header img {
     background-color: #5e9e62;
     cursor: pointer;
   }
+
+  .dev-btn-container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 50px;
+  }
