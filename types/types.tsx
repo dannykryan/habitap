@@ -142,4 +142,5 @@ export interface TickPopupProps {
 export interface ButtonBarProps {
   handleFlowerBtnClick: () => void;
   handleListBtnClick: () => void;
+  activePage: string;
 }

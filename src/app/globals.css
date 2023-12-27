@@ -10,6 +10,20 @@
   text-decoration: none;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 0px 10px #58925d inset; /* Use inset for an inner shadow */
+  box-sizing: border-box;
+  height: 100vh;
+  margin: 0;
+  min-width: 375px;
+  max-width: 565px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .btn-container {
   display: flex;
   justify-content: space-between;
@@ -17,35 +31,28 @@
   align-items: center;
 }
 
-
-body {
-  border: 2px solid #6cb372;
-  /* background: radial-gradient(white, #d3e2d5); */
-}
-
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   width: 100%;
-  min-height: 625px;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
   padding-top: 25px;
+  padding-bottom: 100px;
 }
 
 header {
   display: flex;
   justify-content: center;
-  padding-top: 20px;
+  padding-top: 7%;
 }
 
 header img {
   width: 80%;
-  max-width: 400px;
   height: auto;
-  object-fit: contain;
+  max-width: 400px;
 }
 
 #prompt {
@@ -68,6 +75,7 @@ header img {
 
 .plant-main {
   margin-bottom: 90px;
+  width: 100%;
 }
 .popup {
   display: flex;
@@ -133,15 +141,18 @@ header img {
 }
 
 .btn-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: space-evenly;
-  width: 100%;
   align-items: center;
-  margin-top: 20px;
-  background-color: #6cb372;
-  height: 85px;
   width: 80%;
   max-width: 450px;
+  min-width: 300px;
+  height: 85px;
+  background-color: #6cb372;
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
   box-shadow: 0 -3px 15px rgb(173, 173, 173);
@@ -151,23 +162,22 @@ header img {
   cursor: pointer;
 }
 
- #ListBtn:hover {
-  background-image: url('/icons/Buttons/list-button-focus.png');
- }
-
- #FlowerBtn:hover {
-  background-image: url('/icons/Buttons/flower-button-focus.png');
- }
-
- #SettingsBtn:hover {
-  background-image: url('/icons/Buttons/settings-button-focus.png');
- }
-
 
 /* Media Query for Small Screens */
 @media screen and (max-width: 400px) {
   .popup {
     width: 50%;
+  }
+}
+
+@media screen and (max-width: 565px) {
+  body {
+    box-shadow: none;
+  }
+
+  header {
+    padding-top: 5%;
+  
   }
 }
 
