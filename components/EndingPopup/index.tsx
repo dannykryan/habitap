@@ -5,7 +5,6 @@ import Link from "next/link";
 
 export default function EndingPopup({
   tenDaysPassed,
-  toggleTenDaysPassed,
   maxScore,
   currentScore,
   percentageDecimal,
@@ -38,7 +37,6 @@ export default function EndingPopup({
     console.log("Ending Okay button clicked");
     toggleIsCommitted();
     console.log(`The value of isCommitted is: ${isCommitted}`);
-    toggleTenDaysPassed();
     console.log(`The value of tenDaysPassed is: ${tenDaysPassed}`);
   }
 

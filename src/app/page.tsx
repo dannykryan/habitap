@@ -11,6 +11,7 @@ import Prompt from "../../components/prompt/index";
 import supabase from "../../lib/initSupabase";
 import Link from "next/link";
 import { useAppContext } from "./context";
+import { Habit } from "../../types/types";
 
 export default function Page() {
 
@@ -58,7 +59,7 @@ export default function Page() {
   // Function to simulate advancing time by 10 days
   const endRoutine = () => {
     if (habitData) {
-      const updatedHabitData = habitData.map((habit) => {
+      const updatedHabitData = habitData.map((habit: Habit) => {
         const newStartDate = new Date(habit.created_at);
         newStartDate.setDate(newStartDate.getDate() - 10);
         return { ...habit, created_at: newStartDate.toISOString() };
@@ -75,8 +76,6 @@ export default function Page() {
         maxScore={maxScore}
         currentScore={currentScore}
         percentageDecimal={percentageDecimal}
-        toggleIsCommitted={toggleIsCommitted}
-        activePage={activePage}
       />
         <>
           <Home
@@ -87,13 +86,13 @@ export default function Page() {
             habitData={habitData}
             goodLuck={goodLuck}
             toggleGoodLuck={toggleGoodLuck}
+            toggleTenDaysPassed={toggleTenDaysPassed}
             showGrowth={showGrowth}
           />
           {tenDaysPassed && (
             // Render EndingPopup component when ten days have passed
             <EndingPopup
               tenDaysPassed={tenDaysPassed}
-              toggleTenDaysPassed={toggleTenDaysPassed}
               maxScore={maxScore}
               currentScore={currentScore}
               percentageDecimal={percentageDecimal}

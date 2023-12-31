@@ -10,7 +10,7 @@ import supabase from "../../lib/initSupabase";
 import { ListItemProps } from "../../types/types";
 
 
-const ActiveListItem: React.FC<ListItemProps> = ({ children, className, todo, date }) => {
+const ActiveListItem: React.FC<ListItemProps> = ({ children, todo}) => {
   
   const currentDate = new Date().toISOString().split('T')[0];
   const [tickCheckBox, setTickCheckBox] = useState<boolean> (false);

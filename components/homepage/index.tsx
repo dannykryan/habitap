@@ -12,8 +12,14 @@ export default function Home({
   habitData,
   goodLuck,
   toggleGoodLuck,
+  toggleTenDaysPassed,
   showGrowth,
 }: HomeProps) {
+
+  function handleOkayBtn() {
+    toggleGoodLuck();
+    toggleTenDaysPassed();
+  }
 
   return (
     <>
@@ -24,7 +30,7 @@ export default function Home({
           Good Luck!
         </p>
         <div className="popupBtnContainer">
-          <div className="midBtn" onClick={toggleGoodLuck}>
+          <div className="midBtn" onClick={handleOkayBtn}>
             OK
           </div>
         </div>

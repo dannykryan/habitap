@@ -25,7 +25,6 @@ export interface ListItemProps {
   children: ReactNode;
   className?: string;
   todo: HabitLog;
-  date: boolean;
 }
 
 export interface ActiveListProps {
@@ -86,11 +85,11 @@ export interface HomeProps {
   goodLuck: boolean;
   toggleGoodLuck: () => void;
   showGrowth: string;
+  toggleTenDaysPassed: () => void;
 }
 
 export interface EndingPopupProps {
   tenDaysPassed: boolean;
-  toggleTenDaysPassed: () => void;
   maxScore: number;
   currentScore: number;
   percentageDecimal: number;
