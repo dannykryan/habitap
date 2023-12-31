@@ -6,6 +6,7 @@ import NewRoutineForm from "../../../components/NewRoutineForm";
 import React, { useState, useEffect } from "react";
 import supabase from "../../../lib/initSupabase";
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
+import ButtonBar from "../../../components/ButtonBar";
 
 export default function List() {
   const [habitData, setHabitData] = useState<Habit[] | null>(null);
@@ -64,8 +65,8 @@ export default function List() {
         maxScore={maxScore}
         currentScore={currentScore}
         percentageDecimal={percentageDecimal}
-        toggleIsCommitted={toggleIsCommitted}
       />
+      <ButtonBar />
       {isCommitted ? (
         <div>
           <ActiveList
@@ -87,5 +88,6 @@ export default function List() {
         </div>
       )}
     </div>
+    
   );
 }  

@@ -162,6 +162,18 @@ header img {
   cursor: pointer;
 }
 
+#ListBtn:hover {
+  background-image: url('/icons/Buttons/list-button-focus.png');
+ }
+
+ #FlowerBtn:hover {
+  background-image: url('/icons/Buttons/flower-button-focus.png');
+ }
+
+ #SettingsBtn:hover {
+  background-image: url('/icons/Buttons/settings-button-focus.png');
+ }
+
 
 /* Media Query for Small Screens */
 @media screen and (max-width: 400px) {
