@@ -9,20 +9,14 @@ const AppContext = createContext<any>(undefined);
 export function AppWrapper({ children } : {
     children: React.ReactNode;
 }) {
-    let [name, setName] = useState("Danny");
-
     const currentDate = new Date();
-
     const [isCommitted, setIsCommitted] = useState<boolean>(false);
-
     const [habitData, setHabitData] = useState<Habit[] | null>(null);
-    const defaultActivePage = habitData ? "list" : "plant";
-    const [activePage, setActivePage] = useState<string>(defaultActivePage);
-
     const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
+    const [activePage, setActivePage] = useState<string>("flower");
 
     // Calculate the current score, max score, and percentage completion
-    let tenDaysPassed = false;
+    let [tenDaysPassed, setTenDaysPassed] = useState<boolean>(false);
     let currentScore = habitLogsArray?.length ?? 0;
     let maxScore = habitData?.length ? habitData.length * 10 : 0;
     let percentageDecimal = maxScore ? currentScore / maxScore : 0;
@@ -36,7 +30,7 @@ export function AppWrapper({ children } : {
           setHabitData(data);
         };
         getData();
-      }, [activePage]);
+      }, []);
 
       useEffect(() => {
         // Update isCommitted when habitData changes
@@ -53,7 +47,7 @@ export function AppWrapper({ children } : {
           setHabitLogsArray(habitLogs);
         };
         getHabitLogs();
-      }, [isCommitted]);
+      }, []);
 
       if (habitData) {
         const startDate = new Date(habitData[0]?.created_at);
@@ -62,6 +56,15 @@ export function AppWrapper({ children } : {
         tenDaysPassed = currentDate >= endDate;
       }
 
+    // Function to toggle commitment status
+    function toggleIsCommitted() {
+        setIsCommitted(!isCommitted);
+    };
+
+    function toggleTenDaysPassed() {
+      setTenDaysPassed(!tenDaysPassed);
+  };
+
     return (
         <AppContext.Provider value={{
             currentDate,
@@ -69,16 +72,16 @@ export function AppWrapper({ children } : {
             setIsCommitted,
             habitData,
             setHabitData,
-            activePage,
-            setActivePage,
             habitLogsArray,
             setHabitLogsArray,
             tenDaysPassed,
+            toggleTenDaysPassed,
             currentScore,
             maxScore,
             percentageDecimal,
-            name,
-            setName,
+            toggleIsCommitted,
+            activePage,
+            setActivePage,
         }}>
             {children}
         </AppContext.Provider>

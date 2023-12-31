@@ -9,59 +9,37 @@ import Home from "../../components/homepage/index";
 import EndingPopup from "../../components/EndingPopup";
 import Prompt from "../../components/prompt/index";
 import supabase from "../../lib/initSupabase";
-import { HabitLog, Habit } from "../../types/types";
 import Link from "next/link";
 import { useAppContext } from "./context";
 
 export default function Page() {
 
-  const {name} = useAppContext();
+  const {
+      currentDate,
+      isCommitted,
+      setIsCommitted,
+      habitData,
+      setHabitData,
+      habitLogsArray,
+      setHabitLogsArray,
+      tenDaysPassed,
+      toggleTenDaysPassed,
+      currentScore,
+      maxScore,
+      percentageDecimal,
+      toggleIsCommitted,
+      activePage,
+      setActivePage,
+  } = useAppContext();
 
-  const currentDate = new Date();
-  const [habitData, setHabitData] = useState<Habit[] | null>(null);
-  const [isCommitted, setIsCommitted] = useState<boolean>(false);
   const [date, setDate] = useState<boolean>(false);
-  const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
   const [goodLuck, setGoodLuck] = useState<boolean>(false);
-
-  // Adjust the default value of activePage based on the presence of habitData
-  const defaultActivePage = habitData ? "list" : "plant";
-  const [activePage, setActivePage] = useState<string>(defaultActivePage);
 
   const [showGrowth, setShowGrowth] = useState<string>("normal");
 
   function toggleGoodLuck() {
     setGoodLuck(!goodLuck);
   }
-
-  useEffect(() => {
-    const getData = async () => {
-      const { data, error } = await supabase
-        .from("habit_table")
-        .select("*")
-        .eq("user_id", "1");
-      setHabitData(data);
-    };
-    getData();
-  }, [activePage]);
-
-  useEffect(() => {
-  // Update isCommitted when habitData changes
-  if (habitData !== null) {
-    setIsCommitted(habitData.length > 0);
-  }
-}, [habitData]);
-
-  // Function to handle List Btn click (for button bar)
-  const handleListBtnClick = () => {
-    setActivePage("list");
-  };
-
-  // Function to handle Flower Btn click(for button bar)
-  const handleFlowerBtnClick = () => {
-    setActivePage("flower");
-    console.log(activePage);
-  };
 
   const handleShowGrowthBtn = () => {
     if (showGrowth === "normal") {
@@ -77,36 +55,6 @@ export default function Page() {
     }, 30000);
   };
 
-  // Calculate the current score, max score, and percentage completion
-  let tenDaysPassed = false;
-  let currentScore = habitLogsArray?.length ?? 0;
-  let maxScore = habitData?.length ? habitData.length * 10 : 0;
-  let percentageDecimal = maxScore ? currentScore / maxScore : 0;
-
-  // Function to toggle commitment status
-  function toggleIsCommitted() {
-    setIsCommitted(!isCommitted);
-  }
-
-  // Effect hook to fetch data from the "habit_log" table when isMyListVisible changes
-  useEffect(() => {
-    const getHabitLogs = async () => {
-      const { data: habitLogs, error: habitLogsError } = await supabase
-        .from("habit_log")
-        .select("*");
-      setHabitLogsArray(habitLogs);
-    };
-    getHabitLogs();
-  }, [isCommitted]);
-
-  // Check if habitData is available and calculate tenDaysPassed
-  if (habitData) {
-    const startDate = new Date(habitData[0]?.created_at);
-    const endDate = new Date(startDate);
-    endDate.setDate(startDate.getDate() + 10);
-    tenDaysPassed = currentDate >= endDate;
-  }
-
   // Function to simulate advancing time by 10 days
   const endRoutine = () => {
     if (habitData) {
@@ -119,36 +67,6 @@ export default function Page() {
     }
   };
 
-  const clearDatabase = async () => {
-    // Delete all records from habit_log
-    const { error: deleteLogError } = await supabase
-      .from("habit_log")
-      .delete()
-      .eq("user_id", "1");
-    if (deleteLogError) {
-      console.error("Error deleting habit_log records:", deleteLogError);
-      return;
-    }
-
-    // Delete records from habit_table
-    const { error: deleteError } = await supabase
-      .from("habit_table")
-      .delete()
-      .eq("user_id", "1");
-
-    if (deleteError) {
-      console.error("Error deleting habit_table records:", deleteError);
-      return;
-    }
-  };
-
-  console.log(`The active page is: ${activePage}`);
-  console.log(`isCommitted is ${isCommitted}`);
-
-  useEffect(() => {
-    console.log('habitData in Parent:', habitData);
-  }, [habitData]);
-
   return (
     <>
       <Prompt
@@ -160,7 +78,6 @@ export default function Page() {
         toggleIsCommitted={toggleIsCommitted}
         activePage={activePage}
       />
-      {name}
         <>
           <Home
             currentScore={currentScore}
@@ -176,12 +93,11 @@ export default function Page() {
             // Render EndingPopup component when ten days have passed
             <EndingPopup
               tenDaysPassed={tenDaysPassed}
+              toggleTenDaysPassed={toggleTenDaysPassed}
               maxScore={maxScore}
               currentScore={currentScore}
               percentageDecimal={percentageDecimal}
               toggleIsCommitted={toggleIsCommitted}
-              handleListBtnClick={handleListBtnClick}
-              clearDatabase={clearDatabase}
               isCommitted={isCommitted}
             />
           )}
@@ -192,11 +108,7 @@ export default function Page() {
             <button id="endRoutineBtn" onClick={endRoutine}></button>
           </div>
         </>
-      <ButtonBar
-        handleListBtnClick={handleListBtnClick}
-        handleFlowerBtnClick={handleFlowerBtnClick}
-        activePage={activePage}
-      />
+      <ButtonBar />
     </>
   );
 }

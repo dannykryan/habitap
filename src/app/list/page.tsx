@@ -7,6 +7,7 @@ import React, { useState, useEffect } from "react";
 import supabase from "../../../lib/initSupabase";
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
 import ButtonBar from "../../../components/ButtonBar";
+import { HabitLog, Habit } from "../../../types/types";
 
 export default function List() {
   const [habitData, setHabitData] = useState<Habit[] | null>(null);

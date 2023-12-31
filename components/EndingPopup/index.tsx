@@ -1,19 +1,19 @@
 import Image from "next/image";
 import supabase from "../../lib/initSupabase";
 import {EndingPopupProps} from "../../types/types";
+import Link from "next/link";
 
 export default function EndingPopup({
   tenDaysPassed,
+  toggleTenDaysPassed,
   maxScore,
   currentScore,
   percentageDecimal,
   toggleIsCommitted,
-  handleListBtnClick,
-  clearDatabase,
   isCommitted,
 }: EndingPopupProps) {
 
-  async function handleReadyButton() {
+  async function handleEndingOkayButton() {
       // Delete all records from habit_log
       const { error: deleteLogError } = await supabase
       .from("habit_log")
@@ -35,11 +35,11 @@ export default function EndingPopup({
       console.error("Error deleting habit_table records:", deleteError);
       return;
     }
-    console.log("ready button clicked");
+    console.log("Ending Okay button clicked");
     toggleIsCommitted();
-    console.log(isCommitted);
-    tenDaysPassed = false;
-    handleListBtnClick()
+    console.log(`The value of isCommitted is: ${isCommitted}`);
+    toggleTenDaysPassed();
+    console.log(`The value of tenDaysPassed is: ${tenDaysPassed}`);
   }
 
   // Function to determine the message based on percentageDecimal
@@ -72,9 +72,11 @@ export default function EndingPopup({
         {getMessage()}
       </p>
       <div className={"popupBtnContainer"}>
-        <div className={"midBtn"} onClick={handleReadyButton}>
+        <Link href="/list">
+        <div className={"midBtn"} onClick={handleEndingOkayButton}>
           Okay
         </div>
+        </Link>
       </div>
     </div>
   );
