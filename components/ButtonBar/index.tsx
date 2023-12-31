@@ -15,6 +15,7 @@ export default function ButtonBar({
   handleListBtnClick,
   activePage,
 }: ButtonBarProps) {
+  
   return (
     <div className="btn-bar">
       <Link href="/list">
@@ -32,12 +33,14 @@ export default function ButtonBar({
         className="btn"
         alt="Flower Button"
       />
+      <Link href="/settings">
       <Image
         src={activePage === "settings" ? SettingsButtonFocus : SettingsButton}
         id="SettingsBtn"
         className="btn"
         alt="Settings Button"
       />
+      </Link>
     </div>
   );
 }

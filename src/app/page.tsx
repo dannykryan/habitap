@@ -24,7 +24,6 @@ export default function Page() {
 
   // Adjust the default value of activePage based on the presence of habitData
   const defaultActivePage = habitData ? "list" : "plant";
-  const [activePage, setActivePage] = useState<string>(defaultActivePage);
 
   const [showGrowth, setShowGrowth] = useState<string>("normal");
 
@@ -50,17 +49,6 @@ export default function Page() {
   }
 }, [habitData]);
 
-  // Function to handle List Btn click (for button bar)
-  const handleListBtnClick = () => {
-    setActivePage("list");
-  };
-
-  // Function to handle Flower Btn click(for button bar)
-  const handleFlowerBtnClick = () => {
-    setActivePage("flower");
-    console.log(activePage);
-  };
-
   const handleShowGrowthBtn = () => {
     if (showGrowth === "normal") {
       setShowGrowth("growth");
@@ -85,17 +73,6 @@ export default function Page() {
   function toggleIsCommitted() {
     setIsCommitted(!isCommitted);
   }
-
-  // Effect hook to fetch data from the "habit_log" table when isMyListVisible changes
-  useEffect(() => {
-    const getHabitLogs = async () => {
-      const { data: habitLogs, error: habitLogsError } = await supabase
-        .from("habit_log")
-        .select("*");
-      setHabitLogsArray(habitLogs);
-    };
-    getHabitLogs();
-  }, [isCommitted]);
 
   // Check if habitData is available and calculate tenDaysPassed
   if (habitData) {
