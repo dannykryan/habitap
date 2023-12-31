@@ -10,10 +10,11 @@ import EndingPopup from "../../components/EndingPopup";
 import Prompt from "../../components/prompt/index";
 import supabase from "../../lib/initSupabase";
 import { HabitLog, Habit } from "../../types/types";
+import Link from "next/link";
 
 // Import statements...
 
-export default function Parent() {
+export default function Page() {
   const currentDate = new Date();
   const [habitData, setHabitData] = useState<Habit[] | null>(null);
   const [isCommitted, setIsCommitted] = useState<boolean>(false);
@@ -26,8 +27,6 @@ export default function Parent() {
   const [activePage, setActivePage] = useState<string>(defaultActivePage);
 
   const [showGrowth, setShowGrowth] = useState<string>("normal");
-
-  let router = useRouter();
 
   function toggleGoodLuck() {
     setGoodLuck(!goodLuck);
@@ -87,11 +86,6 @@ export default function Parent() {
     setIsCommitted(!isCommitted);
   }
 
-  // Function to toggle date (It seems you're not using this function)
-  function toggleDate() {
-    setDate(!date);
-  }
-
   // Effect hook to fetch data from the "habit_log" table when isMyListVisible changes
   useEffect(() => {
     const getHabitLogs = async () => {
@@ -101,7 +95,7 @@ export default function Parent() {
       setHabitLogsArray(habitLogs);
     };
     getHabitLogs();
-  }, [activePage]);
+  }, [isCommitted]);
 
   // Check if habitData is available and calculate tenDaysPassed
   if (habitData) {
@@ -164,32 +158,6 @@ export default function Parent() {
         toggleIsCommitted={toggleIsCommitted}
         activePage={activePage}
       />
-      {activePage == "list" ? (
-        isCommitted ? (
-          <div>
-            <ActiveList
-              taskData={habitData}
-              date={date}
-              toggleDate={toggleDate}
-              toggleIsCommitted={toggleIsCommitted}
-            />
-          </div>
-        ) : (
-          // Render NewRoutineForm only if habitData is not present
-          <div>
-            {!isCommitted && (
-              <NewRoutineForm
-                toggleIsCommitted={toggleIsCommitted}
-                isCommitted={isCommitted}
-                goodLuck={goodLuck}
-                toggleGoodLuck={toggleGoodLuck}
-                setActivePage={setActivePage}
-                activePage={activePage}
-              />
-            )}
-          </div>
-        )
-      ) : (
         <>
           <Home
             currentScore={currentScore}
@@ -221,7 +189,6 @@ export default function Parent() {
             <button id="endRoutineBtn" onClick={endRoutine}></button>
           </div>
         </>
-      )}
       <ButtonBar
         handleListBtnClick={handleListBtnClick}
         handleFlowerBtnClick={handleFlowerBtnClick}
