@@ -73,6 +73,7 @@ export default function List() {
         maxScore={maxScore}
         currentScore={currentScore}
         percentageDecimal={percentageDecimal}
+        activePage={activePage}
       />
       <ButtonBar />
       {isCommitted ? (

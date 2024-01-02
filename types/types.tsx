@@ -38,6 +38,7 @@ export interface PromptProps {
   maxScore: number;
   currentScore: number;
   percentageDecimal: number;
+  activePage: string;
 }
 
 export interface Task {
