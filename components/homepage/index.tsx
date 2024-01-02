@@ -12,6 +12,7 @@ export default function Home({
   habitData,
   goodLuck,
   toggleGoodLuck,
+  showGrowth,
 }: HomeProps) {
 
   return (
@@ -29,7 +30,7 @@ export default function Home({
         </div>
       </div>
       <div id="plant-progress-container">
-        <Plant percentageDecimal={percentageDecimal} />
+        <Plant percentageDecimal={percentageDecimal} showGrowth={showGrowth}/>
       </div>
     </>
   );

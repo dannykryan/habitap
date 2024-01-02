@@ -91,6 +91,7 @@ export interface HomeProps {
   habitData: Habit[] | null;
   goodLuck: boolean;
   toggleGoodLuck: () => void;
+  showGrowth: string;
 }
 
 export interface EndingPopupProps {
@@ -131,6 +132,7 @@ export interface Plant {
 
 export interface PlantProps {
   percentageDecimal: number;
+  showGrowth: string;
 }
 
 export interface TickPopupProps {
@@ -140,4 +142,5 @@ export interface TickPopupProps {
 export interface ButtonBarProps {
   handleFlowerBtnClick: () => void;
   handleListBtnClick: () => void;
+  activePage: string;
 }

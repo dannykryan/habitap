@@ -11,14 +11,21 @@ import Prompt from "../../components/prompt/index";
 import supabase from "../../lib/initSupabase";
 import { HabitLog, Habit } from "../../types/types";
 
+// Import statements...
+
 export default function Parent() {
   const currentDate = new Date();
   const [habitData, setHabitData] = useState<Habit[] | null>(null);
-  const [isCommitted, setisCommitted] = useState<boolean>(false);
+  const [isCommitted, setIsCommitted] = useState<boolean>(false);
   const [date, setDate] = useState<boolean>(false);
   const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
   const [goodLuck, setGoodLuck] = useState<boolean>(false);
-  const [activePage, setActivePage] = useState<string>("list"); // Default to "list"
+
+  // Adjust the default value of activePage based on the presence of habitData
+  const defaultActivePage = habitData ? "list" : "plant";
+  const [activePage, setActivePage] = useState<string>(defaultActivePage);
+
+  const [showGrowth, setShowGrowth] = useState<string>("normal");
 
   let router = useRouter();
 
@@ -37,6 +44,13 @@ export default function Parent() {
     getData();
   }, [activePage]);
 
+  useEffect(() => {
+  // Update isCommitted when habitData changes
+  if (habitData !== null) {
+    setIsCommitted(habitData.length > 0);
+  }
+}, [habitData]);
+
   // Function to handle List Btn click (for button bar)
   const handleListBtnClick = () => {
     setActivePage("list");
@@ -45,18 +59,32 @@ export default function Parent() {
   // Function to handle Flower Btn click(for button bar)
   const handleFlowerBtnClick = () => {
     setActivePage("flower");
-    console.log(activePage)
+    console.log(activePage);
+  };
+
+  const handleShowGrowthBtn = () => {
+    if (showGrowth === "normal") {
+      setShowGrowth("growth");
+    } else if (showGrowth === "growth") {
+      setShowGrowth("max");
+    } else {
+      setShowGrowth("normal");
+    }
+
+    setTimeout(() => {
+      setShowGrowth("normal");
+    }, 30000);
   };
 
   // Calculate the current score, max score, and percentage completion
   let tenDaysPassed = false;
   let currentScore = habitLogsArray?.length ?? 0;
   let maxScore = habitData?.length ? habitData.length * 10 : 0;
-  let percentageDecimal = maxScore ? (currentScore / maxScore) : 0;
+  let percentageDecimal = maxScore ? currentScore / maxScore : 0;
 
   // Function to toggle commitment status
   function toggleIsCommitted() {
-    setisCommitted(!isCommitted);
+    setIsCommitted(!isCommitted);
   }
 
   // Function to toggle date (It seems you're not using this function)
@@ -84,7 +112,7 @@ export default function Parent() {
   }
 
   // Function to simulate advancing time by 10 days
-  const advanceTime = () => {
+  const endRoutine = () => {
     if (habitData) {
       const updatedHabitData = habitData.map((habit) => {
         const newStartDate = new Date(habit.created_at);
@@ -118,8 +146,8 @@ export default function Parent() {
     }
   };
 
-  console.log(activePage)
-  console.log(isCommitted)
+  console.log(`The active page is: ${activePage}`);
+  console.log(`isCommitted is ${isCommitted}`);
 
   useEffect(() => {
     console.log('habitData in Parent:', habitData);
@@ -147,15 +175,18 @@ export default function Parent() {
             />
           </div>
         ) : (
+          // Render NewRoutineForm only if habitData is not present
           <div>
-            <NewRoutineForm
-              toggleIsCommitted={toggleIsCommitted}
-              isCommitted={isCommitted}
-              goodLuck={goodLuck}
-              toggleGoodLuck={toggleGoodLuck}
-              setActivePage={setActivePage}
-              activePage={activePage}
-            />
+            {!isCommitted && (
+              <NewRoutineForm
+                toggleIsCommitted={toggleIsCommitted}
+                isCommitted={isCommitted}
+                goodLuck={goodLuck}
+                toggleGoodLuck={toggleGoodLuck}
+                setActivePage={setActivePage}
+                activePage={activePage}
+              />
+            )}
           </div>
         )
       ) : (
@@ -168,6 +199,7 @@ export default function Parent() {
             habitData={habitData}
             goodLuck={goodLuck}
             toggleGoodLuck={toggleGoodLuck}
+            showGrowth={showGrowth}
           />
           {tenDaysPassed && (
             // Render EndingPopup component when ten days have passed
@@ -182,14 +214,19 @@ export default function Parent() {
               isCommitted={isCommitted}
             />
           )}
-          {/* Button to simulate advancing time by 10 days */}
-          <button onClick={advanceTime}>Advance Time by 10 Days</button>
+          <div className="dev-btn-container">
+            {/* Button to show maximum plant growth for 10 seconds */}
+            <button id="showGrowthBtn" onClick={handleShowGrowthBtn}></button>
+            {/* Button to simulate advancing time by 10 days */}
+            <button id="endRoutineBtn" onClick={endRoutine}></button>
+          </div>
         </>
       )}
       <ButtonBar
         handleListBtnClick={handleListBtnClick}
-        handleFlowerBtnClick={handleFlowerBtnClick} // Provide the appropriate handler
-      />  
+        handleFlowerBtnClick={handleFlowerBtnClick}
+        activePage={activePage}
+      />
     </>
   );
 }

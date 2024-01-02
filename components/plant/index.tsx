@@ -7,7 +7,7 @@ import Lottie from "lottie-react";
 import { Flower, OneBee, TwoBees, ThreeBees, Plant, PlantProps } from "../../types/types";
 
 
-export default function Plant({ percentageDecimal }: PlantProps) {
+export default function Plant({ percentageDecimal, showGrowth }: PlantProps) {
   const [animationKey, setAnimationKey] = useState<number>(0);
   // State to manage animation options
   const [animationOptions, setAnimationOptions] = useState<Plant>({
@@ -30,8 +30,13 @@ export default function Plant({ percentageDecimal }: PlantProps) {
     let animationData: Flower | OneBee | TwoBees | ThreeBees = allFlowers; // Default animation data
     let loop = false; // Default loop value
 
-    // Determine the frame range and animation data based on the percentageDecimal
-    if (percentageDecimal === 0) {
+    if (showGrowth === "max") {
+      animationData = threeBeesPlease;
+      loop = true;
+    } else if (showGrowth === "growth") {
+      allFlowers.ip = 50;
+      allFlowers.op = 592;
+    } else if (percentageDecimal === 0) {
       allFlowers.op = 50;
       console.log(`percentageDecimal is: ${percentageDecimal}`);
       console.log(`endFrame is: ${endFrame}`);
@@ -72,7 +77,7 @@ export default function Plant({ percentageDecimal }: PlantProps) {
       animationData = twoWholeBees;
       loop = true;
       console.log(`percentageDecimal is: ${percentageDecimal}`);
-    } else if (percentageDecimal > 0.9 && percentageDecimal <= 1) {
+    } else if (percentageDecimal > 0.9) {
       animationData = threeBeesPlease;
       loop = true;
       console.log(`percentageDecimal is: ${percentageDecimal}`);
@@ -87,7 +92,7 @@ export default function Plant({ percentageDecimal }: PlantProps) {
     }));
     // Increment the key to force a re-render and restart the animation
     setAnimationKey((prevKey) => prevKey + 1);
-  }, [percentageDecimal]);
+  }, [percentageDecimal, showGrowth]);
 
   return (
     <>
