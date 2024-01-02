@@ -52,6 +52,7 @@ export interface NewRoutineFormProps {
   isCommitted: boolean;
   goodLuck: boolean;
   toggleGoodLuck: () => void;
+  setActivePage: (activePage: string) => void;
 }
 
 export interface NewRoutineListProps {
