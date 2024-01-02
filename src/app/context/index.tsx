@@ -87,6 +87,8 @@ export function AppWrapper({ children } : {
             toggleIsCommitted,
             activePage,
             setActivePage,
+            goodLuck,
+            toggleGoodLuck,
         }}>
             {children}
         </AppContext.Provider>
