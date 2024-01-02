@@ -13,11 +13,9 @@ let taskDataOriginal: Task[] = [];
 
 export default function NewRoutineForm({
   toggleIsCommitted,
-  isCommitted,
   goodLuck,
   toggleGoodLuck,
   setActivePage,
-  activePage,
 }: NewRoutineFormProps) {
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal);
   const [toggleData, setToggleData] = useState<boolean>(false);

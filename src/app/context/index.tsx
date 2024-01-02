@@ -14,12 +14,17 @@ export function AppWrapper({ children } : {
     const [habitData, setHabitData] = useState<Habit[] | null>(null);
     const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
     const [activePage, setActivePage] = useState<string>("flower");
+    const [goodLuck, setGoodLuck] = useState<boolean>(false);
 
     // Calculate the current score, max score, and percentage completion
     let [tenDaysPassed, setTenDaysPassed] = useState<boolean>(false);
     let currentScore = habitLogsArray?.length ?? 0;
     let maxScore = habitData?.length ? habitData.length * 10 : 0;
     let percentageDecimal = maxScore ? currentScore / maxScore : 0;
+
+    function toggleGoodLuck() {
+      setGoodLuck(!goodLuck);
+    }
 
     useEffect(() => {
         const getData = async () => {

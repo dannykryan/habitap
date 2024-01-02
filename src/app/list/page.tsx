@@ -8,55 +8,62 @@ import supabase from "../../../lib/initSupabase";
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
 import ButtonBar from "../../../components/ButtonBar";
 import { HabitLog, Habit } from "../../../types/types";
+import { useAppContext } from "../context";
 
 export default function List() {
-  const [habitData, setHabitData] = useState<Habit[] | null>(null);
-  const [isCommitted, setIsCommitted] = useState<boolean>(false);
-  const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
-  const [goodLuck, setGoodLuck] = useState<boolean>(false);
 
-  function toggleGoodLuck() {
-    setGoodLuck(!goodLuck);
-  }
+  const {
+    currentDate,
+    isCommitted,
+    setIsCommitted,
+    habitData,
+    setHabitData,
+    habitLogsArray,
+    setHabitLogsArray,
+    tenDaysPassed,
+    toggleTenDaysPassed,
+    currentScore,
+    maxScore,
+    percentageDecimal,
+    toggleIsCommitted,
+    activePage,
+    setActivePage,
+    goodLuck,
+    toggleGoodLuck,
+  } = useAppContext();
 
-  useEffect(() => {
-    const getData = async () => {
-      const { data, error } = await supabase
-        .from("habit_table")
-        .select("*")
-        .eq("user_id", "1");
-      setHabitData(data);
-    };
-    getData();
-  }, []);
+  // function toggleGoodLuck() {
+  //   setGoodLuck(!goodLuck);
+  // }
 
-  useEffect(() => {
-    // Update isCommitted when habitData changes
-    if (habitData !== null) {
-      setIsCommitted(habitData.length > 0);
-    }
-  }, [habitData]);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const { data, error } = await supabase
+  //       .from("habit_table")
+  //       .select("*")
+  //       .eq("user_id", "1");
+  //     setHabitData(data);
+  //   };
+  //   getData();
+  // }, []);
 
-  // Effect hook to fetch data from the "habit_log" table when isMyListVisible changes
-  useEffect(() => {
-    const getHabitLogs = async () => {
-      const { data: habitLogs, error: habitLogsError } = await supabase
-        .from("habit_log")
-        .select("*");
-      setHabitLogsArray(habitLogs);
-    };
-    getHabitLogs();
-  }, [isCommitted]);
+  // useEffect(() => {
+  //   // Update isCommitted when habitData changes
+  //   if (habitData !== null) {
+  //     setIsCommitted(habitData.length > 0);
+  //   }
+  // }, [habitData]);
 
-  // Calculate the current score, max score, and percentage completion
-  let tenDaysPassed = false;
-  let currentScore = habitLogsArray?.length ?? 0;
-  let maxScore = habitData?.length ? habitData.length * 10 : 0;
-  let percentageDecimal = maxScore ? currentScore / maxScore : 0;
-
-  function toggleIsCommitted() {
-    setIsCommitted(!isCommitted);
-  }
+  // // Effect hook to fetch data from the "habit_log" table when isMyListVisible changes
+  // useEffect(() => {
+  //   const getHabitLogs = async () => {
+  //     const { data: habitLogs, error: habitLogsError } = await supabase
+  //       .from("habit_log")
+  //       .select("*");
+  //     setHabitLogsArray(habitLogs);
+  //   };
+  //   getHabitLogs();
+  // }, [isCommitted]);
 
   return (
     <div>
@@ -84,6 +91,7 @@ export default function List() {
               isCommitted={isCommitted}
               goodLuck={goodLuck}
               toggleGoodLuck={toggleGoodLuck}
+              setActivePage={setActivePage}
             />
           )}
         </div>

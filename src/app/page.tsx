@@ -1,15 +1,10 @@
 "use client"
 
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import ButtonBar from "../../components/ButtonBar";
-import ActiveList from "../../components/ActiveList";
-import NewRoutineForm from "../../components/NewRoutineForm";
 import Home from "../../components/homepage/index";
 import EndingPopup from "../../components/EndingPopup";
 import Prompt from "../../components/prompt/index";
-import supabase from "../../lib/initSupabase";
-import Link from "next/link";
 import { useAppContext } from "./context";
 import { Habit } from "../../types/types";
 
@@ -31,17 +26,12 @@ export default function Page() {
       toggleIsCommitted,
       activePage,
       setActivePage,
+      goodLuck,
+      toggleGoodLuck,
   } = useAppContext();
 
   const [date, setDate] = useState<boolean>(false);
-  const [goodLuck, setGoodLuck] = useState<boolean>(false);
-
   const [showGrowth, setShowGrowth] = useState<string>("normal");
-
-  function toggleGoodLuck() {
-    setGoodLuck(!goodLuck);
-  }
-
   const handleShowGrowthBtn = () => {
     if (showGrowth === "normal") {
       setShowGrowth("growth");
