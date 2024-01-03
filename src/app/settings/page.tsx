@@ -1,11 +1,29 @@
 import Prompt from "../../../components/prompt";
 import ButtonBar from "../../../components/ButtonBar";
+import { useAppContext } from "../context";
 
 export default function Settings() {
+
+    // const {
+    //     isCommitted,
+    //     tenDaysPassed,
+    //     currentScore,
+    //     maxScore,
+    //     percentageDecimal,
+    //     activePage,
+    //   } = useAppContext();
+
     return (
         <>
         <ButtonBar />
-        <h1>THIS IS SETTINGS</h1>
+        {/* <Prompt
+            tenDaysPassed={tenDaysPassed}
+            isCommitted={isCommitted}
+            maxScore={maxScore}
+            currentScore={currentScore}
+            percentageDecimal={percentageDecimal}
+            activePage={activePage}
+        /> */}
         </>
     );
 }

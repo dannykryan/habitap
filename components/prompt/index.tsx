@@ -1,15 +1,18 @@
 import { PromptProps } from "../../types/types";
 
-export default function Prompt({ tenDaysPassed, isCommitted, maxScore, currentScore, percentageDecimal, activePage }: PromptProps)
-{
+export default function Prompt({ tenDaysPassed, isCommitted, maxScore, currentScore, percentageDecimal, activePage }: PromptProps) {
+
+  console.log(`tenDaysPassed is: ${tenDaysPassed}`);
+  console.log(`isCommitted is: ${isCommitted}`);
+  console.log(`activepage is: ${activePage}`)
 
   let promptMessage = "";
 
   if (!isCommitted && activePage === "list") {
     promptMessage = "Commit to completing up to 5 daily habits below:";
   } else if (!isCommitted) {
-    promptMessage = "Hey John, let's build some great habits!";
-  } else if (isCommitted && !tenDaysPassed) {
+    promptMessage = "Welcome back, let's build some great habits!";
+  } else if (activePage === "flower" && isCommitted && !tenDaysPassed) {
     if (percentageDecimal === 0) {
       promptMessage = "It's early days! Let's get started on your habits.";
     } else if (percentageDecimal < 0.1) {
@@ -33,6 +36,10 @@ export default function Prompt({ tenDaysPassed, isCommitted, maxScore, currentSc
     } else {
       promptMessage = "Holy moley! You're a habit master";
     }
+  } else if (activePage === "hive") {
+    promptMessage = "funkapotamus is doing great!";
+  } else if (activePage === "settings") {
+    promptMessage = "Change your personal details below:";
   } else if (isCommitted && tenDaysPassed) {
     if (percentageDecimal === 1) {
       promptMessage = "Congratulations on a perfect score! What a busy bee you are!";
@@ -46,6 +53,6 @@ export default function Prompt({ tenDaysPassed, isCommitted, maxScore, currentSc
   } else {
     promptMessage = "What do you want to do today?";
   }
-
+  
   return <p id="prompt">{promptMessage}</p>;
 }

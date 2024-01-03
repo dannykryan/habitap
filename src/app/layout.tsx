@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Prompt from "../../components/prompt/index";
 import Image from "next/image";
 import HabitapBeeHeader from "../../public/assets/Habitap-Bee-Logo.png";
 import { AppWrapper } from "./context";

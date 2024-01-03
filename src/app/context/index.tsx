@@ -72,24 +72,25 @@ export function AppWrapper({ children } : {
 
     return (
         <AppContext.Provider value={{
-            currentDate,
-            isCommitted,
-            setIsCommitted,
-            habitData,
-            setHabitData,
-            habitLogsArray,
-            setHabitLogsArray,
-            tenDaysPassed,
-            toggleTenDaysPassed,
-            currentScore,
-            maxScore,
-            percentageDecimal,
-            toggleIsCommitted,
-            activePage,
-            setActivePage,
-            goodLuck,
-            toggleGoodLuck,
-        }}>
+          currentDate,
+          isCommitted,
+          setIsCommitted,
+          habitData,
+          setHabitData,
+          habitLogsArray,
+          setHabitLogsArray,
+          tenDaysPassed,
+          toggleTenDaysPassed,
+          currentScore,
+          maxScore,
+          percentageDecimal,
+          toggleIsCommitted,
+          activePage,
+          setActivePage,
+          goodLuck,
+          toggleGoodLuck,
+          useAppContext,
+      }}>
             {children}
         </AppContext.Provider>
     )
