@@ -69,6 +69,7 @@ export default function Page() {
         activePage={activePage}
       />
         <>
+        <div id="main-plant-container">
           <Home
             currentScore={currentScore}
             maxScore={maxScore}
@@ -91,6 +92,7 @@ export default function Page() {
               isCommitted={isCommitted}
             />
           )}
+          </div>
           <div className="dev-btn-container">
             {/* Button to show maximum plant growth for 10 seconds */}
             <button id="showGrowthBtn" onClick={handleShowGrowthBtn}></button>

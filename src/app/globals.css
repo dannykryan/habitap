@@ -14,7 +14,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 0px 10px #58925d inset; /* Use inset for an inner shadow */
+  /* box-shadow: 0 0px 10px #58925d inset; */
   box-sizing: border-box;
   height: 100vh;
   margin: 0;
@@ -39,7 +39,6 @@ body {
   height: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 100px;
 }
 
 header {
@@ -66,19 +65,18 @@ header img {
 }
 
 #plant-progress-container {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 375px;
-  height: 100px;
-  margin-bottom: 120px;
+  align-items: center; */
   margin-top: auto;
+  padding-top: 70px;
+  width: 375px;
 }
 
 .plant-main {
-  margin-bottom: 160px;
   width: 100%;
+  
 }
 
 .popup {
@@ -229,8 +227,35 @@ header img {
   align-items: center;
 }
 
-#profile-username {
-  margin-top: 40px;
+#bee-with-shadow {
+  margin-top: 20px;
+}
+
+#signin-form {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#signin-form input {
+  margin-bottom: 20px;
+  width: 80%;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #77c47e;
+  padding-left: 10px;
+  font-size: 1.2rem;
+}
+
+.signOutBtn {
+  margin: 0px 10px;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .signOutBtn {
@@ -341,4 +366,36 @@ header img {
     display: flex;
     justify-content: space-evenly;
     width: 50px;
+  }
+
+  #body-inner {
+    background-image: url('../../public/assets/Habitap-BG-blank.png');
+    padding: 0;
+  }
+
+  .signOutBtn, .signInBtn, .registerBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 40px;
+    width: 110px;
+    background-color: #F2A51F;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.3rem;
+    margin: 20px;
+  }
+
+  .signOutBtn:hover {
+    cursor: pointer;
+  }
+
+  .signInBtn:hover {
+    cursor: pointer;
+  }
+
+  .registerBtn:hover {
+    cursor: pointer;
   }

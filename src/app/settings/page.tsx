@@ -1,18 +1,14 @@
 import Prompt from "../../../components/prompt";
 import ButtonBar from "../../../components/ButtonBar";
-import { useAppContext } from "../context";
 import Image from "next/image";
 import profilePic from "../../../public/assets/Bumblebee_Man.png"
+import { useAppContext } from '../../../src/app/context';
 
 export default function Settings() {
 
     // const {
-    //     isCommitted,
-    //     tenDaysPassed,
-    //     currentScore,
-    //     maxScore,
-    //     percentageDecimal,
     //     activePage,
+    //     setActivePage,
     //   } = useAppContext();
 
     return (
