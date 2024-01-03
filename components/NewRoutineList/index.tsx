@@ -42,6 +42,7 @@ export default function NewRoutineList({ taskData, addNewData, deleteData }: New
   }
 
   return (
+    <div id="list-container">
     <ul className={styles.myList}>
       {taskData.map((todo: Task) => (
         <li key={todo.id} className={styles.listItem}>
@@ -79,6 +80,7 @@ export default function NewRoutineList({ taskData, addNewData, deleteData }: New
         </li>
       ))}
     </ul>
+    </div>
   );
   
 }

@@ -77,7 +77,7 @@ export default function List() {
       />
       <ButtonBar />
       {isCommitted ? (
-        <div>
+        <div id="list-container">
           <ActiveList
             taskData={habitData}
             toggleIsCommitted={toggleIsCommitted}
