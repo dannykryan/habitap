@@ -25,13 +25,10 @@ export interface ListItemProps {
   children: ReactNode;
   className?: string;
   todo: HabitLog;
-  date: boolean;
 }
 
 export interface ActiveListProps {
   taskData: Habit[] | null;
-  date: boolean;
-  toggleDate: () => void;
   toggleIsCommitted: () => void;
 }
 
@@ -41,7 +38,6 @@ export interface PromptProps {
   maxScore: number;
   currentScore: number;
   percentageDecimal: number;
-  toggleIsCommitted: () => void;
   activePage: string;
 }
 
@@ -58,7 +54,6 @@ export interface NewRoutineFormProps {
   goodLuck: boolean;
   toggleGoodLuck: () => void;
   setActivePage: (activePage: string) => void;
-  activePage: string;
 }
 
 export interface NewRoutineListProps {
@@ -92,6 +87,7 @@ export interface HomeProps {
   goodLuck: boolean;
   toggleGoodLuck: () => void;
   showGrowth: string;
+  toggleTenDaysPassed: () => void;
 }
 
 export interface EndingPopupProps {
@@ -100,9 +96,7 @@ export interface EndingPopupProps {
   currentScore: number;
   percentageDecimal: number;
   toggleIsCommitted: () => void;
-  clearDatabase: () => void;
   isCommitted: boolean;
-  handleListBtnClick: () => void;
 }
 
 export interface MainBtnProps {
@@ -137,10 +131,4 @@ export interface PlantProps {
 
 export interface TickPopupProps {
   closePopup: () => void;
-}
-
-export interface ButtonBarProps {
-  handleFlowerBtnClick: () => void;
-  handleListBtnClick: () => void;
-  activePage: string;
 }

@@ -14,7 +14,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 0px 10px #58925d inset; /* Use inset for an inner shadow */
+  /* box-shadow: 0 0px 10px #58925d inset; */
   box-sizing: border-box;
   height: 100vh;
   margin: 0;
@@ -39,8 +39,6 @@ body {
   height: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 25px;
-  padding-bottom: 100px;
 }
 
 header {
@@ -55,6 +53,10 @@ header img {
   max-width: 400px;
 }
 
+#list-container {
+  margin-top: 60px;
+}
+
 #prompt {
   font-size: 1.2rem;
   font-weight: 300;
@@ -63,20 +65,20 @@ header img {
 }
 
 #plant-progress-container {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 375px;
-  height: 100px;
-  margin-bottom: 120px;
+  align-items: center; */
   margin-top: auto;
+  padding-top: 70px;
+  width: 375px;
 }
 
 .plant-main {
-  margin-bottom: 90px;
   width: 100%;
+  
 }
+
 .popup {
   display: flex;
   flex-direction: column;
@@ -153,8 +155,8 @@ header img {
   min-width: 300px;
   height: 85px;
   background-color: #6cb372;
-  border-top-left-radius: 50px;
-  border-top-right-radius: 50px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
   box-shadow: 0 -3px 15px rgb(173, 173, 173);
 }
 
@@ -162,6 +164,119 @@ header img {
   cursor: pointer;
 }
 
+#ListBtn:hover {
+  background-image: url('/icons/Buttons/list-button-focus.png');
+ }
+
+ #FlowerBtn:hover {
+  background-image: url('/icons/Buttons/flower-button-focus.png');
+ }
+
+ #SettingsBtn:hover {
+  background-image: url('/icons/Buttons/settings-button-focus.png');
+ }
+
+ #HiveBtn:hover {
+  background-image: url('/icons/Buttons/hive-button-focus.png');
+ }
+
+ .hive-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 250px;
+  border-radius: 10px;
+  background-color: #f5fff6;
+  box-shadow: 0 0 5px rgb(173, 173, 173);
+  margin: 5px 12px;
+ }
+
+ .hive-row {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 90%;
+  padding: 0 20px;
+ }
+
+ .hive-plant {
+  object-fit: contain;
+  width: 70%;
+ }
+
+ .hive-team-member-name {
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin: 0 0 5px 0;
+  color: rgb(48, 48, 48);
+ }
+
+ #profile-pic-large {
+  height: 200px;
+  width: 200px;
+  background-size: cover;  /* Optional: Adjust the background size to cover the container */
+  border-radius: 50%;
+  margin-top: 60px;
+}
+
+#profile-info {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#bee-with-shadow {
+  margin-top: 20px;
+}
+
+#signin-form {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#signin-form input {
+  margin-bottom: 20px;
+  width: 80%;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #77c47e;
+  padding-left: 10px;
+  font-size: 1.2rem;
+}
+
+.signOutBtn {
+  margin: 0px 10px;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.signOutBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 40px;
+  width: 110px;
+  background-color: #F2A51F;
+  color: white;
+  border: none;
+  margin-top: 20px;
+  border-radius: 50px;
+  font-size: 1.3rem;
+}
+
+.signOutBtn:hover {
+  background-color: #d88e0d;
+  cursor: pointer;
+}
 
 /* Media Query for Small Screens */
 @media screen and (max-width: 400px) {
@@ -178,6 +293,21 @@ header img {
   header {
     padding-top: 5%;
   
+  }
+}
+
+@media screen and (min-height: 833px) {
+  .hive-row:nth-of-type(1) {
+    padding-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  main {
+    padding-top: 25px;
+  }
+
+  .hive-team-member-name {
+    margin-bottom: 10px;;
   }
 }
 
@@ -236,4 +366,36 @@ header img {
     display: flex;
     justify-content: space-evenly;
     width: 50px;
+  }
+
+  #body-inner {
+    background-image: url('../../public/assets/Habitap-BG-blank.png');
+    padding: 0;
+  }
+
+  .signOutBtn, .signInBtn, .registerBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 40px;
+    width: 110px;
+    background-color: #F2A51F;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.3rem;
+    margin: 20px;
+  }
+
+  .signOutBtn:hover {
+    cursor: pointer;
+  }
+
+  .signInBtn:hover {
+    cursor: pointer;
+  }
+
+  .registerBtn:hover {
+    cursor: pointer;
   }

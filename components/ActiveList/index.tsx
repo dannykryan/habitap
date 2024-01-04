@@ -4,23 +4,19 @@ import styles from './ActiveList.module.css'
 import { Habit, ActiveListProps } from "../../types/types";
 
 // This is the list of commited habits (after commiting) and you can tick off everyday
-export default function ActiveList({taskData, date} : ActiveListProps) {
-
-  // useEffect(() => {
-  //   console.log('Page rerendered')
-  //  }, [date])
-
-   console.log('taskData:', taskData);
+export default function ActiveList({taskData} : ActiveListProps) {
 
   return (
-    <ul className={styles.myList}>
-      {taskData && taskData.map((todo : Habit , index : number) => (
-        <li key={index}>
-            <ActiveListItem todo={todo} date={date}>
-            {todo.habit_name}
-          </ActiveListItem>
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul className={styles.myList}>
+        {taskData && taskData.map((todo: Habit, index: number) => (
+          <li key={index}>
+            <ActiveListItem todo={todo}>
+              {todo.habit_name}
+            </ActiveListItem>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }

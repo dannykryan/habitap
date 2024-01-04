@@ -1,41 +1,66 @@
 // ButtonBar.tsx
-
+"use client"
 import Image from "next/image";
 import FlowerButton from "../../public/icons/Buttons/flower-button.png";
 import ListButton from "../../public/icons/Buttons/list-button.png";
+import HiveButton from "../../public/icons/Buttons/hive-button.png";
+import HiveButtonFocus from "../../public/icons/Buttons/hive-button-focus.png";
 import SettingsButton from "../../public/icons/Buttons/settings-button.png";
 import FlowerButtonFocus from "../../public/icons/Buttons/flower-button-focus.png";
 import ListButtonFocus from "../../public/icons/Buttons/list-button-focus.png";
 import SettingsButtonFocus from "../../public/icons/Buttons/settings-button-focus.png";
-import { ButtonBarProps } from "../../types/types";
+import Link from "next/link";
+import { usePathname } from 'next/navigation'
+import { useAppContext } from "../../src/app/context";
 
-export default function ButtonBar({
-  handleFlowerBtnClick,
-  handleListBtnClick,
-  activePage,
-}: ButtonBarProps) {
+export default function ButtonBar() {
+
+  const currentPage = usePathname();
+  console.log(`The current page is: ${currentPage}`);
+
+  const {
+    setActivePage,
+    activePage,
+  } = useAppContext();
+  
   return (
     <div className="btn-bar">
+      <Link href="/list">
+        <Image
+          src={currentPage === "/list" ? ListButtonFocus : ListButton}
+          id="ListBtn"
+          className="btn"
+          alt="List Button"
+          onClick={() => setActivePage("list")}
+        />
+      </ Link>
+      <Link href="/">
+        <Image
+          src={currentPage === "/" ? FlowerButtonFocus : FlowerButton}
+          id="FlowerBtn"
+          className="btn"
+          alt="Flower Button"
+          onClick={() => setActivePage("flower")}
+        />
+      </Link>
+      <Link href="/hive">
       <Image
-        src={activePage === "list" ? ListButtonFocus : ListButton}
-        onClick={handleListBtnClick}
-        id="ListBtn"
+        src={currentPage === "/hive" ? HiveButtonFocus : HiveButton}
+        id="HiveBtn"
         className="btn"
-        alt="List Button"
+        alt="hive Button"
+        onClick={() => setActivePage("hive")}
       />
+      </Link>
+      <Link href="/settings">
       <Image
-        src={activePage === "flower" ? FlowerButtonFocus : FlowerButton}
-        onClick={handleFlowerBtnClick}
-        id="FlowerBtn"
-        className="btn"
-        alt="Flower Button"
-      />
-      <Image
-        src={activePage === "settings" ? SettingsButtonFocus : SettingsButton}
+        src={currentPage === "/settings" ? SettingsButtonFocus : SettingsButton}
         id="SettingsBtn"
         className="btn"
         alt="Settings Button"
+        onClick={() => setActivePage("settings")}
       />
+      </Link>
     </div>
   );
 }
