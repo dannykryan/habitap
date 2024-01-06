@@ -11,7 +11,8 @@ import { ListItemProps } from "../../../types/types";
 
 const ActiveListItem: React.FC<ListItemProps> = ({ children, todo}) => {
   
-  const currentDate = new Date().toISOString().split('T')[0];
+  const currentDate = new Date();
+  const formattedDate = new Date().toISOString().split('T')[0];
   const [tickCheckBox, setTickCheckBox] = useState<boolean> (false);
   const [showPopup, setShowPopup] = useState<boolean>(false);
 
@@ -27,10 +28,10 @@ const ActiveListItem: React.FC<ListItemProps> = ({ children, todo}) => {
         }
         // Extract values of completed_at using map
         const loggedDate = data.map((log) => log.completed_at.split('T')[0]);
-        setTickCheckBox(loggedDate.includes(currentDate))
+        setTickCheckBox(loggedDate.includes(formattedDate))
       };
       getHabitLog();
-    }, [todo.habit_id, currentDate]);
+    }, [todo.habit_id, formattedDate]);
 
   function closePopup() {
     setShowPopup(false);

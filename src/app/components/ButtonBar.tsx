@@ -16,7 +16,6 @@ import { useAppContext } from "../context";
 export default function ButtonBar() {
 
   const currentPage = usePathname();
-  console.log(`The current page is: ${currentPage}`);
 
   const {
     setActivePage,

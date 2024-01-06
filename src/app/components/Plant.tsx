@@ -7,7 +7,6 @@ import Lottie from "lottie-react";
 import { Flower, OneBee, TwoBees, ThreeBees, Plant } from "../../../types/types";
 import { useAppContext } from "../context";
 
-
 export default function Plant() {
 
   const {
@@ -106,6 +105,8 @@ export default function Plant() {
     // Increment the key to force a re-render and restart the animation
     setAnimationKey((prevKey) => prevKey + 1);
   }, [habitData, habitLogsArray, showGrowth]);
+
+  console.log(habitLogsArray)
 
   return (
     <>

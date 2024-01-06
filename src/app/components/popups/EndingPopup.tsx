@@ -7,11 +7,14 @@ export default function EndingPopup() {
   const {
       isCommitted,
       tenDaysPassed,
-      currentScore,
-      maxScore,
-      percentageDecimal,
       toggleIsCommitted,
+      habitData,
+      habitLogsArray,
     } = useAppContext();
+
+  let currentScore = habitLogsArray?.length ?? 0;
+  let maxScore = habitData?.length ? habitData.length * 10 : 0;
+  let percentageDecimal = maxScore ? currentScore / maxScore : 0;
 
   async function handleEndingOkayButton() {
       // Delete all records from habit_log
