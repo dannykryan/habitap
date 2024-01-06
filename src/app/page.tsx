@@ -60,14 +60,7 @@ export default function Page() {
 
   return (
     <>
-      <Prompt
-        tenDaysPassed={tenDaysPassed}
-        isCommitted={isCommitted}
-        maxScore={maxScore}
-        currentScore={currentScore}
-        percentageDecimal={percentageDecimal}
-        activePage={activePage}
-      />
+      <Prompt />
         <>
         <div id="main-plant-container">
           <Home

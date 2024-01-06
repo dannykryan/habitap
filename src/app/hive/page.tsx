@@ -21,14 +21,7 @@ export default function Settings() {
 
     return (
         <>
-<Prompt
-            tenDaysPassed={tenDaysPassed}
-            isCommitted={isCommitted}
-            maxScore={maxScore}
-            currentScore={currentScore}
-            percentageDecimal={percentageDecimal}
-            activePage={activePage}
-        />
+        <Prompt />
         <div className="hive-row">
             <div className="hive-box">
                 <Image

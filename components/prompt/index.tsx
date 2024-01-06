@@ -1,6 +1,16 @@
 import { PromptProps } from "../../types/types";
+import { useAppContext } from "../../src/app/context";
 
-export default function Prompt({ tenDaysPassed, isCommitted, maxScore, currentScore, percentageDecimal, activePage }: PromptProps) {
+export default function Prompt() {
+
+  const {
+    isCommitted,
+    tenDaysPassed,
+    currentScore,
+    maxScore,
+    percentageDecimal,
+    activePage,
+  } = useAppContext();
 
   console.log(`tenDaysPassed is: ${tenDaysPassed}`);
   console.log(`isCommitted is: ${isCommitted}`);
