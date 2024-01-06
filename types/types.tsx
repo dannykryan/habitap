@@ -69,15 +69,6 @@ export interface PopupProps {
   setActivePage: (activePage: string) => void;
 }
 
-export interface EndingPopupProps {
-  tenDaysPassed: boolean;
-  maxScore: number;
-  currentScore: number;
-  percentageDecimal: number;
-  toggleIsCommitted: () => void;
-  isCommitted: boolean;
-}
-
 export interface MainBtnProps {
   isMyListPage: boolean;
   onClick: (event: MouseEvent<HTMLButtonElement>) => void;

@@ -1,16 +1,17 @@
-import Image from "next/image";
 import supabase from "../../lib/initSupabase";
-import {EndingPopupProps} from "../../types/types";
 import Link from "next/link";
+import { useAppContext } from "../../src/app/context";
 
-export default function EndingPopup({
-  tenDaysPassed,
-  maxScore,
-  currentScore,
-  percentageDecimal,
-  toggleIsCommitted,
-  isCommitted,
-}: EndingPopupProps) {
+export default function EndingPopup() {
+
+  const {
+      isCommitted,
+      tenDaysPassed,
+      currentScore,
+      maxScore,
+      percentageDecimal,
+      toggleIsCommitted,
+    } = useAppContext();
 
   async function handleEndingOkayButton() {
       // Delete all records from habit_log

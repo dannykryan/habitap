@@ -11,23 +11,9 @@ import { Habit } from "../../types/types";
 export default function Page() {
 
   const {
-      currentDate,
-      isCommitted,
-      setIsCommitted,
       habitData,
       setHabitData,
-      habitLogsArray,
-      setHabitLogsArray,
       tenDaysPassed,
-      toggleTenDaysPassed,
-      currentScore,
-      maxScore,
-      percentageDecimal,
-      toggleIsCommitted,
-      activePage,
-      setActivePage,
-      goodLuck,
-      toggleGoodLuck,
       showGrowth,
       setShowGrowth,
   } = useAppContext();
@@ -66,14 +52,7 @@ export default function Page() {
           <Home />
           {tenDaysPassed && (
             // Render EndingPopup component when ten days have passed
-            <EndingPopup
-              tenDaysPassed={tenDaysPassed}
-              maxScore={maxScore}
-              currentScore={currentScore}
-              percentageDecimal={percentageDecimal}
-              toggleIsCommitted={toggleIsCommitted}
-              isCommitted={isCommitted}
-            />
+            <EndingPopup />
           )}
           </div>
           <div className="dev-btn-container">
