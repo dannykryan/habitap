@@ -15,6 +15,7 @@ export function AppWrapper({ children } : {
     const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
     const [activePage, setActivePage] = useState<string>("flower");
     const [goodLuck, setGoodLuck] = useState<boolean>(false);
+    const [showGrowth, setShowGrowth] = useState<string>("normal");
 
     // Calculate the current score, max score, and percentage completion
     let [tenDaysPassed, setTenDaysPassed] = useState<boolean>(false);
@@ -90,6 +91,8 @@ export function AppWrapper({ children } : {
           goodLuck,
           toggleGoodLuck,
           useAppContext,
+          showGrowth,
+          setShowGrowth,
       }}>
             {children}
         </AppContext.Provider>

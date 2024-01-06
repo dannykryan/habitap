@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import ButtonBar from "../../components/ButtonBar";
-import Home from "../../components/homepage/index";
+import Home from "../../components/Home/index";
 import EndingPopup from "../../components/EndingPopup";
 import Prompt from "../../components/prompt/index";
 import { useAppContext } from "./context";
@@ -28,10 +28,10 @@ export default function Page() {
       setActivePage,
       goodLuck,
       toggleGoodLuck,
+      showGrowth,
+      setShowGrowth,
   } = useAppContext();
 
-  const [date, setDate] = useState<boolean>(false);
-  const [showGrowth, setShowGrowth] = useState<string>("normal");
   const handleShowGrowthBtn = () => {
     if (showGrowth === "normal") {
       setShowGrowth("growth");
@@ -63,17 +63,7 @@ export default function Page() {
       <Prompt />
         <>
         <div id="main-plant-container">
-          <Home
-            currentScore={currentScore}
-            maxScore={maxScore}
-            percentageDecimal={percentageDecimal}
-            habitLogsArray={habitLogsArray}
-            habitData={habitData}
-            goodLuck={goodLuck}
-            toggleGoodLuck={toggleGoodLuck}
-            toggleTenDaysPassed={toggleTenDaysPassed}
-            showGrowth={showGrowth}
-          />
+          <Home />
           {tenDaysPassed && (
             // Render EndingPopup component when ten days have passed
             <EndingPopup

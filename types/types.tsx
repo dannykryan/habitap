@@ -32,15 +32,6 @@ export interface ActiveListProps {
   toggleIsCommitted: () => void;
 }
 
-export interface PromptProps {
-  tenDaysPassed: boolean;
-  isCommitted: boolean;
-  maxScore: number;
-  currentScore: number;
-  percentageDecimal: number;
-  activePage: string;
-}
-
 export interface Task {
   id: number;
   title: string;
@@ -76,18 +67,6 @@ export interface PopupProps {
   toggleGoodLuck: () => void;
   taskData: Task[];
   setActivePage: (activePage: string) => void;
-}
-
-export interface HomeProps {
-  currentScore: number;
-  maxScore: number;
-  percentageDecimal: number;
-  habitLogsArray: HabitLog[] | null;
-  habitData: Habit[] | null;
-  goodLuck: boolean;
-  toggleGoodLuck: () => void;
-  showGrowth: string;
-  toggleTenDaysPassed: () => void;
 }
 
 export interface EndingPopupProps {

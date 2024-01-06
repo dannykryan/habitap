@@ -1,4 +1,3 @@
-import { PromptProps } from "../../types/types";
 import { useAppContext } from "../../src/app/context";
 
 export default function Prompt() {
