@@ -4,9 +4,9 @@ import "src/app/globals.css";
 import NewRoutineList from "../NewRoutineList/index";
 import { useState } from "react";
 import styles from "./page.module.css";
-import Popup from "../popup/index";
+import Popup from "../popups/readyToCommitPopup/index";
 import supabase from "../../lib/initSupabase";
-import InstructionPopup from "../instructionPopup/index";
+import InstructionPopup from "../popups/instructionPopup/index";
 import { Task, NewRoutineFormProps } from "../../types/types";
 
 let taskDataOriginal: Task[] = [];

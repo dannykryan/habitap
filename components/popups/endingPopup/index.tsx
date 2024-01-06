@@ -1,6 +1,6 @@
-import supabase from "../../lib/initSupabase";
+import supabase from "../../../lib/initSupabase";
 import Link from "next/link";
-import { useAppContext } from "../../src/app/context";
+import { useAppContext } from "../../../src/app/context";
 
 export default function EndingPopup() {
 

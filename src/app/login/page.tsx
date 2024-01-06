@@ -1,14 +1,8 @@
 import BeeWithShadow from '../../../public/assets/bee-with-shadow.png';
 import Image from 'next/image';
 import ButtonBar from '../../../components/ButtonBar';
-import { useAppContext } from '../../../src/app/context';
 
 export default async function Login() {
-
-    // const {
-    //     activePage,
-    //     setActivePage,
-    //   } = useAppContext();
   
   return <>
     <h1>Welcome Back!</h1>

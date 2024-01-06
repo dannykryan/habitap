@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import ButtonBar from "../../components/ButtonBar";
 import Home from "../../components/Home/index";
-import EndingPopup from "../../components/EndingPopup";
+import EndingPopup from "../../components/popups/endingPopup";
 import Prompt from "../../components/prompt/index";
 import { useAppContext } from "./context";
 import { Habit } from "../../types/types";

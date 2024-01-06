@@ -5,7 +5,7 @@ import styles from '../ActiveListItem/ActiveListItem.module.css';
 import Image from 'next/image';
 import checkboxTicked from '../../public/icons/checkbox-ticked.svg';
 import checkboxUnticked from '../../public/icons/checkbox-unticked.svg';
-import TickPopup from '../../components/tickPopup';
+import TickPopup from '../popups/tickPopup';
 import supabase from "../../lib/initSupabase";
 import { ListItemProps } from "../../types/types";
 
