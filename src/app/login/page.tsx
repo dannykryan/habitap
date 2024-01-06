@@ -1,6 +1,6 @@
 import BeeWithShadow from '../../../public/assets/bee-with-shadow.png';
 import Image from 'next/image';
-import ButtonBar from '../../../components/ButtonBar';
+import ButtonBar from '../components/ButtonBar';
 
 export default async function Login() {
   

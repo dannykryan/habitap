@@ -1,9 +1,9 @@
 "use client"
 
-import Prompt from "../../../components/prompt";
-import ActiveList from "../../../components/ActiveList";
-import NewRoutineForm from "../../../components/NewRoutineForm";
-import ButtonBar from "../../../components/ButtonBar";
+import Prompt from "../components/Prompt";
+import ActiveList from "../components/ActiveList";
+import NewRoutineForm from "../components/NewRoutineForm";
+import ButtonBar from "../components/ButtonBar";
 import { useAppContext } from "../context";
 
 export default function List() {

@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import allFlowers from "../../public/plants/flower-bunch-2.json";
-import threeBeesPlease from "../../public/plants/three-bees-please.json";
-import yourFirstBee from "../../public/plants/your-first-bee.json";
-import twoWholeBees from "../../public/plants/two-whole-bees.json";
+import allFlowers from "../../../public/plants/flower-bunch-2.json";
+import threeBeesPlease from "../../../public/plants/three-bees-please.json";
+import yourFirstBee from "../../../public/plants/your-first-bee.json";
+import twoWholeBees from "../../../public/plants/two-whole-bees.json";
 import Lottie from "lottie-react";
-import { Flower, OneBee, TwoBees, ThreeBees, Plant, PlantProps } from "../../types/types";
-import { useAppContext } from "../../src/app/context";
+import { Flower, OneBee, TwoBees, ThreeBees, Plant } from "../../../types/types";
+import { useAppContext } from "../context";
 
 
 export default function Plant() {

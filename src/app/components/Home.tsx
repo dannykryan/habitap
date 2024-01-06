@@ -1,8 +1,8 @@
 "use client";
 
-import Plant from "../plant/index";
+import Plant from "./Plant";
 import "src/app/globals.css";
-import { useAppContext } from "../../src/app/context";
+import { useAppContext } from "../context";
 
 export default function Home() {
 

@@ -1,5 +1,5 @@
-import Prompt from "../../../components/prompt";
-import ButtonBar from "../../../components/ButtonBar";
+import Prompt from "../components/Prompt";
+import ButtonBar from "../components/ButtonBar";
 import Image from "next/image";
 import profilePic from "../../../public/assets/Bumblebee_Man.png"
 import { useAppContext } from '../../../src/app/context';

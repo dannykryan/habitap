@@ -1,13 +1,12 @@
 "use client";
 
 import "src/app/globals.css";
-import NewRoutineList from "../NewRoutineList/index";
+import NewRoutineList from "./NewRoutineList";
 import { useState } from "react";
-import styles from "./page.module.css";
-import Popup from "../popups/readyToCommitPopup/index";
-import supabase from "../../lib/initSupabase";
-import InstructionPopup from "../popups/instructionPopup/index";
-import { Task, NewRoutineFormProps } from "../../types/types";
+import Popup from "./popups/CommitPopup";
+import supabase from "../../../lib/initSupabase";
+import InstructionPopup from "./popups/InstructionPopup";
+import { Task, NewRoutineFormProps } from "../../../types/types";
 
 let taskDataOriginal: Task[] = [];
 
@@ -85,7 +84,7 @@ export default function NewRoutineForm({
       </div>
       <div className="btn-container" style={{ justifyContent: "center" }}>
         <button
-          className={styles.commitBtn}
+          className="commitBtn"
           onClick={confirmData}
           disabled={taskData.length === 0} // Disable if taskData is empty
         >

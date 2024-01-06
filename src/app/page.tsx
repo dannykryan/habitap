@@ -1,10 +1,10 @@
 "use client"
 
 import React, { useState, useEffect } from "react";
-import ButtonBar from "../../components/ButtonBar";
-import Home from "../../components/Home/index";
-import EndingPopup from "../../components/popups/endingPopup";
-import Prompt from "../../components/prompt/index";
+import ButtonBar from "./components/ButtonBar";
+import Home from "./components/Home";
+import EndingPopup from "./components/popups/EndingPopup";
+import Prompt from "./components/Prompt";
 import { useAppContext } from "./context";
 import { Habit } from "../../types/types";
 

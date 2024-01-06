@@ -1,7 +1,7 @@
 "use client"
 
-import Prompt from "../../../components/prompt";
-import ButtonBar from "../../../components/ButtonBar";
+import Prompt from "../components/Prompt";
+import ButtonBar from "../components/ButtonBar";
 import plantGrowth1 from "../../../public/plants/temp/plant-growth-1.png";
 import plantGrowth2 from "../../../public/plants/temp/plant-growth-2.png";
 import plantGrowth4 from "../../../public/plants/temp/plant-growth-4.png";

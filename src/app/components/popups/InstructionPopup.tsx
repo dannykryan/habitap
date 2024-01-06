@@ -1,5 +1,5 @@
 import Image from "next/image";
-import {InstructionPopupProps} from "../../../types/types";
+import {InstructionPopupProps} from "../../../../types/types";
 
 export default function InstructionPopup({
   toggleInstructions,
