@@ -1,6 +1,5 @@
 "use client"
 
-import React, { useState, useEffect } from "react";
 import ButtonBar from "./components/ButtonBar";
 import Home from "./components/Home";
 import EndingPopup from "./components/popups/EndingPopup";
@@ -31,6 +30,7 @@ export default function Page() {
       setShowGrowth("normal");
     }, 30000);
   };
+
 
   // Function to simulate advancing time by 10 days
   const endRoutine = () => {

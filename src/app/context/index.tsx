@@ -20,9 +20,6 @@ export function AppWrapper({ children } : {
 
     // Calculate the current score, max score, and percentage completion
     let [tenDaysPassed, setTenDaysPassed] = useState<boolean>(false);
-    let currentScore = habitLogsArray?.length ?? 0;
-    let maxScore = habitData?.length ? habitData.length * 10 : 0;
-    let percentageDecimal = maxScore ? currentScore / maxScore : 0;
 
     function toggleGoodLuck() {
       setGoodLuck(!goodLuck);
@@ -83,9 +80,6 @@ export function AppWrapper({ children } : {
           setHabitLogsArray,
           tenDaysPassed,
           toggleTenDaysPassed,
-          currentScore,
-          maxScore,
-          percentageDecimal,
           toggleIsCommitted,
           activePage,
           setActivePage,

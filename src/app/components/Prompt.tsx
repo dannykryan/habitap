@@ -5,15 +5,14 @@ export default function Prompt() {
   const {
     isCommitted,
     tenDaysPassed,
-    currentScore,
-    maxScore,
-    percentageDecimal,
     activePage,
+    habitData,
+    habitLogsArray,
   } = useAppContext();
 
-  console.log(`tenDaysPassed is: ${tenDaysPassed}`);
-  console.log(`isCommitted is: ${isCommitted}`);
-  console.log(`activepage is: ${activePage}`)
+    let currentScore = habitLogsArray?.length ?? 0;
+    let maxScore = habitData?.length ? habitData.length * 10 : 0;
+    let percentageDecimal = maxScore ? currentScore / maxScore : 0;
 
   let promptMessage = "";
 

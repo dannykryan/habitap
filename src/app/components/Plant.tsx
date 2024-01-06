@@ -11,7 +11,8 @@ import { useAppContext } from "../context";
 export default function Plant() {
 
   const {
-    percentageDecimal,
+    habitData,
+    habitLogsArray,
     showGrowth,
 } = useAppContext();
 
@@ -31,6 +32,11 @@ export default function Plant() {
 
   // Effect to update animation options when the percentageDecimal changes
   useEffect(() => {
+
+    let currentScore = habitLogsArray?.length ?? 0;
+    let maxScore = habitData?.length ? habitData.length * 10 : 0;
+    let percentageDecimal = maxScore ? currentScore / maxScore : 0;
+
     // Initial frame values
     let startFrame = allFlowers.ip; //in-point or first frame of animation
     let endFrame = allFlowers.op;   //out-point or last frame of animation
@@ -99,7 +105,7 @@ export default function Plant() {
     }));
     // Increment the key to force a re-render and restart the animation
     setAnimationKey((prevKey) => prevKey + 1);
-  }, [percentageDecimal, showGrowth]);
+  }, [habitData, habitLogsArray, showGrowth]);
 
   return (
     <>
