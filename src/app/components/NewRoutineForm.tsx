@@ -15,6 +15,7 @@ export default function NewRoutineForm({
   goodLuck,
   toggleGoodLuck,
   setActivePage,
+  setHabitData,
 }: NewRoutineFormProps) {
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal);
   const [toggleData, setToggleData] = useState<boolean>(false);
@@ -38,16 +39,22 @@ export default function NewRoutineForm({
     console.log(tasks);
     const { data, error: insertError } = await supabase
       .from("habit_table")
-      .insert(tasks);
+      .insert(tasks)
+      .select()
 
     if (insertError) {
       console.error("Error inserting data:", insertError);
       return;
     }
 
+    console.log(`TEST DATA IS:`, data)
+
     if (data) {
       const getData = async () => {
-        const { data, error } = await supabase.from("habit_table").select("*");
+        const { data, error } = await supabase.from("habit_table")
+        .select("*")
+        .eq("user_id", "1");
+          setHabitData(data);
       };
       getData();
     }

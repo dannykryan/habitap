@@ -45,6 +45,7 @@ export interface NewRoutineFormProps {
   goodLuck: boolean;
   toggleGoodLuck: () => void;
   setActivePage: (activePage: string) => void;
+  setHabitData: (habitData: Habit[] | null) => void;
 }
 
 export interface NewRoutineListProps {
@@ -101,4 +102,11 @@ export interface PlantProps {
 
 export interface TickPopupProps {
   closePopup: () => void;
+}
+
+export interface Data {
+  completed: boolean | null;
+    created_at: string;
+    habit_id: string;
+    habit_name: string | null;
 }

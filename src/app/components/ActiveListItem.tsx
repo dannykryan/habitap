@@ -7,9 +7,15 @@ import checkboxUnticked from '../../../public/icons/checkbox-unticked.svg';
 import TickPopup from './popups/checkboxPopup';
 import supabase from "../../../lib/initSupabase";
 import { ListItemProps } from "../../../types/types";
+import { useAppContext } from "../context";
 
 
 const ActiveListItem: React.FC<ListItemProps> = ({ children, todo}) => {
+
+  const {
+    habitLogsArray,
+    setHabitLogsArray,
+  } = useAppContext();
   
   const currentDate = new Date();
   const formattedDate = new Date().toISOString().split('T')[0];
@@ -44,7 +50,13 @@ const ActiveListItem: React.FC<ListItemProps> = ({ children, todo}) => {
       .insert([
         { habit_id: todo.habit_id, user_id: 1},
       ])
-      console.log(todo)
+      .select()
+      if (data) {
+        const { data: habitLogs, error: habitLogsError } = await supabase
+            .from("habit_log")
+            .select("*");
+            setHabitLogsArray(habitLogs);
+      }
         }
         else {
           setShowPopup(true);

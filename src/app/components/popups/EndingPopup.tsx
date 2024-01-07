@@ -10,6 +10,8 @@ export default function EndingPopup() {
       toggleIsCommitted,
       habitData,
       habitLogsArray,
+      setHabitLogsArray,
+      setHabitData,
     } = useAppContext();
 
   let currentScore = habitLogsArray?.length ?? 0;
@@ -26,6 +28,8 @@ export default function EndingPopup() {
     if (deleteLogError) {
       console.error("Error deleting habit_log records:", deleteLogError);
       return;
+    } else {
+      setHabitLogsArray([]);
     }
 
     // Delete records from habit_table
@@ -37,6 +41,8 @@ export default function EndingPopup() {
     if (deleteError) {
       console.error("Error deleting habit_table records:", deleteError);
       return;
+    } else {
+      setHabitData([]);
     }
     console.log("Ending Okay button clicked");
     toggleIsCommitted();
