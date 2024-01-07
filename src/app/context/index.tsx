@@ -25,19 +25,16 @@ export function AppWrapper({ children } : {
       setGoodLuck(!goodLuck);
     }
 
-    const [getData, setGetData] = useState<any>(null);
-
     useEffect(() => {
-      const fetchData = async () => {
-        const { data, error } = await supabase
-          .from("habit_table")
-          .select("*")
-          .eq("user_id", "1");
-        setGetData(data);
-      };
-
-      fetchData();
-    }, [getData]);
+        const getData = async () => {
+          const { data, error } = await supabase
+            .from("habit_table")
+            .select("*")
+            .eq("user_id", "1");
+          setHabitData(data);
+        };
+        getData();
+      }, []);
 
       useEffect(() => {
         // Update isCommitted when habitData changes

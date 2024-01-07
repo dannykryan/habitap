@@ -106,8 +106,6 @@ export default function Plant() {
     setAnimationKey((prevKey) => prevKey + 1);
   }, [habitData, habitLogsArray, showGrowth]);
 
-  console.log(habitLogsArray)
-
   return (
     <>
       <Lottie
