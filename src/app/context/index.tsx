@@ -68,7 +68,7 @@ export function AppWrapper({ children } : {
     router.refresh()
     setEmail('')
     setPassword('')
-    router.push('/')
+    router.push('/list')
     console.log(`This is the user data: `, res.data.user)
   }
 
