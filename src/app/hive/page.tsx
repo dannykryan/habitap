@@ -18,9 +18,11 @@ export default function Settings() {
 
     const router = useRouter();
 
+    if (window !== undefined && window.location !== undefined) {
     if (user?.id === undefined || user?.id === null) {
         router.push("/login")
     }
+}
 
     return (
         <>

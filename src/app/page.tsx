@@ -53,9 +53,11 @@ export default function Page() {
 
   console.log("This is page USER ID: ", user?.id)
 
+  if (window !== undefined && window.location !== undefined) {
   if (user?.id === undefined || user?.id === null) {
     router.push("/login")
   }
+}
 
   return (
     <>
