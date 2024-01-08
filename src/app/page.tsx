@@ -15,6 +15,8 @@ export default function Page() {
       tenDaysPassed,
       showGrowth,
       setShowGrowth,
+      user,
+      setUser,
   } = useAppContext();
 
   const handleShowGrowthBtn = () => {
@@ -43,6 +45,8 @@ export default function Page() {
       setHabitData(updatedHabitData);
     }
   };
+
+  // console.log("This is page USER: ", user.id)
 
   return (
     <>

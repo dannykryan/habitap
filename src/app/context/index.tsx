@@ -158,7 +158,9 @@ export function AppWrapper({ children } : {
           setPassword,
           handleSignUp,
           handleSignIn,
-          handleSignOut
+          handleSignOut,
+          user,
+          setUser,
       }}>
             {children}
         </AppContext.Provider>

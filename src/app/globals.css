@@ -14,7 +14,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* box-shadow: 0 0px 10px #58925d inset; */
+  box-shadow: 0 0px 10px #58925d inset;
   box-sizing: border-box;
   height: 100vh;
   margin: 0;
