@@ -1,13 +1,12 @@
 "use client";
 
 import "src/app/globals.css";
-import NewRoutineList from "../NewRoutineList/index";
+import NewRoutineList from "./NewRoutineList";
 import { useState } from "react";
-import styles from "./page.module.css";
-import Popup from "../popup/index";
-import supabase from "../../lib/initSupabase";
-import InstructionPopup from "../instructionPopup/index";
-import { Task, NewRoutineFormProps } from "../../types/types";
+import Popup from "./popups/CommitPopup";
+import supabase from "../../../lib/initSupabase";
+import InstructionPopup from "./popups/InstructionPopup";
+import { Task, NewRoutineFormProps } from "../../../types/types";
 
 let taskDataOriginal: Task[] = [];
 
@@ -16,6 +15,7 @@ export default function NewRoutineForm({
   goodLuck,
   toggleGoodLuck,
   setActivePage,
+  setHabitData,
 }: NewRoutineFormProps) {
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal);
   const [toggleData, setToggleData] = useState<boolean>(false);
@@ -39,16 +39,22 @@ export default function NewRoutineForm({
     console.log(tasks);
     const { data, error: insertError } = await supabase
       .from("habit_table")
-      .insert(tasks);
+      .insert(tasks)
+      .select()
 
     if (insertError) {
       console.error("Error inserting data:", insertError);
       return;
     }
 
+    console.log(`TEST DATA IS:`, data)
+
     if (data) {
       const getData = async () => {
-        const { data, error } = await supabase.from("habit_table").select("*");
+        const { data, error } = await supabase.from("habit_table")
+        .select("*")
+        .eq("user_id", "1");
+          setHabitData(data);
       };
       getData();
     }
@@ -85,7 +91,7 @@ export default function NewRoutineForm({
       </div>
       <div className="btn-container" style={{ justifyContent: "center" }}>
         <button
-          className={styles.commitBtn}
+          className="commitBtn"
           onClick={confirmData}
           disabled={taskData.length === 0} // Disable if taskData is empty
         >

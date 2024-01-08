@@ -1,16 +1,22 @@
-import Image from "next/image";
-import supabase from "../../lib/initSupabase";
-import {EndingPopupProps} from "../../types/types";
+import supabase from "../../../../lib/initSupabase";
 import Link from "next/link";
+import { useAppContext } from "../../context";
 
-export default function EndingPopup({
-  tenDaysPassed,
-  maxScore,
-  currentScore,
-  percentageDecimal,
-  toggleIsCommitted,
-  isCommitted,
-}: EndingPopupProps) {
+export default function EndingPopup() {
+
+  const {
+      isCommitted,
+      tenDaysPassed,
+      toggleIsCommitted,
+      habitData,
+      habitLogsArray,
+      setHabitLogsArray,
+      setHabitData,
+    } = useAppContext();
+
+  let currentScore = habitLogsArray?.length ?? 0;
+  let maxScore = habitData?.length ? habitData.length * 10 : 0;
+  let percentageDecimal = maxScore ? currentScore / maxScore : 0;
 
   async function handleEndingOkayButton() {
       // Delete all records from habit_log
@@ -22,6 +28,8 @@ export default function EndingPopup({
     if (deleteLogError) {
       console.error("Error deleting habit_log records:", deleteLogError);
       return;
+    } else {
+      setHabitLogsArray([]);
     }
 
     // Delete records from habit_table
@@ -33,6 +41,8 @@ export default function EndingPopup({
     if (deleteError) {
       console.error("Error deleting habit_table records:", deleteError);
       return;
+    } else {
+      setHabitData([]);
     }
     console.log("Ending Okay button clicked");
     toggleIsCommitted();

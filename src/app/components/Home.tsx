@@ -1,20 +1,16 @@
 "use client";
 
-import Plant from "../plant/index";
+import Plant from "./Plant";
 import "src/app/globals.css";
-import {HomeProps} from "../../types/types";
+import { useAppContext } from "../context";
 
-export default function Home({
-  currentScore,
-  maxScore,
-  percentageDecimal,
-  habitLogsArray,
-  habitData,
-  goodLuck,
-  toggleGoodLuck,
-  toggleTenDaysPassed,
-  showGrowth,
-}: HomeProps) {
+export default function Home() {
+
+  const {
+    toggleTenDaysPassed,
+    goodLuck,
+    toggleGoodLuck,
+} = useAppContext();
 
   function handleOkayBtn() {
     toggleGoodLuck();
@@ -36,7 +32,7 @@ export default function Home({
         </div>
       </div>
       <div id="plant-progress-container">
-        <Plant percentageDecimal={percentageDecimal} showGrowth={showGrowth}/>
+        <Plant />
       </div>
     </>
   );

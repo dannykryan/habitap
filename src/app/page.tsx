@@ -1,37 +1,22 @@
 "use client"
 
-import React, { useState, useEffect } from "react";
-import ButtonBar from "../../components/ButtonBar";
-import Home from "../../components/homepage/index";
-import EndingPopup from "../../components/EndingPopup";
-import Prompt from "../../components/prompt/index";
+import ButtonBar from "./components/ButtonBar";
+import Home from "./components/Home";
+import EndingPopup from "./components/popups/EndingPopup";
+import Prompt from "./components/Prompt";
 import { useAppContext } from "./context";
 import { Habit } from "../../types/types";
 
 export default function Page() {
 
   const {
-      currentDate,
-      isCommitted,
-      setIsCommitted,
       habitData,
       setHabitData,
-      habitLogsArray,
-      setHabitLogsArray,
       tenDaysPassed,
-      toggleTenDaysPassed,
-      currentScore,
-      maxScore,
-      percentageDecimal,
-      toggleIsCommitted,
-      activePage,
-      setActivePage,
-      goodLuck,
-      toggleGoodLuck,
+      showGrowth,
+      setShowGrowth,
   } = useAppContext();
 
-  const [date, setDate] = useState<boolean>(false);
-  const [showGrowth, setShowGrowth] = useState<string>("normal");
   const handleShowGrowthBtn = () => {
     if (showGrowth === "normal") {
       setShowGrowth("growth");
@@ -45,6 +30,7 @@ export default function Page() {
       setShowGrowth("normal");
     }, 30000);
   };
+
 
   // Function to simulate advancing time by 10 days
   const endRoutine = () => {
@@ -60,37 +46,13 @@ export default function Page() {
 
   return (
     <>
-      <Prompt
-        tenDaysPassed={tenDaysPassed}
-        isCommitted={isCommitted}
-        maxScore={maxScore}
-        currentScore={currentScore}
-        percentageDecimal={percentageDecimal}
-        activePage={activePage}
-      />
+      <Prompt />
         <>
         <div id="main-plant-container">
-          <Home
-            currentScore={currentScore}
-            maxScore={maxScore}
-            percentageDecimal={percentageDecimal}
-            habitLogsArray={habitLogsArray}
-            habitData={habitData}
-            goodLuck={goodLuck}
-            toggleGoodLuck={toggleGoodLuck}
-            toggleTenDaysPassed={toggleTenDaysPassed}
-            showGrowth={showGrowth}
-          />
+          <Home />
           {tenDaysPassed && (
             // Render EndingPopup component when ten days have passed
-            <EndingPopup
-              tenDaysPassed={tenDaysPassed}
-              maxScore={maxScore}
-              currentScore={currentScore}
-              percentageDecimal={percentageDecimal}
-              toggleIsCommitted={toggleIsCommitted}
-              isCommitted={isCommitted}
-            />
+            <EndingPopup />
           )}
           </div>
           <div className="dev-btn-container">

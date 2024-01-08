@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { PopupProps } from "../../types/types";
+import { PopupProps } from "../../../../types/types";
 import Link from "next/link";
 
 const Popup: React.FC<PopupProps> = ({

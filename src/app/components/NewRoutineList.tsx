@@ -1,9 +1,8 @@
-import styles from './NewRoutineList.module.css';
 import Image from 'next/image';
-import enterIcon from '../../public/icons/enter-icon-green2.svg';
-import trashIconGreen from '../../public/icons/trash-icon-green.svg';
+import enterIcon from '../../../public/icons/enter-icon-green2.svg';
+import trashIconGreen from '../../../public/icons/trash-icon-green.svg';
 import { useState } from 'react';
-import { Task, NewRoutineListProps } from '../../types/types';
+import { Task, NewRoutineListProps } from '../../../types/types';
 
 export default function NewRoutineList({ taskData, addNewData, deleteData }: NewRoutineListProps) {
   const maxTasks = 5; // Maximum number of tasks to display
@@ -43,10 +42,10 @@ export default function NewRoutineList({ taskData, addNewData, deleteData }: New
 
   return (
     <div id="list-container">
-    <ul className={styles.myList}>
+    <ul className="myList">
       {taskData.map((todo: Task) => (
-        <li key={todo.id} className={styles.listItem}>
-          <div className={styles.newHabit}>
+        <li key={todo.id} className="listItem">
+          <div className="newHabit">
             {todo.title}
             <Image
               src={trashIconGreen}
@@ -60,10 +59,10 @@ export default function NewRoutineList({ taskData, addNewData, deleteData }: New
       {/* Render additional inactive items if there are less than maxTasks */}
       {Array.from({ length: maxTasks - taskData.length }).map((_, index) => (
         <li key={index}>
-          <div className={index === 0 ? styles.listInput : styles.emptyListItem}>
+          <div className={index === 0 ? "listInput" : "emptyListItem"}>
             {index === 0 ? (
               <input
-                className={styles.emptyListInput}
+                className="emptyListInput"
                 type="text"
                 value={inputValue}
                 onChange={handleInputValue}

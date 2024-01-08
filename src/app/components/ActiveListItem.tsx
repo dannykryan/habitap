@@ -1,18 +1,24 @@
 "use client"
 import React, { ReactNode } from 'react';
 import { useState , useEffect } from 'react';
-import styles from '../ActiveListItem/ActiveListItem.module.css';
 import Image from 'next/image';
-import checkboxTicked from '../../public/icons/checkbox-ticked.svg';
-import checkboxUnticked from '../../public/icons/checkbox-unticked.svg';
-import TickPopup from '../../components/tickPopup';
-import supabase from "../../lib/initSupabase";
-import { ListItemProps } from "../../types/types";
+import checkboxTicked from '../../../public/icons/checkbox-ticked.svg';
+import checkboxUnticked from '../../../public/icons/checkbox-unticked.svg';
+import TickPopup from './popups/checkboxPopup';
+import supabase from "../../../lib/initSupabase";
+import { ListItemProps } from "../../../types/types";
+import { useAppContext } from "../context";
 
 
 const ActiveListItem: React.FC<ListItemProps> = ({ children, todo}) => {
+
+  const {
+    habitLogsArray,
+    setHabitLogsArray,
+  } = useAppContext();
   
-  const currentDate = new Date().toISOString().split('T')[0];
+  const currentDate = new Date();
+  const formattedDate = new Date().toISOString().split('T')[0];
   const [tickCheckBox, setTickCheckBox] = useState<boolean> (false);
   const [showPopup, setShowPopup] = useState<boolean>(false);
 
@@ -28,10 +34,10 @@ const ActiveListItem: React.FC<ListItemProps> = ({ children, todo}) => {
         }
         // Extract values of completed_at using map
         const loggedDate = data.map((log) => log.completed_at.split('T')[0]);
-        setTickCheckBox(loggedDate.includes(currentDate))
+        setTickCheckBox(loggedDate.includes(formattedDate))
       };
       getHabitLog();
-    }, [todo.habit_id, currentDate]);
+    }, [todo.habit_id, formattedDate]);
 
   function closePopup() {
     setShowPopup(false);
@@ -44,7 +50,13 @@ const ActiveListItem: React.FC<ListItemProps> = ({ children, todo}) => {
       .insert([
         { habit_id: todo.habit_id, user_id: 1},
       ])
-      console.log(todo)
+      .select()
+      if (data) {
+        const { data: habitLogs, error: habitLogsError } = await supabase
+            .from("habit_log")
+            .select("*");
+            setHabitLogsArray(habitLogs);
+      }
         }
         else {
           setShowPopup(true);
@@ -53,7 +65,7 @@ const ActiveListItem: React.FC<ListItemProps> = ({ children, todo}) => {
       }
 
   return ( 
-  <div className={styles.todoActive}>
+  <div className="todoActive">
     {children}
     <Image 
       src={tickCheckBox ? checkboxTicked : checkboxUnticked}

@@ -1,4 +1,4 @@
-import {TickPopupProps} from "../../types/types";
+import {TickPopupProps} from "../../../../types/types";
 
 function TickPopup( { closePopup } : TickPopupProps) {
 

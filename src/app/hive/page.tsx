@@ -1,34 +1,18 @@
 "use client"
-import Prompt from "../../../components/prompt";
-import ButtonBar from "../../../components/ButtonBar";
+
+import Prompt from "../components/Prompt";
+import ButtonBar from "../components/ButtonBar";
 import plantGrowth1 from "../../../public/plants/temp/plant-growth-1.png";
 import plantGrowth2 from "../../../public/plants/temp/plant-growth-2.png";
 import plantGrowth4 from "../../../public/plants/temp/plant-growth-4.png";
 import plantGrowthBees from "../../../public/plants/temp/plant-growth-bees-2.png";
 import Image from "next/image";
-import { useAppContext } from "../context";
 
 export default function Settings() {
 
-    const {
-        isCommitted,
-        tenDaysPassed,
-        currentScore,
-        maxScore,
-        percentageDecimal,
-        activePage,
-      } = useAppContext();
-
     return (
         <>
-<Prompt
-            tenDaysPassed={tenDaysPassed}
-            isCommitted={isCommitted}
-            maxScore={maxScore}
-            currentScore={currentScore}
-            percentageDecimal={percentageDecimal}
-            activePage={activePage}
-        />
+        <Prompt />
         <div className="hive-row">
             <div className="hive-box">
                 <Image

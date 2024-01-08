@@ -1,10 +1,18 @@
-import { PromptProps } from "../../types/types";
+import { useAppContext } from "../context";
 
-export default function Prompt({ tenDaysPassed, isCommitted, maxScore, currentScore, percentageDecimal, activePage }: PromptProps) {
+export default function Prompt() {
 
-  console.log(`tenDaysPassed is: ${tenDaysPassed}`);
-  console.log(`isCommitted is: ${isCommitted}`);
-  console.log(`activepage is: ${activePage}`)
+  const {
+    isCommitted,
+    tenDaysPassed,
+    activePage,
+    habitData,
+    habitLogsArray,
+  } = useAppContext();
+
+  let currentScore = habitLogsArray?.length ?? 0;
+  let maxScore = habitData?.length ? habitData.length * 10 : 0;
+  let percentageDecimal = maxScore ? currentScore / maxScore : 0;
 
   let promptMessage = "";
 
@@ -24,7 +32,7 @@ export default function Prompt({ tenDaysPassed, isCommitted, maxScore, currentSc
     } else if (percentageDecimal < 0.4) {
       promptMessage = "You're really getting the hang of this!";
     } else if (percentageDecimal < 0.5) {
-      promptMessage = "You've managed to grow quite the little garden!";
+      promptMessage = "That's quite the little garden!";
     } else if (percentageDecimal < 0.7) {
       promptMessage = "Now that's a garden to be proud of!";
     } else if (percentageDecimal < 0.8) {
@@ -42,13 +50,13 @@ export default function Prompt({ tenDaysPassed, isCommitted, maxScore, currentSc
     promptMessage = "Change your personal details below:";
   } else if (isCommitted && tenDaysPassed) {
     if (percentageDecimal === 1) {
-      promptMessage = "Congratulations on a perfect score! What a busy bee you are!";
-    } else if (percentageDecimal <= 0.7) {
-      promptMessage = "Fantastic job! Your hard work has pleased the bees!";
+      promptMessage = "Congratulations on a perfect score!";
+    } else if (percentageDecimal > 0.7) {
+      promptMessage = "Your hard work has pleased the bees!";
     } else if (percentageDecimal > 0.5) {
-      promptMessage = "Fantastic job! You made significant progress. Keep pushing!";
+      promptMessage = "You made significant progress.";
     } else {
-      promptMessage = "Game over! Reflect on your progress and come back stronger.";
+      promptMessage = "Come back stronger next time.";
     }
   } else {
     promptMessage = "What do you want to do today?";

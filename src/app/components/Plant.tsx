@@ -1,13 +1,20 @@
 import { useState, useEffect } from "react";
-import allFlowers from "../../public/plants/flower-bunch-2.json";
-import threeBeesPlease from "../../public/plants/three-bees-please.json";
-import yourFirstBee from "../../public/plants/your-first-bee.json";
-import twoWholeBees from "../../public/plants/two-whole-bees.json";
+import allFlowers from "../../../public/plants/flower-bunch-2.json";
+import threeBeesPlease from "../../../public/plants/three-bees-please.json";
+import yourFirstBee from "../../../public/plants/your-first-bee.json";
+import twoWholeBees from "../../../public/plants/two-whole-bees.json";
 import Lottie from "lottie-react";
-import { Flower, OneBee, TwoBees, ThreeBees, Plant, PlantProps } from "../../types/types";
+import { Flower, OneBee, TwoBees, ThreeBees, Plant } from "../../../types/types";
+import { useAppContext } from "../context";
 
+export default function Plant() {
 
-export default function Plant({ percentageDecimal, showGrowth }: PlantProps) {
+  const {
+    habitData,
+    habitLogsArray,
+    showGrowth,
+} = useAppContext();
+
   const [animationKey, setAnimationKey] = useState<number>(0);
   // State to manage animation options
   const [animationOptions, setAnimationOptions] = useState<Plant>({
@@ -24,6 +31,11 @@ export default function Plant({ percentageDecimal, showGrowth }: PlantProps) {
 
   // Effect to update animation options when the percentageDecimal changes
   useEffect(() => {
+
+    let currentScore = habitLogsArray?.length ?? 0;
+    let maxScore = habitData?.length ? habitData.length * 10 : 0;
+    let percentageDecimal = maxScore ? currentScore / maxScore : 0;
+
     // Initial frame values
     let startFrame = allFlowers.ip; //in-point or first frame of animation
     let endFrame = allFlowers.op;   //out-point or last frame of animation
@@ -92,7 +104,7 @@ export default function Plant({ percentageDecimal, showGrowth }: PlantProps) {
     }));
     // Increment the key to force a re-render and restart the animation
     setAnimationKey((prevKey) => prevKey + 1);
-  }, [percentageDecimal, showGrowth]);
+  }, [habitData, habitLogsArray, showGrowth]);
 
   return (
     <>

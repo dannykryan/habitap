@@ -1,8 +1,10 @@
 "use client"
-import { createContext, useState, useContext } from 'react';
-import { useEffect } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 import supabase from '../../../lib/initSupabase';
-import { HabitLog, Habit } from "../../../types/types";
+import { HabitLog, Data } from "../../../types/types";
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { useRouter } from 'next/navigation';
+import { Database } from '../../../lib/supabase';
 
 const AppContext = createContext<any>(undefined);
 
@@ -11,16 +13,78 @@ export function AppWrapper({ children } : {
 }) {
     const currentDate = new Date();
     const [isCommitted, setIsCommitted] = useState<boolean>(false);
-    const [habitData, setHabitData] = useState<Habit[] | null>(null);
+    const [habitData, setHabitData] = useState<Data[] | null>(null);
     const [habitLogsArray, setHabitLogsArray] = useState<HabitLog[] | null>(null);
     const [activePage, setActivePage] = useState<string>("flower");
     const [goodLuck, setGoodLuck] = useState<boolean>(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const router = useRouter();
+    const [user, setUser] = useState<any>(null);
+    const supabase = createClientComponentClient<Database>();
+    const [showGrowth, setShowGrowth] = useState<string>("normal");
 
     // Calculate the current score, max score, and percentage completion
     let [tenDaysPassed, setTenDaysPassed] = useState<boolean>(false);
     let currentScore = habitLogsArray?.length ?? 0;
     let maxScore = habitData?.length ? habitData.length * 10 : 0;
     let percentageDecimal = maxScore ? currentScore / maxScore : 0;
+
+
+  useEffect(() => {
+    async function getUser() {
+      const { data: user, error } = await supabase.auth.getUser()
+      setUser(user)
+    }
+    getUser();
+  }, [supabase.auth])
+
+  const handleSignUp = async () => {
+    const res = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: `http://localhost:3000/auth/callback`,
+      },
+    })
+    setUser(res.data.user)
+    router.refresh()
+    setEmail('')
+    setPassword('')
+  }
+
+  const handleSignIn = async () => {
+    const res = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+    const userInfo = {
+      id: res.data.user!.id,
+      email: res.data.user!.email
+    }
+    console.log("This is the userInfo:", userInfo)
+    // setUser(res.data.user)
+    setUser({...userInfo})
+    router.refresh()
+    setEmail('')
+    setPassword('')
+    router.push('/')
+    console.log(`This is the user data: `, res.data.user)
+  }
+
+      // Assuming you are using React functional components
+    useEffect(() => {
+      // Log the user information when setUser has completed
+      console.log(`This is effect user: `, user);
+    }, [user]); // This will run the useEffect whenever the 'user' state changes
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut()
+    router.refresh()
+    setUser(null)
+  }
+
+  console.log({ user})
 
     function toggleGoodLuck() {
       setGoodLuck(!goodLuck);
@@ -35,7 +99,7 @@ export function AppWrapper({ children } : {
           setHabitData(data);
         };
         getData();
-      }, []);
+      }, [supabase]);
 
       useEffect(() => {
         // Update isCommitted when habitData changes
@@ -52,7 +116,7 @@ export function AppWrapper({ children } : {
           setHabitLogsArray(habitLogs);
         };
         getHabitLogs();
-      }, []);
+      }, [supabase]);
 
       if (habitData) {
         const startDate = new Date(habitData[0]?.created_at);
@@ -72,7 +136,6 @@ export function AppWrapper({ children } : {
 
     return (
         <AppContext.Provider value={{
-          currentDate,
           isCommitted,
           setIsCommitted,
           habitData,
@@ -81,15 +144,21 @@ export function AppWrapper({ children } : {
           setHabitLogsArray,
           tenDaysPassed,
           toggleTenDaysPassed,
-          currentScore,
-          maxScore,
-          percentageDecimal,
           toggleIsCommitted,
           activePage,
           setActivePage,
           goodLuck,
           toggleGoodLuck,
           useAppContext,
+          showGrowth,
+          setShowGrowth,
+          email,
+          setEmail,
+          password,
+          setPassword,
+          handleSignUp,
+          handleSignIn,
+          handleSignOut
       }}>
             {children}
         </AppContext.Provider>

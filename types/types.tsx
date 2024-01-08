@@ -32,15 +32,6 @@ export interface ActiveListProps {
   toggleIsCommitted: () => void;
 }
 
-export interface PromptProps {
-  tenDaysPassed: boolean;
-  isCommitted: boolean;
-  maxScore: number;
-  currentScore: number;
-  percentageDecimal: number;
-  activePage: string;
-}
-
 export interface Task {
   id: number;
   title: string;
@@ -54,6 +45,7 @@ export interface NewRoutineFormProps {
   goodLuck: boolean;
   toggleGoodLuck: () => void;
   setActivePage: (activePage: string) => void;
+  setHabitData: (habitData: Habit[] | null) => void;
 }
 
 export interface NewRoutineListProps {
@@ -76,27 +68,6 @@ export interface PopupProps {
   toggleGoodLuck: () => void;
   taskData: Task[];
   setActivePage: (activePage: string) => void;
-}
-
-export interface HomeProps {
-  currentScore: number;
-  maxScore: number;
-  percentageDecimal: number;
-  habitLogsArray: HabitLog[] | null;
-  habitData: Habit[] | null;
-  goodLuck: boolean;
-  toggleGoodLuck: () => void;
-  showGrowth: string;
-  toggleTenDaysPassed: () => void;
-}
-
-export interface EndingPopupProps {
-  tenDaysPassed: boolean;
-  maxScore: number;
-  currentScore: number;
-  percentageDecimal: number;
-  toggleIsCommitted: () => void;
-  isCommitted: boolean;
 }
 
 export interface MainBtnProps {
@@ -131,4 +102,11 @@ export interface PlantProps {
 
 export interface TickPopupProps {
   closePopup: () => void;
+}
+
+export interface Data {
+  completed: boolean | null;
+    created_at: string;
+    habit_id: string;
+    habit_name: string | null;
 }
