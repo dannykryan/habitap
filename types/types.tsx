@@ -46,6 +46,11 @@ export interface NewRoutineFormProps {
   toggleGoodLuck: () => void;
   setActivePage: (activePage: string) => void;
   setHabitData: (habitData: Habit[] | null) => void;
+  user: {
+    id: string;
+    email: string;
+  };
+  setUser: (user: number) => void;
 }
 
 export interface NewRoutineListProps {

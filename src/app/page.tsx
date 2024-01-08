@@ -46,7 +46,7 @@ export default function Page() {
     }
   };
 
-  // console.log("This is page USER: ", user.id)
+  console.log("This is page USER ID: ", user.id)
 
   return (
     <>

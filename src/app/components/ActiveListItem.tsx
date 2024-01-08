@@ -15,6 +15,8 @@ const ActiveListItem: React.FC<ListItemProps> = ({ children, todo}) => {
   const {
     habitLogsArray,
     setHabitLogsArray,
+    user,
+    setUser,
   } = useAppContext();
   
   const currentDate = new Date();
@@ -48,13 +50,14 @@ const ActiveListItem: React.FC<ListItemProps> = ({ children, todo}) => {
       const { data, error } = await supabase
       .from('habit_log')
       .insert([
-        { habit_id: todo.habit_id, user_id: 1},
+        { habit_id: todo.habit_id, user_id: user.id},
       ])
       .select()
       if (data) {
         const { data: habitLogs, error: habitLogsError } = await supabase
             .from("habit_log")
-            .select("*");
+            .select("*")
+            .eq("user_id", user.id)
             setHabitLogsArray(habitLogs);
       }
         }

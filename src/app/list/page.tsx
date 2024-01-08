@@ -16,6 +16,8 @@ export default function List() {
     goodLuck,
     toggleGoodLuck,
     setHabitData,
+    user,
+    setUser,
   } = useAppContext();
 
   return (
@@ -40,6 +42,8 @@ export default function List() {
               toggleGoodLuck={toggleGoodLuck}
               setActivePage={setActivePage}
               setHabitData={setHabitData}
+              user={user}
+              setUser={setUser}
             />
           )}
         </div>
