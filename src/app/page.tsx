@@ -6,6 +6,7 @@ import EndingPopup from "./components/popups/EndingPopup";
 import Prompt from "./components/Prompt";
 import { useAppContext } from "./context";
 import { Habit } from "../../types/types";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
 
@@ -18,6 +19,10 @@ export default function Page() {
       user,
       setUser,
   } = useAppContext();
+
+  const router = useRouter();
+
+  
 
   const handleShowGrowthBtn = () => {
     if (showGrowth === "normal") {
@@ -46,7 +51,11 @@ export default function Page() {
     }
   };
 
-  console.log("This is page USER ID: ", user.id)
+  console.log("This is page USER ID: ", user?.id)
+
+  if (user?.id === undefined || user?.id === null) {
+    router.push("/login")
+  }
 
   return (
     <>

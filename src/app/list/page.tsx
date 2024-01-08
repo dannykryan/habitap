@@ -5,8 +5,12 @@ import ActiveList from "../components/ActiveList";
 import NewRoutineForm from "../components/NewRoutineForm";
 import ButtonBar from "../components/ButtonBar";
 import { useAppContext } from "../context";
+import { useRouter } from 'next/navigation'
+
 
 export default function List() {
+
+
 
   const {
     isCommitted,
@@ -19,6 +23,12 @@ export default function List() {
     user,
     setUser,
   } = useAppContext();
+
+  const router = useRouter();
+
+  if (user?.id === undefined || user?.id === null) {
+    router.push("/login")
+  }
 
   return (
     <div>
