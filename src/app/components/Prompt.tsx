@@ -59,7 +59,7 @@ export default function Prompt() {
       promptMessage = "Come back stronger next time.";
     }
   } else {
-    promptMessage = "What do you want to do today?";
+    promptMessage = "What have you done today?";
   }
   
   return <p id="prompt">{promptMessage}</p>;
