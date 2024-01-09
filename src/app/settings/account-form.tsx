@@ -81,15 +81,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
         <h1>Account</h1>
         <p>Update your account information.</p>
       </div>
-      <div>
-        <label htmlFor="FirstName">First Name</label>
-        <input
-          id="FirstName"
-          type="text"
-          value={firstname || ''}
-          onChange={(e) => setFirstname(e.target.value)}
-        />
-      </div>
+      <div id="settings-profile-pic"></div>
       <div>
         <label htmlFor="username">Username</label>
         <input
@@ -97,6 +89,15 @@ export default function AccountForm({ session }: { session: Session | null }) {
           type="text"
           value={username || ''}
           onChange={(e) => setUsername(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="FirstName">First Name</label>
+        <input
+          id="FirstName"
+          type="text"
+          value={firstname || ''}
+          onChange={(e) => setFirstname(e.target.value)}
         />
       </div>
       <div>

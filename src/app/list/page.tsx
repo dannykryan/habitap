@@ -5,8 +5,12 @@ import ActiveList from "../components/ActiveList";
 import NewRoutineForm from "../components/NewRoutineForm";
 import ButtonBar from "../components/ButtonBar";
 import { useAppContext } from "../context";
+import { useRouter } from 'next/navigation'
+
 
 export default function List() {
+
+
 
   const {
     isCommitted,
@@ -16,7 +20,17 @@ export default function List() {
     goodLuck,
     toggleGoodLuck,
     setHabitData,
+    user,
+    setUser,
   } = useAppContext();
+
+  const router = useRouter();
+
+  if (typeof window !== 'undefined' && window.location !== undefined) {
+  if (user?.id === undefined || user?.id === null) {
+    router.push("/login")
+  }
+}
 
   return (
     <div>
@@ -40,6 +54,8 @@ export default function List() {
               toggleGoodLuck={toggleGoodLuck}
               setActivePage={setActivePage}
               setHabitData={setHabitData}
+              user={user}
+              setUser={setUser}
             />
           )}
         </div>

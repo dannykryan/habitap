@@ -15,8 +15,6 @@ export default function Login() {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       localStorage.setItem("isLoggedIn", "true");
-      
-     
     });
 
     const {

@@ -16,6 +16,8 @@ export default function NewRoutineForm({
   toggleGoodLuck,
   setActivePage,
   setHabitData,
+  user,
+  setUser,
 }: NewRoutineFormProps) {
   const [taskData, setTaskData] = useState<Task[]>(taskDataOriginal);
   const [toggleData, setToggleData] = useState<boolean>(false);
@@ -35,7 +37,7 @@ export default function NewRoutineForm({
 
   async function linkToMyList() {
     // Continue with inserting new records or other operations
-    const tasks = taskData.map((task) => ({ habit_name: task.title }));
+    const tasks = taskData.map((task) => ({ habit_name: task.title, user_id: user.id }));
     console.log(tasks);
     const { data, error: insertError } = await supabase
       .from("habit_table")
@@ -53,7 +55,7 @@ export default function NewRoutineForm({
       const getData = async () => {
         const { data, error } = await supabase.from("habit_table")
         .select("*")
-        .eq("user_id", "1");
+        .eq("user_id", user.id);
           setHabitData(data);
       };
       getData();

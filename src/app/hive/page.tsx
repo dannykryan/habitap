@@ -7,8 +7,22 @@ import plantGrowth2 from "../../../public/plants/temp/plant-growth-2.png";
 import plantGrowth4 from "../../../public/plants/temp/plant-growth-4.png";
 import plantGrowthBees from "../../../public/plants/temp/plant-growth-bees-2.png";
 import Image from "next/image";
+import { useAppContext } from "../context";
+import { useRouter } from 'next/navigation'
 
 export default function Settings() {
+
+    const {
+        user,
+    } = useAppContext();
+
+    const router = useRouter();
+
+    if (typeof window !== 'undefined' && window.location !== undefined) {
+    if (user?.id === undefined || user?.id === null) {
+        router.push("/login")
+    }
+}
 
     return (
         <>

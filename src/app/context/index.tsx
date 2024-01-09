@@ -59,8 +59,8 @@ export function AppWrapper({ children } : {
       password,
     })
     const userInfo = {
-      id: res.data.user!.id,
-      email: res.data.user!.email
+      id: res.data.user?.id,
+      email: res.data.user?.email
     }
     console.log("This is the userInfo:", userInfo)
     // setUser(res.data.user)
@@ -95,11 +95,11 @@ export function AppWrapper({ children } : {
           const { data, error } = await supabase
             .from("habit_table")
             .select("*")
-            .eq("user_id", "1");
+            .eq("user_id", user?.id);
           setHabitData(data);
         };
         getData();
-      }, [supabase]);
+      }, [supabase, user]);
 
       useEffect(() => {
         // Update isCommitted when habitData changes
@@ -112,11 +112,12 @@ export function AppWrapper({ children } : {
         const getHabitLogs = async () => {
           const { data: habitLogs, error: habitLogsError } = await supabase
             .from("habit_log")
-            .select("*");
+            .select("*")
+            .eq("user_id", user?.id);
           setHabitLogsArray(habitLogs);
         };
         getHabitLogs();
-      }, [supabase]);
+      }, [supabase, user]);
 
       if (habitData) {
         const startDate = new Date(habitData[0]?.created_at);
