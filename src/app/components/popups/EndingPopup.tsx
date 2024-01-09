@@ -12,6 +12,7 @@ export default function EndingPopup() {
       habitLogsArray,
       setHabitLogsArray,
       setHabitData,
+      user,
     } = useAppContext();
 
   let currentScore = habitLogsArray?.length ?? 0;
@@ -23,7 +24,7 @@ export default function EndingPopup() {
       const { error: deleteLogError } = await supabase
       .from("habit_log")
       .delete()
-      .eq("user_id", "1");
+      .eq("user_id", user?.id);
 
     if (deleteLogError) {
       console.error("Error deleting habit_log records:", deleteLogError);
@@ -36,7 +37,7 @@ export default function EndingPopup() {
     const { error: deleteError } = await supabase
       .from("habit_table")
       .delete()
-      .eq("user_id", "1");
+      .eq("user_id", user?.id);
 
     if (deleteError) {
       console.error("Error deleting habit_table records:", deleteError);
