@@ -4,7 +4,11 @@ const nextConfig = {
 };
 const withImages = require("next-images");
 
-(module.exports = nextConfig), withImages();
+(module.exports = {
+  images: {
+    domains: ['ibb.co'],
+},
+}), withImages();
 // module.exports = {
 //   async redirects() {
 //     return [
