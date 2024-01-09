@@ -43,9 +43,11 @@ export default async function Account() {
   const cookieStore = cookies()
   const supabase = createServerComponentClient<Database>({ cookies : () => cookieStore })
 
+
   const {
     data: { session },
   } = await supabase.auth.getSession()
+  
 
   return (
     <>
