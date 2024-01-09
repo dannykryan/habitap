@@ -33,7 +33,7 @@ export default function List() {
 }
 
   return (
-    <div>
+    <>
       <Prompt />
       <ButtonBar />
       {isCommitted ? (
@@ -60,7 +60,7 @@ export default function List() {
           )}
         </div>
       )}
-    </div>
+    </>
     
   );
 }  

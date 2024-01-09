@@ -36,7 +36,6 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -53,35 +52,33 @@ header img {
   max-width: 400px;
 }
 
-.myList {
-  list-style-type: none;
-  padding: 0;
-}
-
 .todoActive {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  width: 100%;
+  width: 80%;
   background-color: #CEEAD0;
   border: 2px solid #77C47E;
   margin-bottom: 25px;
   padding-left: 12px;
   padding-right: 12px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #list-container {
-  margin-top: 60px;
+  width: 100%;
 }
 
 .myList {
+  width: 100%;
   list-style-type: none;
   padding: 0;
 }
 
 .listInput {
-display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 50px;
@@ -101,7 +98,7 @@ cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
+  height: 54px;
   background-color: #eaf5eb;
   margin-bottom: 25px;
   padding-left: 12px;
@@ -137,9 +134,9 @@ cursor: pointer;
   padding-right: 12px;
 }
 
-.btn-container {
+/* .btn-container {
   justify-content: center;
-}
+} */
 
 .commitBtn {
   display: flex;
@@ -173,12 +170,11 @@ cursor: pointer;
 }
 
 #plant-progress-container {
-  /* display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; */
+  align-items: center;
   margin-top: auto;
-  padding-top: 70px;
   width: 375px;
 }
 
@@ -314,7 +310,11 @@ cursor: pointer;
   justify-content: space-evenly;
   align-items: center;
   width: 90%;
-  padding: 0 20px;
+  padding: 0 10px;
+ }
+
+ .hive-row:nth-of-type(2) {
+  margin-bottom: 85px;
  }
 
  .hive-plant {
@@ -399,11 +399,11 @@ cursor: pointer;
   margin: 0px 10px;
 }
 
-.btn-container {
+/* .btn-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
+} */
 
 .signOutBtn {
   display: flex;
@@ -428,7 +428,7 @@ cursor: pointer;
 /* Media Query for Small Screens */
 @media screen and (max-width: 400px) {
   .popup {
-    width: 50%;
+    width: 70%;
   }
 }
 
@@ -443,11 +443,16 @@ cursor: pointer;
   }
 }
 
-@media screen and (min-height: 833px) {
-  .hive-row:nth-of-type(1) {
-    padding-top: 20px;
-    margin-bottom: 20px;
+@media screen and (min-width: 540px) {
+  main {
+    padding-bottom: 100px;
   }
+}
+
+@media screen and (min-height: 833px) {
+  /* .hive-row:nth-of-type(1) {
+    margin-bottom: 10px;
+  } */
 
   main {
     padding-top: 25px;
