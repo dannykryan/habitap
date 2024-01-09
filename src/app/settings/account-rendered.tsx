@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import ButtonBar from '../components/ButtonBar';
 import { useAppContext } from '../../../src/app/context';
+import Link from 'next/link';
 
 interface AccountRenderedProps {
   firstname: string | null;
@@ -11,7 +12,7 @@ interface AccountRenderedProps {
 }
 
 const AccountRendered: React.FC<AccountRenderedProps> = ({ firstname, lastname, username, profilePicUrl }) => {
-  const { user } = useAppContext();
+  const { user, handleSignOut } = useAppContext();
 
   const profilePicAttributes = {
     backgroundImage: `url(${profilePicUrl})`, // Set the background image URL
@@ -23,7 +24,9 @@ const AccountRendered: React.FC<AccountRenderedProps> = ({ firstname, lastname, 
       <h2 id="profile-username">{username}</h2>
       <div id="profile-info">
         <p>{firstname} {lastname}</p>
-        <button className="signOutBtn">Sign Out</button>
+        <Link href="/login">
+            <button className="signOutBtn" onClick={handleSignOut}>Sign Out</button>
+        </Link>
       </div>
       <ButtonBar />
     </>
