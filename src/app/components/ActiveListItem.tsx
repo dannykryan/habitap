@@ -71,6 +71,7 @@ const ActiveListItem: React.FC<ListItemProps> = ({ children, todo}) => {
   <div className="todoActive">
     {children}
     <Image 
+      className="checkbox"
       src={tickCheckBox ? checkboxTicked : checkboxUnticked}
       alt={tickCheckBox ? "ticked checkbox" : "unticked checkbox"}
       height={27} 

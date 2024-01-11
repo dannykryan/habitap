@@ -48,6 +48,7 @@ export default function NewRoutineList({ taskData, addNewData, deleteData }: New
           <div className="newHabit">
             {todo.title}
             <Image
+              className="trashIcon"
               src={trashIconGreen}
               alt={'Delete item Button'}
               height={27}

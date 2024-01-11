@@ -12,32 +12,12 @@ import { useAppContext } from "../context";
 export default function Login() {
 
   const {
-    currentDate,
-    isCommitted,
-    setIsCommitted,
-    habitData,
-    setHabitData,
-    habitLogsArray,
-    setHabitLogsArray,
-    tenDaysPassed,
-    toggleTenDaysPassed,
-    currentScore,
-    maxScore,
-    percentageDecimal,
-    toggleIsCommitted,
-    activePage,
-    setActivePage,
-    goodLuck,
-    toggleGoodLuck,
-    user,
-    setUser,
     email,
     setEmail,
     password,
     setPassword,
     handleSignUp,
     handleSignIn,
-    handleSignOut
   } = useAppContext();
   
   return (

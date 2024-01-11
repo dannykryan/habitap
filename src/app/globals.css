@@ -122,7 +122,15 @@ cursor: pointer;
   font-weight: 400;
 }
 
+.trashIcon {
+  cursor: pointer;
+}
+
 .emptyListIcon Image {
+  cursor: pointer;
+}
+
+.checkbox {
   cursor: pointer;
 }
 
