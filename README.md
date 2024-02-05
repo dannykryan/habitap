@@ -61,7 +61,7 @@ Watch a quick demo video: https://youtu.be/G5pAIrBaXzo
 
 #### Register:
 
-To start tracking your habits with Habitap, simply visit the application [HERE](<[https://www.example.com](https://habitap.vercel.app/)>). If this marks your first visit, input your email and password, then click the register button. This action registers you in our database and triggers a confirmation email to the provided email address. Click the link in this email to verify your registration. Now you can return to the app to log in using your registered credentials.
+To start tracking your habits with Habitap, simply visit the application [HERE](https://habitap.vercel.app/)>). If this marks your first visit, input your email and password, then click the register button. This action registers you in our database and triggers a confirmation email to the provided email address. Click the link in this email to verify your registration. Now you can return to the app to log in using your registered credentials.
 
 #### Make a Commitment:
 
