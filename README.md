@@ -3,6 +3,7 @@
 ![Habitap Header Image](/public/assets/readme/Habitap_Header.jpg)
 
 Try Now: https://habitap.vercel.app/
+
 Video: [Introducing Habitap](https://youtu.be/i2uwY6e7KoY?si=vTsemKo-X-czdcyx)
 
 ## Overview
