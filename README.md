@@ -4,7 +4,7 @@
 
 Try Now: https://habitap.vercel.app/
 
-Introducing Habitap: https://youtu.be/i2uwY6e7KoY?si=vTsemKo-X-czdcyx
+[VIDEO: Introducing Habitap](https://youtu.be/i2uwY6e7KoY?si=vTsemKo-X-czdcyx)
 
 ## Overview
 
