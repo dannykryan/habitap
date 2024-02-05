@@ -1,54 +1,77 @@
 # Habitap
 
-See our deployed app here - https://habitap.vercel.app/
+Try Now: https://habitap.vercel.app/
 
-## Description
+## Overview
+Habitap is a mobile-first application that is designed to help its users to establish good habits. Users can commit to up to 5 habits for a chosen number of days and Habitap will give the user a visual representation of their progress in the form of a ‘habit flower’ which starts as a sapling and grows into a beautiful bouquet of flowers as your ability to stick to your habits increases. Those who manage to complete over 70% of their committed habits will even attract bees! Invite your friends or family to join your ‘hive’ to check to see who is sticking to their habits and who could benefit from a friendly nudge!.
 
-A simple yet engaging habit tracking app that helps people build new and better habits in a fun, social and trackable way, without distracting from what’s important.
+### Technologies
+- React, Next.js, Typescript, Supabase, Vercel, vanilla CSS
+### Design Tools
+- Figma, Adobe Illustrator, After Effects and Photoshop, LottieFiles
 
-## MVP
+---
 
-- A mobile-first app that uses plant growth to display the user’s progress with their habit that will include:
-- A clean, non-distracting UI that has good accessibility.
-- The ability to create, read, update and delete to-dos.
-- Track progress over time with a monthly score which reflects on the size of a plant - the higher the score, the more developed your plant is.
-- Ability to share progress on social media. 
+### Features
+When a user first visits Habitap, they will be required to register to use the platform so that they can be given an individualised experience. When logging in for the first time, the user is taken to the commitment page and a dialogue box appears which asks them to enter up to five daily habits to track for ten days.
 
-## Table of Contents
+Once committed, the user can then proceed to tick off each of their habits as they complete them each day. Only one tick per day for each habit is allowed. Any attempt to ‘untick’ or ‘double-tick’ a habit and the user will be given a message telling them to come back tomorrow.
 
-- [Installation](#installation)
-- [Credits](#credits)
+After ticking off some habits, the user can return to the flower page to watch as their habit plant grows depending on how well they have adhered to their habit commitment.
+
+If the user would like to view their personal information, they can visit the settings page where they can see their name, email, username and profile photo. By clicking ‘edit’ on this page, they can update any of the information stored for themselves including a new url string to the location of an updated profile photo, if they so choose.
+
+---
+
+### How does the scoring work?
+The progress of the flower’s growth depends on the user’s percentage of a total possible score. So, for a user that has committed to 5 habits for 10 days, they have a total possible score of 50 (5 * 10 = 50). Let’s now say that that user has ticked off all of their habits for the first five days, this gives them a score of 25 (5 * 5 = 25), or 50% of the total possible score of 50. The following chart will show how that percentage is reflected in the flower animation:
+
+#### Plant Growth Status Chart
+
+| Percentage of total possible score | Status of plant growth |
+|-------------------------------------|-------------------------|
+| 10%                                 | 1 full flower           |
+| 20%                                 | 2 full flowers          |
+| 30%                                 | 3 full flowers          |
+| 40%                                 | 4 full flowers          |
+| 50%                                 | 5 full flowers          |
+| 60%                                 | 6 full flowers          |
+| 70%                                 | 7 full flowers (maximum growth) |
+| 80%                                 | Your first bee          |
+| 90%                                 | Two bees                |
+| 100%                                | Queen Bee (perfect score!) |
+
+You will see from the table above that it’s only those that have scores above 70% that will be able to attract bees to their habit flower. The queen bee will only visit those with a perfect score and therefore, will only be unlocked on the final day of the commitment if the user has completed all of their habits.
+
+---
+
+## How to Play
+
+#### Register:
+To start tracking your habits with Habitap, simply visit the application [HERE]([https://www.example.com](https://habitap.vercel.app/)). If this marks your first visit, input your email and password, then click the register button. This action registers you in our database and triggers a confirmation email to the provided email address. Click the link in this email to verify your registration. Now you can return to the app to log in using your registered credentials.
+
+#### Make a Commitment:
+Once logged in, navigate to the checklist page and dismiss the welcome message. Now, enter up to 5 good habits in the inputs that you aim to accomplish daily before clicking ‘commit’. A popup will then confirm the number of habits and the duration of your commitment.
+
+#### Nurture Your Habit Flower:
+Once you've committed to your habits, you can begin marking off those you've completed for the day. Remember, each habit can only be ticked off once per day throughout your commitment period. As progress accumulates, head over to the flower page to visualize your journey. Completing all habits for the first day should yield at least one fully bloomed flower. For detailed insights on how your score influences the animation, consult the plant growth status chart.
+
+#### Update Your Personal Details:
+Users have the flexibility to revise their personal information conveniently by navigating to the settings page. Here, you can modify your first name, last name, and username. To update your profile picture, simply provide a new URL directing to the desired image location online.
+
+## Demo Buttons
+Habitap includes built-in demo buttons conveniently located just below the flower, enabling developers to preview some of its features easily:
+- The orange button initiates the animation of the flower's growth from 0% to 100%. Additional clicks on the orange button preview bee animations, up to 3 more clicks. These animations do not affect the user's progress and return to normal after 30 seconds.
+- The green button will advance time by ten days, thereby ending the current commitment and allowing users to start a new one.
 
 ## Installation
 
-Clone down the repo with git clone https://github.com/dannykryan/habitap.git
+Start a new project in your IDE, clone down the repo with 'git clone https://github.com/dannykryan/habitap.git' and install the dependencies with 'npm i'. You will need to provide you own Supabase URL and Key and include them in a new .env file. For details on setting up a new project in Supabase, you can refer to the [Supabase Docs](https://supabase.com/docs/guides/getting-started).
 
-npm i to install the various dependecies listed below:
-
- "dependencies": {
-    "@supabase/auth-ui-react": "^0.4.6",
-    "@supabase/auth-ui-shared": "^0.1.8",
-    "@supabase/supabase-js": "^2.39.1",
-    "lottie-react": "^2.4.0",
-    "next": "14.0.3",
-    "next-images": "^1.8.5",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-modal": "^3.16.1"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.0.3",
-    "typescript": "^5"
-  }
-
-  ## Credits 
-  Credit goes to our Habiteam of engineers:
-  - Danny Ryan - https://github.com/dannykryan
-  - Liz Robson - https://github.com/liz-robson
-  - Luis Rodriguez Valido - https://github.com/LuisValrod
-  - Ana Raducanu - https://github.com/AnaRaducanu
-  - Spencer Ley - https://github.com/Spencerley
+## Credits 
+Credit goes to our Habiteam of engineers:
+- Danny Ryan - https://github.com/dannykryan
+- Liz Robson - https://github.com/liz-robson
+- Luis Rodriguez Valido - https://github.com/LuisValrod
+- Ana Raducanu - https://github.com/AnaRaducan
+- Spencer Ley - https://github.com/Spencerley
