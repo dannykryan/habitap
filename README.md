@@ -84,7 +84,24 @@ Habitap includes built-in demo buttons conveniently located just below the flowe
 
 ## Installation
 
-Start a new project in your IDE, clone down the repo with 'git clone https://github.com/dannykryan/habitap.git' and install the dependencies with 'npm i'. You will need to provide you own Supabase URL and Key and include them in a new .env file. For details on setting up a new project in Supabase, you can refer to the [Supabase Docs](https://supabase.com/docs/guides/getting-started).
+To work with Habitap, follow these steps:
+
+1. Start a new project in your IDE.
+2. Clone down the repo:
+   ```
+   git clone https://github.com/dannykryan/habitap.git
+   ```
+3. Install the dependencies:
+   ```
+   npm install
+   ```
+4. Create a new `.env` file and add your Supabase URL and Key:
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_key
+   ```
+   Make sure to replace `your_supabase_url` and `your_supabase_key` with your actual Supabase URL and Key.
+5. Refer to the [Supabase Docs](https://supabase.io/docs) for details on setting up a new project in Supabase.
 
 ## Credits
 
