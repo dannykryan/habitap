@@ -9,9 +9,8 @@ import AccountRendered from './account-rendered'
 export default function AccountForm({ session }: { session: Session | null }) {
   const supabase = createClientComponentClient<Database>()
   const [loading, setLoading] = useState(true)
-  const [firstname, setFirstname] = useState<string | null>(null)
+  const [fullname, setFullname] = useState<string | null>(null)
   const [username, setUsername] = useState<string | null>(null)
-  const [lastname, setLastName] = useState<string | null>(null)
   const [profilePicUrl, setProfilePicUrl] = useState<string | null>(null)
   const [avatar_url, setAvatarUrl] = useState<string | null>(null)
   const userOne = session?.user
@@ -27,7 +26,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
   
       const { data, error, status } = await supabase
         .from('profiles')
-        .select(`username, first_name, last_name, profile_pic_url`)
+        .select(`username, full_name, profile_pic_url`)
         .eq('id', userOne?.id)
         .single();
   
@@ -36,9 +35,8 @@ export default function AccountForm({ session }: { session: Session | null }) {
       }
   
       if (data) {
-        setFirstname(data.first_name);
+        setFullname(data.full_name);
         setUsername(data.username);
-        setLastName(data.last_name);
         setProfilePicUrl(data.profile_pic_url); // Set the profilePicUrl state
       }
     } catch (error) {
@@ -55,13 +53,11 @@ export default function AccountForm({ session }: { session: Session | null }) {
 
   async function updateProfile({
   username,
-  lastname,
-  firstname,
+  fullname,
   profilePicUrl,
 }: {
   username: string | null;
-  firstname: string | null;
-  lastname: string | null;
+  fullname: string | null;
   profilePicUrl: string | null;
 }) {
   try {
@@ -69,9 +65,8 @@ export default function AccountForm({ session }: { session: Session | null }) {
 
     const { error } = await supabase.from('profiles').upsert({
       id: userOne?.id as string,
-      first_name: firstname,
       username,
-      last_name: lastname,
+      full_name: fullname,
       profile_pic_url: profilePicUrl, // Include profile_pic_url in the upsert
       updated_at: new Date().toISOString(),
     });
@@ -113,24 +108,13 @@ const [isEditMode, setIsEditMode] = useState(false);
           </div>
 
           <div className="form-row">
-            <label htmlFor="FirstName">First Name</label>
+            <label htmlFor="fullname">Full Name</label>
             <input
-              id="FirstName"
+              id="fullname"
               className="account-input"
               type="text"
-              value={firstname || ''}
-              onChange={(e) => setFirstname(e.target.value)}
-            />
-          </div>
-
-          <div className="form-row">
-            <label htmlFor="LastName">Last Name</label>
-            <input
-              id="LastName"
-              className="account-input"
-              type="text"
-              value={lastname || ''}
-              onChange={(e) => setLastName(e.target.value)}
+              value={fullname || ''}
+              onChange={(e) => setFullname(e.target.value)}
             />
           </div>
 
@@ -152,7 +136,7 @@ const [isEditMode, setIsEditMode] = useState(false);
                 className="signInBtn"
                 onClick={(e) => {
                   e.preventDefault();
-                  updateProfile({ firstname, username, lastname, profilePicUrl });
+                  updateProfile({ fullname, username, profilePicUrl });
                   toggleEditMode();
                 }}
               >
@@ -174,8 +158,7 @@ const [isEditMode, setIsEditMode] = useState(false);
         </div>
       ) : (
         <AccountRendered
-          firstname={firstname}
-          lastname={lastname}
+          fullname={fullname}
           username={username}
           profilePicUrl={profilePicUrl}
         />

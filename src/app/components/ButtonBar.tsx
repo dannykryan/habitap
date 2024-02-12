@@ -42,7 +42,7 @@ export default function ButtonBar() {
           onClick={() => setActivePage("flower")}
         />
       </Link>
-      <Link href="/hive">
+      {/* <Link href="/hive">
       <Image
         src={currentPage === "/hive" ? HiveButtonFocus : HiveButton}
         id="HiveBtn"
@@ -50,7 +50,7 @@ export default function ButtonBar() {
         alt="hive Button"
         onClick={() => setActivePage("hive")}
       />
-      </Link>
+      </Link> */}
       <Link href="/settings">
       <Image
         src={currentPage === "/settings" ? SettingsButtonFocus : SettingsButton}
