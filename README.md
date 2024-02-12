@@ -4,7 +4,7 @@
 
 Try Now: https://habitap.vercel.app/
 
-Watch a quick demo video: https://youtu.be/G5pAIrBaXzo
+Video: [Introducing Habitap](https://youtu.be/i2uwY6e7KoY?si=vTsemKo-X-czdcyx)
 
 ## Overview
 
@@ -34,7 +34,7 @@ If the user would like to view their personal information, they can visit the se
 
 ### How does the scoring work?
 
-The progress of the flower’s growth depends on the user’s percentage of a total possible score. So, for a user that has committed to 5 habits for 10 days, they have a total possible score of 50 (5 _ 10 = 50). Let’s now say that that user has ticked off all of their habits for the first five days, this gives them a score of 25 (5 _ 5 = 25), or 50% of the total possible score of 50. The following chart will show how that percentage is reflected in the flower animation:
+The progress of the flower’s growth depends on the user’s percentage of a total possible score. So, for a user that has committed to 5 habits for 10 days, they have a total possible score of 50 (5 * 10 = 50). Let’s now say that that user has ticked off all of their habits for the first five days, this gives them a score of 25 (5 * 5 = 25), or 50% of the total possible score of 50. The following chart will show how that percentage is reflected in the flower animation:
 
 #### Plant Growth Status Chart
 
@@ -61,7 +61,7 @@ Watch a quick demo video: https://youtu.be/G5pAIrBaXzo
 
 #### Register:
 
-To start tracking your habits with Habitap, simply visit the application [HERE](https://habitap.vercel.app/)>). If this marks your first visit, input your email and password, then click the register button. This action registers you in our database and triggers a confirmation email to the provided email address. Click the link in this email to verify your registration. Now you can return to the app to log in using your registered credentials.
+To start tracking your habits with Habitap, simply visit the application [HERE](https://habitap.vercel.app/). If this marks your first visit, input your email and password, then click the register button. This action registers you in our database and triggers a confirmation email to the provided email address. Click the link in this email to verify your registration. Now you can return to the app to log in using your registered credentials.
 
 #### Make a Commitment:
 
