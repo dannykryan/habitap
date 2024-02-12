@@ -3,9 +3,14 @@ import BeeWithShadow from '../../../public/assets/bee-with-shadow.png';
 import Image from 'next/image';
 import ButtonBar from '../components/ButtonBar';
 import { useAppContext } from "../context";
+import { usePathname } from 'next/navigation'
 
 
 export default function Login() {
+
+  const currentPage = usePathname();
+
+  console.log(`currentPage is: ${currentPage}`)
 
   const {
     email,
@@ -18,14 +23,13 @@ export default function Login() {
   
   return (
     <>
-      <h1>Welcome Back!</h1>
+      <h2>Login below to  enter:</h2>
       <Image
           src={BeeWithShadow}
           id="bee-with-shadow"
           alt="Habitap Bee Mascot"
           width="100"
         />
-      <h2 id="profile-username">Sign In</h2>
       <div id="signin-form">
         <p>Email: </p>
         <input name="email" onChange={(e) => setEmail(e.target.value)} value={email} />
@@ -41,7 +45,7 @@ export default function Login() {
           <button className="registerBtn" onClick={handleSignUp}>Register</button>
           </div>
           </div>
-          <ButtonBar />
+          {/* <ButtonBar /> */}
     </>
   )
 }
