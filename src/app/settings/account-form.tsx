@@ -52,14 +52,14 @@ export default function AccountForm({ session }: { session: Session | null }) {
   }, [userOne, getProfile])
 
   async function updateProfile({
-  username,
-  fullname,
-  profilePicUrl,
-}: {
-  username: string | null;
-  fullname: string | null;
-  profilePicUrl: string | null;
-}) {
+    username,
+    fullname,
+    profilePicUrl,
+  }: {
+    username: string | null;
+    fullname: string | null;
+    profilePicUrl: string | null;
+  }) {
   try {
     setLoading(true);
 

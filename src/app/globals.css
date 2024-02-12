@@ -381,9 +381,12 @@ cursor: pointer;
 
 #bee-with-shadow {
   margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #signin-form {
+  margin-top: 20px;
   text-align: center;
   display: flex;
   flex-direction: column;

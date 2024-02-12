@@ -3,9 +3,16 @@ import BeeWithShadow from '../../../public/assets/bee-with-shadow.png';
 import Image from 'next/image';
 import { useAppContext } from "../context";
 import { usePathname } from 'next/navigation'
+import { useState } from 'react';
+import RegisterPopup from '../components/popups/RegisterPopup';
 
 
 export default function Login() {
+  const [showPopup, setShowPopup] = useState<boolean>(false);
+
+    function closePopup() {
+        setShowPopup(false);
+      }
 
   const currentPage = usePathname();
 
@@ -46,6 +53,8 @@ export default function Login() {
           </div>
           </div>
           {/* <ButtonBar /> */}
+          {/* Conditionally render the RegisterPopup component */}
+          {showPopup && <RegisterPopup closePopup={closePopup} />}
     </>
   )
 }
