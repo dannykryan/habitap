@@ -1,7 +1,6 @@
 'use client'
 import BeeWithShadow from '../../../public/assets/bee-with-shadow.png';
 import Image from 'next/image';
-import ButtonBar from '../components/ButtonBar';
 import { useAppContext } from "../context";
 import { usePathname } from 'next/navigation'
 
@@ -23,6 +22,7 @@ export default function Login() {
   
   return (
     <>
+      <h1 className='hidden'>Habitap</h1>
       <h2>Login below to  enter:</h2>
       <Image
           src={BeeWithShadow}
