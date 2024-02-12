@@ -5,13 +5,12 @@ import { useAppContext } from '../../../src/app/context';
 import Link from 'next/link';
 
 interface AccountRenderedProps {
-  firstname: string | null;
-  lastname: string | null;
+  fullname: string | null;
   username: string | null;
   profilePicUrl: string | null;
 }
 
-const AccountRendered: React.FC<AccountRenderedProps> = ({ firstname, lastname, username, profilePicUrl }) => {
+const AccountRendered: React.FC<AccountRenderedProps> = ({ fullname, username, profilePicUrl }) => {
   const { user, handleSignOut } = useAppContext();
 
   const profilePicAttributes = {
@@ -23,7 +22,7 @@ const AccountRendered: React.FC<AccountRenderedProps> = ({ firstname, lastname, 
         <div id="profile-pic-large" style={profilePicAttributes}></div>
       <h2 id="profile-username">{username}</h2>
       <div id="profile-info">
-        <p>{firstname} {lastname}</p>
+        <p>{fullname}</p>
         <Link href="/login">
             <button className="signOutBtn" onClick={handleSignOut}>Sign Out</button>
         </Link>
