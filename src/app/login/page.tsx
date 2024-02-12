@@ -1,8 +1,4 @@
 'use client'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Database } from '../../../lib/supabase';
 import BeeWithShadow from '../../../public/assets/bee-with-shadow.png';
 import Image from 'next/image';
 import ButtonBar from '../components/ButtonBar';
@@ -12,32 +8,12 @@ import { useAppContext } from "../context";
 export default function Login() {
 
   const {
-    currentDate,
-    isCommitted,
-    setIsCommitted,
-    habitData,
-    setHabitData,
-    habitLogsArray,
-    setHabitLogsArray,
-    tenDaysPassed,
-    toggleTenDaysPassed,
-    currentScore,
-    maxScore,
-    percentageDecimal,
-    toggleIsCommitted,
-    activePage,
-    setActivePage,
-    goodLuck,
-    toggleGoodLuck,
-    user,
-    setUser,
     email,
     setEmail,
     password,
     setPassword,
     handleSignUp,
-    handleSignIn,
-    handleSignOut
+    handleSignIn
   } = useAppContext();
   
   return (
