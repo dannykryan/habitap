@@ -145,7 +145,7 @@ To work with Habitap, follow these steps:
 
 ## Credits
 
-Credit goes to our Habiteam of engineers:
+The original Habitap team:
 
 - Danny Ryan - https://github.com/dannykryan
 - Liz Robson - https://github.com/liz-robson
