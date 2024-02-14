@@ -2,6 +2,8 @@ import supabase from "../../../../lib/initSupabase";
 import Link from "next/link";
 import { useAppContext } from "../../context";
 
+// The ending popup is displayed when the user has been using the app for 10 days. It shows the user's score and a message based on that score. It also has a button to close the popup and reset the user's committment which will wipe their habit_table and habit_log entries.
+
 export default function EndingPopup() {
 
   const {

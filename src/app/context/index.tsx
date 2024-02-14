@@ -72,7 +72,6 @@ export function AppWrapper({ children } : {
     console.log(`This is the user data: `, res.data.user)
   }
 
-      // Assuming you are using React functional components
     useEffect(() => {
       // Log the user information when setUser has completed
       console.log(`This is effect user: `, user);
