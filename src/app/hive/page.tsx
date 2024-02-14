@@ -10,7 +10,7 @@ import Image from "next/image";
 import { useAppContext } from "../context";
 import { useRouter } from 'next/navigation'
 
-export default function Settings() {
+export default function Hive() {
 
     const {
         user,
