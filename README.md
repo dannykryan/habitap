@@ -124,9 +124,10 @@ To work with Habitap, follow these steps:
    habit_id uuid not null,
    completed_at timestamp with time zone not null default now(),
    user_id text null,
-   constraint habit_log_pkey primary key (habit_id),
-   constraint habit_log_habit_id_fkey foreign key (habit_id) references habit_table (habit_id)
+   constraint habit_log_habit_id_fkey foreign key (habit_id) references habit_table (habit_id),
+   constraint public_habit_log_habit_id_fkey foreign key (habit_id) references habit_table (habit_id) on delete cascade
    ) tablespace pg_default;
+  
    ```
    
    The 'habit_table' table stores the habits that each user has committed to:
