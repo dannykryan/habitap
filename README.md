@@ -1,6 +1,6 @@
 # Habitap
 
-![Habitap Header Image](/public/assets/readme/Habitap_Header.jpg)
+![Habitap Header Image](/public/assets/readme/habitap-demo-small.gif)
 
 Try Now: https://habitap.vercel.app/
 
