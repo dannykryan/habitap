@@ -101,11 +101,51 @@ To work with Habitap, follow these steps:
    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_key
    ```
    Make sure to replace `your_supabase_url` and `your_supabase_key` with your actual Supabase URL and Key.
-5. Refer to the [Supabase Docs](https://supabase.io/docs) for details on setting up a new project in Supabase.
+5. Habitap uses four seperate tables in a Supabase database, three of which are defined below.
+   The fourth table is the default supabase auth table that comes as standard with every new project and shoudn't need to be set up.
+   Refer to the [Supabase Docs](https://supabase.io/docs) for details on setting up a new project in Supabase.
+
+   The 'habit_log' table is used to store a record of every habit that is ticked off by each user:
+   ```
+   create table
+   public.habit_log (
+   habit_id uuid not null,
+   completed_at timestamp with time zone not null default now(),
+   user_id text null,
+   constraint habit_log_pkey primary key (habit_id),
+   constraint habit_log_habit_id_fkey foreign key (habit_id) references habit_table (habit_id)
+   ) tablespace pg_default;
+   ```
+   
+   The 'habit_table' table stores the habits that each user has committed to:
+   ```
+   create table
+   public.habit_table (
+   habit_id uuid not null default gen_random_uuid (),
+   created_at timestamp with time zone not null default now(),
+   habit_name text null,
+   days_committed bigint null,
+   user_id text null,
+   constraint habit_table_pkey primary key (habit_id)
+   ) tablespace pg_default;
+   ```
+
+   Finally, the 'profiles' table is used to store user information and preferences:
+   ```
+   create table
+   public.profiles (
+   id uuid not null default gen_random_uuid (),
+   updated_at timestamp with time zone not null default now(),
+   username text null,
+   full_name text null,
+   profile_pic_url text null,
+   constraint profiles_pkey primary key (id)
+   ) tablespace pg_default;
+   ```
 
 ## Credits
 
-Credit goes to our Habiteam of engineers:
+The original Habitap team:
 
 - Danny Ryan - https://github.com/dannykryan
 - Liz Robson - https://github.com/liz-robson
