@@ -8,7 +8,7 @@ Video: [Introducing Habitap](https://youtu.be/i2uwY6e7KoY?si=vTsemKo-X-czdcyx)
 
 ## Introduction
 
-Habitap was created for my final project at the School of Code full-stack developer bootcamp along with 4 other junior developers where we were tasked to build ap application using some of the skills we had leanred over the previous 12 weeks.
+Habitap was created for my final project at the School of Code full-stack developer bootcamp along with 4 other junior developers where we were tasked to build an application using some of the skills we had learned over the previous 12 weeks.
 
 ### Technologies
 
@@ -20,17 +20,19 @@ Habitap was created for my final project at the School of Code full-stack develo
 
 ### The Problem Statement
 
-"People struggle to build new habits due to a lack of accountability, routine and fun when building them. Its easy to become distracted when trying to build a habit, other apps, notifications and doom scrolling that take away attention and time."
+"People struggle to build new habits due to a lack of accountability, routine and fun when building them. Its easy to become distracted when trying to build a habit by unnecessary features, notifications and doom scrolling that take away attention and time."
 
 ### Our Solution
 
-Based on Market research, surveys and personal experience, we set out to design an app that uses social accountability and cooperation, both proven tools that help to motivate users to better themselves and build new and better habits, together - without distracting from what’s important.
+Based on our market research, peer surveys and personal experience, we set out to design an app that used social accountability and cooperation, both proven tools that help to motivate users to better themselves and build new and better habits, together - without distracting from what’s important.
 
 ---
 
 ## Overview
 
-Habitap is a mobile-first application that is designed an to help its users to establish good habits. Users can commit to up to 5 habits for a chosen number of days and Habitap will give the user a visual representation of their progress in the form of a ‘habit flower’ which starts as a sapling and grows into a beautiful bouquet of flowers as your ability to stick to your habits increases. Those who manage to complete over 70% of their committed habits will even attract bees! Invite your friends or family to join your ‘hive’ to check to see who is sticking to their habits and who could benefit from a friendly nudge!
+Habitap is a mobile-first application that is designed an to help its users to establish good habits. Users can commit to up to 5 habits for 10 days and Habitap will give the user a visual representation of their progress in the form of a ‘habit flower’ which starts as a sapling and grows into a beautiful bouquet of flowers as your ability to stick to your habits increases. Those who manage to complete over 70% of their committed habits will even attract bees! Invite your friends or family to join your ‘hive’ to check to see who is sticking to their habits and who could benefit from a friendly nudge!*
+
+* The full social features of Habitap (ie. the Hive page) have not yet been fully implemented but I plan to include them in the future.
 
 ## Features
 
