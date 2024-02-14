@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
-import allFlowers from "../../../public/plants/flower-bunch-2.json";
-import threeBeesPlease from "../../../public/plants/three-bees-please.json";
-import yourFirstBee from "../../../public/plants/your-first-bee.json";
-import twoWholeBees from "../../../public/plants/two-whole-bees.json";
 import Lottie from "lottie-react";
 import { Flower, OneBee, TwoBees, ThreeBees, Plant } from "../../../types/types";
 import { useAppContext } from "../context";
+
+// Import the animation data. Allflowers is the default animation data. The other animations are for higher scores when the user has attracted bees to their plant.
+
+import allFlowers from "../../../public/plants/flower-bunch-2.json";
+import yourFirstBee from "../../../public/plants/your-first-bee.json";
+import threeBeesPlease from "../../../public/plants/three-bees-please.json";
+import twoWholeBees from "../../../public/plants/two-whole-bees.json";
+
+// The habit plant is a visual representation of the user's habits. The plant grows as the user completes their habits by reading how many entries have been made to the habit_log. The plant is animated using the Lottie library 'lottie'react'.
 
 export default function Plant() {
 
@@ -14,6 +19,9 @@ export default function Plant() {
     habitLogsArray,
     showGrowth,
 } = useAppContext();
+
+console.log('This is the habitLogsArray:', habitLogsArray);
+console.log('This is the habitData:', habitData);
 
   const [animationKey, setAnimationKey] = useState<number>(0);
   // State to manage animation options
@@ -31,6 +39,10 @@ export default function Plant() {
 
   // Effect to update animation options when the percentageDecimal changes
   useEffect(() => {
+
+    // The progress of the animation is based on the user's percentage of a possible max score.
+
+    // The animation can also be temporarily set to show different animations by cycling through showGrowth states using the demo buttons included in app/page.tsx.
 
     let currentScore = habitLogsArray?.length ?? 0;
     let maxScore = habitData?.length ? habitData.length * 10 : 0;

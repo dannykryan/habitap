@@ -17,6 +17,8 @@ export default function Home() {
     toggleTenDaysPassed();
   }
 
+  // This is the home page of the application where the habit plant lives. The popup is only displayed only when the user first commits to some habits by selecting 'commit' on the CommitPopup.
+
   return (
     <>
       <div className="popup" style={{ display: goodLuck ? "flex" : "none" }}>

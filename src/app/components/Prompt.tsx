@@ -1,7 +1,10 @@
 import { useAppContext } from "../context";
 
+// The prompt is displayed at the top of the screen and changes based on the user's progress and the page they are on.
+
 export default function Prompt() {
 
+  // importing state from the context to judge the prompt message
   const {
     isCommitted,
     tenDaysPassed,

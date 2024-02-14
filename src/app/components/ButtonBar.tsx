@@ -13,6 +13,8 @@ import Link from "next/link";
 import { usePathname } from 'next/navigation'
 import { useAppContext } from "../context";
 
+// The button bar is displayed at the bottom of the screen and allows the user to navigate between the list, flower, hive and settings pages.
+
 export default function ButtonBar() {
 
   const currentPage = usePathname();
@@ -42,7 +44,7 @@ export default function ButtonBar() {
           onClick={() => setActivePage("flower")}
         />
       </Link>
-      {/* <Link href="/hive">
+      <Link href="/hive">
       <Image
         src={currentPage === "/hive" ? HiveButtonFocus : HiveButton}
         id="HiveBtn"
@@ -50,7 +52,7 @@ export default function ButtonBar() {
         alt="hive Button"
         onClick={() => setActivePage("hive")}
       />
-      </Link> */}
+      </Link>
       <Link href="/settings">
       <Image
         src={currentPage === "/settings" ? SettingsButtonFocus : SettingsButton}
