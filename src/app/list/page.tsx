@@ -7,10 +7,8 @@ import ButtonBar from "../components/ButtonBar";
 import { useAppContext } from "../context";
 import { useRouter } from 'next/navigation'
 
-
+// The List page displays the user's active habits when available or the form for adding new habits.
 export default function List() {
-
-
 
   const {
     isCommitted,

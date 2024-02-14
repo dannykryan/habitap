@@ -35,7 +35,6 @@ const ActiveListItem: React.FC<ListItemProps> = ({ children, todo}) => {
           console.error("Error fetching habit logs:", error);
           return;
         }
-        console.log("This is the habit log data:", data)
         // Extract values of completed_at using map
         const loggedDate = data.map((log) => log.completed_at.split('T')[0]);
         setTickCheckBox(loggedDate.includes(formattedDate))
