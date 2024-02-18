@@ -30,13 +30,11 @@ Based on our market research, peer surveys and personal experience, we set out t
 
 ## Overview
 
-Habitap is a mobile-first application that is designed an to help its users to establish good habits. Users can commit to up to 5 habits for 10 days and Habitap will give the user a visual representation of their progress in the form of a ‘habit flower’ which starts as a sapling and grows into a beautiful bouquet of flowers as your ability to stick to your habits increases. Those who manage to complete over 70% of their committed habits will even attract bees! Invite your friends or family to join your ‘hive’ to check to see who is sticking to their habits and who could benefit from a friendly nudge!*
-
-* The full social features of Habitap (ie. the Hive page) have not yet been fully implemented but I plan to include them in the future.
+Habitap is a mobile-first application that is designed to help its users to establish good habits. Users can commit to up to 5 habits for 10 days and Habitap will give the user a visual representation of their progress in the form of a ‘habit flower’ which starts as a sapling and grows into a beautiful bouquet of flowers as your ability to stick to your habits increases. Those who manage to complete over 70% of their committed habits will even attract bees! Invite your friends or family to join your ‘hive’ to check to see who is sticking to their habits and who could benefit from a friendly nudge! (The full social features of Habitap (ie. the Hive page) have not yet been fully implemented but as they were an important part of the original vision for the application, I plan to include them in the near future).
 
 ## Features
 
-When a user first visits Habitap, they will be required to register to use the platform so that they can be given an individualised experience. When logging in for the first time, the user is taken to the commitment page and a dialogue box appears which asks them to enter up to five daily habits to track for ten days.
+When a user first visits Habitap, they will be required to register to use the platform so that they can be given an individualised experience. When logging in for the first time, the user is taken to the commitment page and a dialogue box appears which asks them to enter up to five daily habits to track for ten days (The variable 'daysCommitted' is used when calculating the 'maxScore' and is currently hard-coded as 10 for ease of demonstration. However, it would be easy to modify the code to allow users to set the length of their commitment).
 
 Once committed, the user can then proceed to tick off each of their habits as they complete them each day. Only one tick per day for each habit is allowed. Any attempt to ‘untick’ or ‘double-tick’ a habit and the user will be given a message telling them to come back tomorrow.
 
