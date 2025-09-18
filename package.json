@@ -7,13 +7,16 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed": "node scripts/seed-database.js",
+    "db:setup": "echo 'Run the schema.sql file in your Supabase SQL editor first, then run npm run seed'"
   },
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.8.7",
     "@supabase/auth-ui-react": "^0.4.6",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/supabase-js": "^2.39.2",
+    "dotenv": "^17.2.2",
     "lottie-react": "^2.4.0",
     "next": "14.2.32",
     "next-images": "^1.8.5",

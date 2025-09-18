@@ -1,6 +1,6 @@
 "use client";
 
-import "src/app/globals.css";
+import "../globals.css";
 import NewRoutineList from "./NewRoutineList";
 import { useState } from "react";
 import Popup from "./popups/CommitPopup";

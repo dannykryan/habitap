@@ -11,24 +11,71 @@ export interface Database {
     Tables: {
       habit_table: {
         Row: {
+          habit_id: string
+          user_id: string
+          habit_name: string | null
           completed: boolean | null
           created_at: string
-          habit_id: string
-          habit_name: string | null
         }
         Insert: {
+          habit_id?: string
+          user_id: string
+          habit_name?: string | null
           completed?: boolean | null
           created_at?: string
-          habit_id?: string
-          habit_name?: string | null
         }
         Update: {
+          habit_id?: string
+          user_id?: string
+          habit_name?: string | null
           completed?: boolean | null
           created_at?: string
-          habit_id?: string
-          habit_name?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "habit_table_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      habit_log: {
+        Row: {
+          log_id: string
+          user_id: string
+          habit_id: string
+          completed_at: string
+          created_at: string
+        }
+        Insert: {
+          log_id?: string
+          user_id: string
+          habit_id: string
+          completed_at?: string
+          created_at?: string
+        }
+        Update: {
+          log_id?: string
+          user_id?: string
+          habit_id?: string
+          completed_at?: string
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "habit_log_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "habit_log_habit_id_fkey"
+            columns: ["habit_id"]
+            referencedRelation: "habit_table"
+            referencedColumns: ["habit_id"]
+          }
+        ]
       }
     }
     Views: {
@@ -46,6 +93,7 @@ export interface Database {
   }
 }
 
+// Keep all your existing type exports...
 export type Tables<
   PublicTableNameOrOptions extends
     | keyof (Database["public"]["Tables"] & Database["public"]["Views"])

@@ -1,6 +1,5 @@
 "use client"
 import { createContext, useState, useContext, useEffect } from 'react';
-import supabase from '../../../lib/initSupabase';
 import { HabitLog, Data } from "../../../types/types";
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useRouter } from 'next/navigation';
@@ -21,8 +20,12 @@ export function AppWrapper({ children } : {
     const [password, setPassword] = useState('');
     const router = useRouter();
     const [user, setUser] = useState<any>(null);
-    const supabase = createClientComponentClient<Database>();
     const [showGrowth, setShowGrowth] = useState<string>("normal");
+    const [supabaseClient, setSupabaseClient] = useState<any>(null);
+    const [isClient, setIsClient] = useState(false);
+
+    console.log('Environment URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
+    console.log('Environment Anon Key:', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.substring(0, 20) + '...');
 
     // Calculate the current score, max score, and percentage completion
     let [tenDaysPassed, setTenDaysPassed] = useState<boolean>(false);
@@ -30,23 +33,46 @@ export function AppWrapper({ children } : {
     let maxScore = habitData?.length ? habitData.length * 10 : 0;
     let percentageDecimal = maxScore ? currentScore / maxScore : 0;
 
+    // Initialize client-side only
+    useEffect(() => {
+      setIsClient(true);
+    }, []);
+
+    // Initialize Supabase client only after we're sure we're on the client
+    useEffect(() => {
+      if (!isClient) return;
+      
+      const client = createClientComponentClient<Database>();
+      setSupabaseClient(client);
+    }, [isClient]);
 
   useEffect(() => {
+    if (!supabaseClient || !isClient) return;
+    
     async function getUser() {
-      const { data: user, error } = await supabase.auth.getUser()
+      const { data: user, error } = await supabaseClient.auth.getUser()
       setUser(user)
     }
     getUser();
-  }, [supabase.auth])
+  }, [supabaseClient, isClient])
 
   const handleSignUp = async () => {
-    const res = await supabase.auth.signUp({
+    if (!supabaseClient || !isClient) return;
+    
+    const res = await supabaseClient.auth.signUp({
       email,
       password,
       options: {
         emailRedirectTo: `http://localhost:3000/auth/callback`,
       },
     })
+
+    console.log('SignUp response:', res);
+    if (res.error) {
+      console.error('SignUp error:', res.error);
+    }
+
+
     setUser(res.data.user)
     router.refresh()
     setEmail('')
@@ -54,7 +80,9 @@ export function AppWrapper({ children } : {
   }
 
   const handleSignIn = async () => {
-    const res = await supabase.auth.signInWithPassword({
+    if (!supabaseClient || !isClient) return;
+    
+    const res = await supabaseClient.auth.signInWithPassword({
       email,
       password,
     })
@@ -63,7 +91,6 @@ export function AppWrapper({ children } : {
       email: res.data.user?.email
     }
     console.log("This is the userInfo:", userInfo)
-    // setUser(res.data.user)
     setUser({...userInfo})
     router.refresh()
     setEmail('')
@@ -73,12 +100,13 @@ export function AppWrapper({ children } : {
   }
 
     useEffect(() => {
-      // Log the user information when setUser has completed
       console.log(`This is effect user: `, user);
-    }, [user]); // This will run the useEffect whenever the 'user' state changes
+    }, [user]);
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut()
+    if (!supabaseClient || !isClient) return;
+    
+    await supabaseClient.auth.signOut()
     router.refresh()
     setUser(null)
   }
@@ -90,33 +118,36 @@ export function AppWrapper({ children } : {
     }
 
     useEffect(() => {
+        if (!supabaseClient || !user?.id || !isClient) return;
+        
         const getData = async () => {
-          const { data, error } = await supabase
+          const { data, error } = await supabaseClient
             .from("habit_table")
             .select("*")
             .eq("user_id", user?.id);
           setHabitData(data);
         };
         getData();
-      }, [supabase, user]);
+      }, [supabaseClient, user, isClient]);
 
       useEffect(() => {
-        // Update isCommitted when habitData changes
         if (habitData !== null) {
           setIsCommitted(habitData.length > 0);
         }
       }, [habitData]);
 
       useEffect(() => {
+        if (!supabaseClient || !user?.id || !isClient) return;
+        
         const getHabitLogs = async () => {
-          const { data: habitLogs, error: habitLogsError } = await supabase
+          const { data: habitLogs, error: habitLogsError } = await supabaseClient
             .from("habit_log")
             .select("*")
             .eq("user_id", user?.id);
           setHabitLogsArray(habitLogs);
         };
         getHabitLogs();
-      }, [supabase, user]);
+      }, [supabaseClient, user, isClient]);
 
       if (habitData) {
         const startDate = new Date(habitData[0]?.created_at);
@@ -125,7 +156,6 @@ export function AppWrapper({ children } : {
         tenDaysPassed = currentDate >= endDate;
       }
 
-    // Function to toggle commitment status
     function toggleIsCommitted() {
         setIsCommitted(!isCommitted);
     };

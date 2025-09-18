@@ -1,7 +1,7 @@
 "use client";
 
 import Plant from "./Plant";
-import "src/app/globals.css";
+import "../globals.css";
 import { useAppContext } from "../context";
 
 export default function Home() {
